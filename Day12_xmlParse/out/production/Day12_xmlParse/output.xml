@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<students name="大胖子">我是一坨学生
-  <student name="小胖子">我是一团学生
-    <score score="分数">231</score>
-  </student>
-</students>
