@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		System.out.println("请输入你的考试成绩");
+		Scanner scanner = new Scanner(System.in);
+		int input = scanner.nextInt();
+		if (input >= 90 ) {
+			System.out.println("成绩优秀");
+		}else {
+			System.out.println("成绩不及格");
+		}
+		main(args);
+	}
+}

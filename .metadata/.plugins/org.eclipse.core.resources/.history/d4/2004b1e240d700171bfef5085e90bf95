@@ -1,0 +1,27 @@
+package homeWork;
+
+public class Worker extends Person implements UserInter {
+
+	@Override
+	public void onLine() {
+		System.out.println(getWork() + "嫌弃工资太低决定罢工!");
+	}
+
+	@Override
+	public void offLine() {
+		
+	}
+	
+	public void onLine(String username) {
+		System.out.println(username + "开始干活了");
+	}
+	public void offLine(String username) {
+		System.out.println(username + "干完回家了");
+	}
+	
+	public void getwork(String username) {
+		super.setWork(username);
+	}
+
+
+}

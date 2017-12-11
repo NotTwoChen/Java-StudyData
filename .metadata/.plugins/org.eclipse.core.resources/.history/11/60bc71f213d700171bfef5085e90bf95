@@ -1,0 +1,22 @@
+package homeWork;
+
+public class Cooker extends Person implements UserInter {
+
+	@Override
+	public void onLine() {
+		System.out.println(getWork() + "炒菜的时候很喜欢颠勺");
+	}
+
+	@Override
+	public void offLine() {
+
+	}
+	
+	public void onLine(String username) {
+		System.out.println(username + "开始做饭了");
+	}
+	public void offLine(String username) {
+		System.out.println(username + "做完了可以吃了");
+	}
+
+}

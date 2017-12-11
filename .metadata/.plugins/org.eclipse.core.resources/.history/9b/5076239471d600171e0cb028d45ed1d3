@@ -1,0 +1,21 @@
+package com.lanou3g.random;
+
+import java.util.Date;
+
+import javax.xml.crypto.Data;
+
+public class CalendarDemo {
+	public static void main(String[] args) {
+		
+		Date date = new Date();
+//		Fri Dec 01 16:23:22 CST 2017 
+		System.out.println(date.toString());
+//		Fri Dec 01 16:25:56 CST 2017
+		System.out.println(date);
+	}
+
+	@Override
+	public String toString() {
+		return "我调用了这个类的toString方法";
+	}
+}

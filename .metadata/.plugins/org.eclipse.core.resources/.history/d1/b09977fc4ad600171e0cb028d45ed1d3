@@ -1,0 +1,15 @@
+package com.lanou3g.study;
+
+import inter.Work;
+
+public class Doctor extends Person implements Work{
+	public void work() {
+		System.out.println("烟烟酒酒新星冰毒");
+	}
+
+	@Override
+	public void goHome() {
+		// TODO 自动生成的方法存根
+		
+	}
+}

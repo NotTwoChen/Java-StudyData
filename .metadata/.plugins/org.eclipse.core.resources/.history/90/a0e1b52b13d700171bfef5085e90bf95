@@ -1,0 +1,22 @@
+package homeWork;
+
+public class Worker implements UserInter {
+
+	@Override
+	public void onLine() {
+		System.out.println("工人开始干活了");
+	}
+
+	@Override
+	public void offLine() {
+		System.out.println("工人干完了回家了");
+	}
+	
+	public void onLine(String username) {
+		System.out.println(username + "开始干活了");
+	}
+	public void offLine(String username) {
+		System.out.println(username + "干完回家了");
+	}
+
+}

@@ -1,0 +1,11 @@
+package com.lanou3g.change;
+
+public class Main {
+	public static void main(String[] args) {
+		// 父类的引用指向了子类的对象
+		Father fason = new Son();
+		// 父类的引用只能找到父类的方法
+		// 找不到子类的独有方法
+		fason.eat();
+	}
+}

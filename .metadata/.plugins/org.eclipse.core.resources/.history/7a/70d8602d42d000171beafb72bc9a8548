@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class ResidentEvil {
+	public static void main(String[] args) {
+		// 创建第一个感染的人类(人类的数目必须是整数,所以设置int类型)
+		int people = 1;
+		// 设定每一个人类一天可感染人数的上限和下限
+		// 此处设定一个人类一天可以感染[0,100)个人类
+		// 并将people重新赋值定义为现在感染的人数
+//		people = people + (int)(Math.random()*50+50)*people;
+		// 设置一个病毒爆发的天数(同人类数目原理,必须是整数)
+		// 创建开始感染的天数默认为第一天
+		int day = 1;
+//		day++;
+		Scanner scanner = new Scanner(System.in);
+		
+		while(true) {
+		System.out.println("请输入感染后的日期");
+		int input = scanner.nextInt();
+		if (input != 0) {
+			people = people + (int)(Math.random()*50+50)*people;
+			day = day + input;
+			people *= day;
+			System.out.println(day+input+"天后,地球上已经有"+people+"人感染病毒");
+		}
+				
+		}
+				
+				
+				
+	}
+}

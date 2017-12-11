@@ -1,0 +1,22 @@
+package com.lanou3g.random;
+
+import java.util.Random;
+
+public class RandomDemo {
+
+	public static void main(String[] args) {
+		// 取一个随机数
+		// 需要用到random这个工具类
+		Random random = new Random();
+		int random1 =
+		random.nextInt();
+		
+		System.out.println(random1);
+		
+		// 取一个30~45之间的随机数
+		
+		// 第一步:取一个0到10之间的随机数
+		int random2 = random.nextInt(10);
+	}
+
+}

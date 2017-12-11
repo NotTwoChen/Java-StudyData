@@ -1,0 +1,40 @@
+package homeWork;
+
+public class Person implements UserInter {
+	private String name;
+	private String username;
+	private String pssword;
+	private String work;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPssword() {
+		return pssword;
+	}
+	public void setPssword(String pssword) {
+		this.pssword = pssword;
+	}
+	public String getWork() {
+		return work;
+	}
+	public void setWork(String work) {
+		this.work = work;
+	}
+	public void onLine() {
+	}
+	public void offLine() {
+	}
+	public void show() {
+		System.out.println("用户姓名:" + getName());
+		System.out.println("用户职业:" + getWork());
+	}
+}

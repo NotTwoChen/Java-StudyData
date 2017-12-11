@@ -1,0 +1,17 @@
+package com.lanou3g.HomeWork;
+
+
+public class PetType {
+	private String Variety;
+	private String name;
+	private int HealthIndex;
+	private int Intimacy;
+	private String sex;
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+}

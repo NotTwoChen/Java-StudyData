@@ -1,0 +1,10 @@
+package com.lanou3g.HomeWork;
+
+public class Dog {
+	public Dog() {
+		System.out.println("");
+	}
+	public Dog(String dog) {
+		System.out.println("");
+	}
+}

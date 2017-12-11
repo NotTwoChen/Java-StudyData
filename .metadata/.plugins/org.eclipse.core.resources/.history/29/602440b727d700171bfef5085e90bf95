@@ -1,0 +1,41 @@
+package homeWork;
+
+import java.util.Date;
+
+public class Login implements UserInter{
+
+	@Override
+	public void onLine() {
+		
+	}
+
+	@Override
+	public void offLine() {
+		
+	}
+	
+	public static  UserInter login(String username,String password) {
+		UserData userData = new UserData();
+		for (int i = 0; i < userData.Userdata.length;i++) {
+			if (userData.Userdata[i][1] == username&&password == userData.Userdata[i][2]) {
+				Person person = new Person();
+				Date date = new Date();
+				person.setName(userData.Userdata[i][0]);
+				person.setUsername(userData.Userdata[i][1]);
+				person.setPssword(userData.Userdata[i][2]);
+				person.setWork(userData.Userdata[i][3]);
+				System.out.println("登录成功!!!");
+				System.out.println("用户姓名:" + person.getName());
+				System.out.println("用户职业:" + person.getWork());
+				System.out.println("当前时间:" + date);
+			}
+			
+		}
+		return null;
+		
+		
+	
+		
+	}
+}
+	

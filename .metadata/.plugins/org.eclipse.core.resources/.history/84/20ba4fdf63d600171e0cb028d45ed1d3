@@ -1,0 +1,7 @@
+package com.lanou3g.change;
+
+public class Father {
+	public void eat() {
+		System.out.println("ÎÒÒª³Ô·¹ÁË");
+	}
+}

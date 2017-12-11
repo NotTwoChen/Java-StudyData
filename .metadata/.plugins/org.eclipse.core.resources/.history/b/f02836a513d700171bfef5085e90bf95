@@ -1,0 +1,22 @@
+package homeWork;
+
+public class Doctor implements UserInter {
+
+	@Override
+	public void onLine() {
+
+	}
+
+	@Override
+	public void offLine() {
+
+	}
+	
+	public void onLine(String username) {
+		System.out.println(username + "开始做手术了");
+	}
+	public void offLine(String username) {
+		System.out.println(username + "做完累昏了");
+	}
+
+}

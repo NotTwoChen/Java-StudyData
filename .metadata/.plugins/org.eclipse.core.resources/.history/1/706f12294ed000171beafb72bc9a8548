@@ -1,0 +1,86 @@
+import java.util.Scanner;
+
+public class TenMoney {
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+		// 10亿元每天花一半,可以花几天
+		System.out.println("*.");
+		long money = 1000000000;
+		// i即为天数
+		for (int i = 1; money != 0; i++) {
+			// 每天花一半
+			money /=2;
+			// 打印天数和花钱数
+			System.out.println("第"+i+"天花了"+money+"元");
+		}
+		
+		
+		// 1.打印
+		System.out.println("1.");
+		System.out.println("********************");
+		System.out.println("  ***     JAVA     ***");
+		System.out.println("    ********************");
+		
+		// 2.189元如何使用最少的100/50/20/10/5/1元组成,并输出各面值钱币的张数
+		System.out.println("2.");
+		int a = 189,b = 100,c = 50,d = 20,e = 10,f = 5,g = 1;
+		for (int i = 1; a > b ; i++) {
+			a -= b;
+			System.out.println("面值100的张数为:"+i);
+		}
+		for (int j = 1; a > c ; j++) {
+			a -= c;
+			System.out.println("面值50的张数为:"+j);
+		}
+		for (int k = 1; a > d ; k++) {
+			a -= d;
+			System.out.println("面值20的张数为:"+k);
+		}
+		for (int l = 1; a > e ; l++) {
+			a -= e;
+			System.out.println("面值10的张数为:"+l);
+		}
+		for (int m = 1; a > f; m++) {
+			a -= f;
+			System.out.println("面值5的张数为:"+m);
+		}
+		for (int n = 1; a >= g; n++) {
+			a -= g;
+			if (a == 0) {
+				System.out.println("面值1的张数为:"+n);
+			}						
+		}
+		
+		// 3.现有一个整数,判断是奇数还是偶数
+		System.out.println("3.");
+		Scanner scanner = new Scanner(System.in);
+//		while(true) {
+		System.out.println("请输入你要进行判断的整数");
+		int input = 2;
+//				scanner.nextInt();
+		if (input%2 == 0) {
+			System.out.println(input+"为偶数");
+		}else if (input%2 != 0) {
+			System.out.println(input+"为奇数");
+		}else {
+			System.out.println(input+"为非奇非偶的整数");
+//		}
+		}
+		
+		// 4.铁路托运行李规定:行李重不超过50公斤的,托运费算0.15元每公斤计算
+		// 如果超过50公斤,超出部分每公斤加收0.1元
+		System.out.println("4.");
+		// 重量的定义
+		System.out.println("请输入你要托运的行李重量");
+		int weigh = scanner.nextInt();
+		// 托运费的定义
+		double haulage;
+		if (weigh <= 50) {
+			haulage = 0.15*weigh;
+			System.out.println("托运费为:"+haulage);
+		}else if(weigh > 50) {
+			haulage = 0.15*50 + 0.1*(weigh-50);
+			System.out.println("托运费为:"+haulage);
+		}
+	}
+}

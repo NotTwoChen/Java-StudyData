@@ -1,0 +1,45 @@
+package com.lanou3g.HomeWork;
+
+import java.util.Scanner;
+
+public class AdoptPetSystem {
+
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		TypeDog dog = new TypeDog();
+		TypePenguin penguin = new TypePenguin();
+		System.out.println("-----------欢迎来到宠物领养系统----------");
+		System.out.println("-----------请给您要领养的宠物起个名字吧----");
+		String PetName = scanner.nextLine();
+		System.out.println("-----请选择要领养的宠物类型:-----");
+		System.out.println("1.狗狗");
+		System.out.println("2.企鹅");
+		int input = scanner.nextInt();
+		switch(input) {
+		case 1:
+			System.out.println("-----请选择狗狗的品种:-----");
+			System.out.println("1.色色的泰迪");
+			System.out.println("2.傻傻的二哈");
+			int input1 = scanner.nextInt();
+			dog.setName(PetName);
+			if (input1 == 1) {
+				dog.setVariety("色色的泰迪");
+				dog.setHealthIndex(89);
+				dog.setIntimacy(0);
+				dog.selfIntroduction();
+			}else {
+				dog.setVariety("傻傻的二哈");
+				System.out.println("宠物的自白:");
+				System.out.println("我的名字叫"+dog.getName()+"健康值是"+dog.getHealthIndex());
+			}
+			break;
+		case 2:
+			break;
+		default:
+			break;
+		}
+		
+	}
+
+}

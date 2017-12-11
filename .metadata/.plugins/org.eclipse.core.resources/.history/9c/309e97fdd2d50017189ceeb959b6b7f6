@@ -1,0 +1,8 @@
+package com.lanou3g.HomeWork;
+
+
+public class PetType {
+	public void Choice() {
+		
+	}
+}

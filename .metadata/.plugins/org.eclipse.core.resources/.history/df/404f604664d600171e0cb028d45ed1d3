@@ -1,0 +1,8 @@
+package com.lanou3g.change;
+
+public class Son extends Father {
+	
+//	public void eat() {
+//		System.out.println("ÎÒ²»¶ö!");
+//	}
+}

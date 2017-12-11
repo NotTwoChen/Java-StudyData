@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Practice {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		int input = scanner.nextInt();
+		if (input >= 80) {
+			System.out.println("Á¼ºÃ");
+		}else if (input >= 60) {
+			System.out.println("ÖÐµÈ");
+		}else {
+			System.out.println("²î");
+		}
+	}
+}

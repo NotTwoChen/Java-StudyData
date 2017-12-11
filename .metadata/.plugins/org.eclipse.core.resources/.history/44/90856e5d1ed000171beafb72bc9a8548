@@ -1,0 +1,20 @@
+
+public class Main2 {
+	public static void main(String[] args) {
+		int i = 0;
+		/*
+		 * while循环
+		 * 先判断括号中的内容,是否为true
+		 * 如果为true则执行
+		 * 大括号里面的内容,然后再判断括号里面的例如是否为true
+		 * 如果...一遍遍
+		 * 当括号内容为false时
+		 * while循环停止
+		 */
+		while (i<50) {
+			i++;
+			System.out.println(i);
+			
+		}
+	}
+}

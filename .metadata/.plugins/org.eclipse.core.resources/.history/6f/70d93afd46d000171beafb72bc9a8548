@@ -1,0 +1,12 @@
+
+public class TenMoney {
+	public static void main(String[] args) {
+		double money = 1000000000;
+		System.out.println(money);
+		// i即为天数
+		for (int i = 1; money != 0; i++) {
+			money /=2;
+			System.out.println("第"+i+"天花了"+money+"元");
+		}
+	}
+}

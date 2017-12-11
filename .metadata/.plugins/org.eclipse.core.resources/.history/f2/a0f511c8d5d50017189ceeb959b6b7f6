@@ -1,0 +1,7 @@
+package com.lanou3g.HomeWork;
+
+public class TypeDog extends PetType{
+	
+	PetType dog = new PetType();
+	
+}

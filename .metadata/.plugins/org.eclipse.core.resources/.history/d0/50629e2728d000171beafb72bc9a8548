@@ -1,0 +1,41 @@
+import javax.sound.midi.Soundbank;
+
+public class Main2 {
+	public static void main(String[] args) {
+		int i = 100;
+		/*
+		 * while循环
+		 * 先判断括号中的内容,是否为true
+		 * 如果为true则执行
+		 * 大括号里面的内容,然后再判断括号里面的例如是否为true
+		 * 如果...一遍遍
+		 * 当括号内容为false时
+		 * while循环停止
+		 */
+		while (i<50) {
+			i++;
+			System.out.println(i);
+			if (i>25) {
+				break;
+			}
+		}
+		
+		int progress = 1;
+		do {
+			progress+=2;
+			System.out.println(progress);
+		} while (progress < 10);
+		
+		/*
+		 * do-while 与 while 的区别
+		 * do-while 是先执行一次循环体,然后再判断
+		 * while是先判断然后再执行循环体
+		 */
+		
+		int a = 1;
+		while(a <= 100) {
+			System.out.println(a +".好好学习,天天向上");
+			a++;
+		}
+	}
+}

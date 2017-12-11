@@ -1,0 +1,11 @@
+package com.lanou3g.extend;
+
+public class BigCar extends Car {
+	
+	public void show() {
+		// 因为wheels是私有的,所以子类无法访问,也就是无法复制
+		int wheels = getWheels();
+		System.out.println("轮胎个数为:"+wheels);
+		
+	}
+}

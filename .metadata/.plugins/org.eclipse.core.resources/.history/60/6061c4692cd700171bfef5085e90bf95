@@ -1,0 +1,46 @@
+package homeWork;
+
+
+public class Login implements UserInter{
+
+	@Override
+	public void onLine() {
+		
+	}
+
+	@Override
+	public void offLine() {
+		
+	}
+	
+	public static  UserInter login(String username,String password) {
+		UserData userData = new UserData();
+		for (int i = 0; i < userData.Userdata.length;i++) {
+			if (username.equals(userData.Userdata[i][1])&&password.equals(userData.Userdata[i][2])) {
+				System.out.println("登录成功!!!");
+				Person person = new Person();
+				person.setName(userData.Userdata[i][0]);
+				switch (i) {
+				case 0:
+					return new Worker();
+				case 1:
+					return new Doctor();
+				case 2:
+					return new Cooker();
+				case 3:
+					return new Boss();
+				case 4:
+					return new Worker();
+				}
+				
+			}
+			
+		}
+		System.out.println("输入错误!!!自行核对!!!");
+		return null;
+	}
+	public void success() {
+		
+	}
+}
+	

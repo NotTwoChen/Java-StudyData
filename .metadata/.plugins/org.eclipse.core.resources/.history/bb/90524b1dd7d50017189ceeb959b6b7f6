@@ -1,0 +1,12 @@
+package com.lanou3g.HomeWork;
+
+public class TypeDog extends PetType{
+	
+	public void selfIntroduction(){
+		System.out.println("宠物的自我介绍:");
+		System.out.println("我的名字叫"+getName()+"健康值是:"+getHealthIndex()+"与主人的亲密度是"+getIntimacy()
+		+"品种是"+getVariety());
+	}
+	
+	
+}

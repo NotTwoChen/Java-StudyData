@@ -1,0 +1,32 @@
+package homeWork;
+
+import java.util.Scanner;
+
+public class Main {
+
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("请输入用户名:");
+		String username = scanner.nextLine();
+		System.out.println("请输入密码:");
+		String password = scanner.nextLine();
+		UserInter ui = Login.login(username, password);
+		if (ui != null) {
+			Person person = (Person) ui;
+			System.out.println("是否开始工作:1.是/2.否");
+			int input = scanner.nextInt();
+			switch (input) {
+			case 1:
+				person.onLine();
+				break;
+
+			default:
+				break;
+			}
+			
+			
+		}
+	}
+
+}

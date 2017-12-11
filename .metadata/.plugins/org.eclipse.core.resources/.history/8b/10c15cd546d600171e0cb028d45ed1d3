@@ -1,0 +1,7 @@
+package com.lanou3g.study;
+
+public class Doctor extends Person implements Work{
+	public void work() {
+		System.out.println("ÑÌÑÌ¾Æ¾ÆÐÂÐÇ±ù¶¾");
+	}
+}

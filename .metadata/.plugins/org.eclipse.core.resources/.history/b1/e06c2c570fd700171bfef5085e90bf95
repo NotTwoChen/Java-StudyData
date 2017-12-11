@@ -1,0 +1,10 @@
+package homeWork;
+
+public class UserData {
+	String Userdata1[][] = new String[1][1];
+	String Userdata[][] = {
+			"уехЩ"+"zhangsan"+"111111"+"work";
+			
+	};
+	
+}

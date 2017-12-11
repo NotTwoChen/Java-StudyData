@@ -1,0 +1,33 @@
+package com.lanou3g.random;
+
+import java.util.Random;
+
+public class RandomDemo {
+
+	public static void main(String[] args) {
+		// 取一个随机数
+		// 需要用到random这个工具类
+		Random random = new Random();
+		int random1 =
+		random.nextInt();
+		
+		System.out.println(random1);
+		
+		// 取一个30~45之间的随机数
+		
+		// 第一步:取一个0到10之间的随机数
+		// nextInt(bound)接受的参数
+		// 是一个左闭右开的区间[0,bound)
+		int random2 = random.nextInt(11);
+		System.out.println(random2);
+		// 第二步:取一个30~45之间的随机数
+		int random3 = random.nextInt(45-30+1)+30;
+		System.out.println(random3);
+		// 随机取一个true或false
+		boolean random4 = random.nextBoolean();
+		System.out.println(random4);
+		
+		
+	}
+
+}

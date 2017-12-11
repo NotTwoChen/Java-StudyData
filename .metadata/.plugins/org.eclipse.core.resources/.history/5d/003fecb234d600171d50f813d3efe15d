@@ -1,0 +1,9 @@
+package com.lanou3g.study;
+
+public class Person {
+	
+	
+	public void work() {
+		System.out.println("");
+	}
+}

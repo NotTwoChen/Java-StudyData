@@ -1,0 +1,16 @@
+package com.lanou3g.HomeWork;
+
+import java.util.Scanner;
+
+public class AdoptPetSystem {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("-----------欢迎来到宠物领养系统----------");
+		System.out.println("-----------请给您要领养的宠物起个名字吧----");
+		String PetName = scanner.nextLine();
+		System.out.println("-----------请选择要领养的宠物类型:-------");
+		
+	}
+
+}

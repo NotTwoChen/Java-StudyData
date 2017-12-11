@@ -1,0 +1,22 @@
+package homeWork;
+
+import java.util.Scanner;
+
+public class Main {
+
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("请输入用户名:");
+		String username = scanner.nextLine();
+		System.out.println("请输入密码:");
+		String password = scanner.nextLine();
+		UserInter ui = Login.login(username, password);
+		if (ui != null) {
+			
+		}
+			
+		
+	}
+
+}

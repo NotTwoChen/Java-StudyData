@@ -1,0 +1,22 @@
+package homeWork;
+
+public class Boss extends Person implements UserInter {
+
+	@Override
+	public void onLine() {
+		System.out.println(getWork() + "主动给下属涨工资了");
+	}
+
+	@Override
+	public void offLine() {
+
+	}
+	
+	public void onLine(String username) {
+		System.out.println(username + "开始发号施令了");
+	}
+	public void offLine(String username) {
+		System.out.println(username + "指标达成了下班了");
+	}
+
+}

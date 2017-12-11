@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class ResidentEvil {
+	public static void main(String[] args) {
+		// 创建第一个感染的人类
+				int people = 1;
+				// 设定每一个人类可感染人数的上限和下限
+				// 此处设定一个人类可以感染[0,100)个人类
+				// 并将people重新赋值定义为现在感染的人数
+				people = people + (int)(Math.random()*50+50)*people;
+				
+				int o = 0;
+				o++;
+				System.out.println((int)(Math.random()*50+50));
+				
+				Scanner scanner = new Scanner(System.in);
+				scanner.hasNextLine();
+				
+				
+	}
+}

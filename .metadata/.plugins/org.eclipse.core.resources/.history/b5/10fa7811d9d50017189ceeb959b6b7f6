@@ -1,0 +1,75 @@
+package com.lanou3g.HomeWork;
+
+import java.util.Scanner;
+
+public class AdoptPetSystem {
+
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		PetType pet = new PetType();
+		System.out.println("-----------欢迎来到宠物领养系统----------");
+		System.out.println("-----------请给您要领养的宠物起个名字吧----");
+		String PetName = scanner.nextLine();
+		pet.setName(PetName);
+		System.out.println("-----请选择要领养的宠物类型:-----");
+		System.out.println("1.狗狗");
+		System.out.println("2.企鹅");
+		int input = scanner.nextInt();
+		switch(input) {
+		case 1:
+			main1(PetName);
+			break;
+		case 2:
+			
+			break;
+		default:
+			break;
+		}
+		
+	}
+	@SuppressWarnings("resource")
+	public static void main1(String args) {
+		Scanner scanner = new Scanner(System.in);
+		TypeDog dog = new TypeDog();
+		TypePenguin penguin = new TypePenguin();
+		System.out.println("-----请选择狗狗的品种:-----");
+		System.out.println("1.色色的泰迪");
+		System.out.println("2.傻傻的二哈");
+		int input1 = scanner.nextInt();
+		if (input1 == 1) {
+			dog.setName(args);
+			dog.setVariety("色色的泰迪");
+			dog.setHealthIndex(89);
+			dog.setIntimacy(0);
+			dog.selfIntroduction();
+		}else {
+			dog.setVariety("傻傻的二哈");
+			dog.setHealthIndex(98);
+			dog.setIntimacy(50);
+			dog.selfIntroduction();
+		}
+	}
+	public static void main2(String args) {
+		Scanner scanner = new Scanner(System.in);
+		TypeDog dog = new TypeDog();
+		TypePenguin penguin = new TypePenguin();
+		System.out.println("-----请选择企鹅的品种:-----");
+		System.out.println("1.很帅气的Q仔");
+		System.out.println("2.很美腻的Q妹");
+		int input1 = scanner.nextInt();
+		if (input1 == 1) {
+			dog.setName(args);
+			dog.setVariety("很帅气的Q仔");
+			dog.setHealthIndex(89);
+			dog.setIntimacy(0);
+			dog.selfIntroduction();
+		}else {
+			dog.setVariety("很美腻的Q妹");
+			dog.setHealthIndex(98);
+			dog.setIntimacy(50);
+			dog.selfIntroduction();
+		}
+	}
+
+}

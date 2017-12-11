@@ -1,0 +1,10 @@
+package com.lanou3g.HomeWork;
+
+public class Dog {
+	public Dog() {
+		System.out.println("这是默认的空参构造方法");
+	}
+	public Dog(String name) {
+		System.out.println("这是带参数的构造方法,参数值为"+name);
+	}
+}

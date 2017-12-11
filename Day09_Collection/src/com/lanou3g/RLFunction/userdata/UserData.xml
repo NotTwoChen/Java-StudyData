@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<users> 
+  <person name="许寒"> 
+    <username>xuhan</username>  
+    <password>xuhan</password>  
+    <work>Worker</work> 
+  </person>  
+  <person name="曾繁昌"> 
+    <username>zengfanchang</username>  
+    <password>zengfanchang</password>  
+    <work>Doctor</work> 
+  </person>  
+  <person name="陈朝雄"> 
+    <username>chenzhaoxiong</username>  
+    <password>chenzhaoxiong</password>  
+    <work>Cooker</work> 
+  </person>  
+  <person name="刘鹏"> 
+    <username>liupeng</username>  
+    <password>liupeng</password>  
+    <work>Boss</work> 
+  </person>  
+  <person name="袁营营"> 
+    <username>yuanyingying</username>  
+    <password>yuanyingying</password>  
+    <work>Worker</work> 
+  </person>  
+  <person name="李国易"> 
+    <username>liguoyi</username>  
+    <password>liguoyi</password>  
+    <work>Doctor</work> 
+  </person>  
+  <person name="徐超"> 
+    <username>xuchao</username>  
+    <password>xuchao</password>  
+    <work>Cooker</work> 
+  </person>  
+  <person name="杨潇"> 
+    <username>yangxiao</username>  
+    <password>yangxiao</password>  
+    <work>Boss</work> 
+  </person>  
+  <person name="1"> 
+    <username>1</username>  
+    <password>1</password>  
+    <work>Worker</work>
+  </person> 
+</users>

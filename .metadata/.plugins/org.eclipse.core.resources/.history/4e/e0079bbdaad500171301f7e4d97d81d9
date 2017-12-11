@@ -1,0 +1,16 @@
+package com.lanou3g.string;
+
+public class StringDemo {
+	public static void main(String[] args) {
+		String a = "abcdefg";
+		String b = "张三李四";
+		
+		// 获取字符串长度
+		System.out.println(a.length());
+		System.out.println(b.length());
+		
+		// 替换,把a替换成h
+		System.out.println(a.replace("ab", "h464"));
+		System.out.println(b.replace('张', '许'));
+	}
+}

@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class Practice {
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+//		System.out.println("请输入学员的结业考试成绩");
+//		int input = scanner.nextInt();
+//		if (input >= 80) {
+//			System.out.println("良好");
+//		}else if (input >= 60) {
+//			System.out.println("中等");
+//		}else {
+//			System.out.println("差");
+//		}
+//		main(args);
+		System.out.println("请输入选手百米赛跑所好耗费的时间");
+		int time = scanner.nextInt();
+		System.out.println("请输入选手的性别:1.男/2.女");
+		int sex = scanner.nextInt();
+		if (time <= 10) {
+			System.out.println("该选手进入决赛");
+			if (sex == 1) {
+				System.out.println("该选手进入男子组");
+			}else if(sex == 2){
+				System.out.println("该选手进入女子组");
+			}else {
+				System.out.println("输入错误,请重新输入");
+			}
+		}
+		main(args);
+		
+	}
+}
+ 

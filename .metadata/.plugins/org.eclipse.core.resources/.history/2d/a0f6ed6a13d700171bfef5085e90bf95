@@ -1,0 +1,17 @@
+package homeWork;
+
+public class Boss implements UserInter {
+
+	@Override
+	public void onLine() {
+		// TODO 自动生成的方法存根
+
+	}
+
+	@Override
+	public void offLine() {
+		// TODO 自动生成的方法存根
+
+	}
+
+}

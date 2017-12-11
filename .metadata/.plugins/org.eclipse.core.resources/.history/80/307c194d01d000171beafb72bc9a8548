@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class Practice {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("请输入学员的结业考试成绩");
+		int input = scanner.nextInt();
+		if (input >= 80) {
+			System.out.println("良好");
+		}else if (input >= 60) {
+			System.out.println("中等");
+		}else {
+			System.out.println("差");
+		}
+		main(args);
+	}
+}

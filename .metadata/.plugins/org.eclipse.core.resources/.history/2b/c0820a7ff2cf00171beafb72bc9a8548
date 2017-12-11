@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Main {
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+		System.out.println("请输入你的考试成绩");
+		Scanner scanner = new Scanner(System.in);
+		int input = scanner.nextInt();
+		if (input > 60 ) {
+			System.out.println("可以进入下阶段学习");
+		}else {
+			System.out.println("需要重新学习");
+		}
+		
+		
+		// 当要执行的语句只有一条时
+		// if语句后面可以不写{}
+		if (input < 60) 
+			System.out.println("GG");
+		
+		// 当成绩大于80并且小于100的四季花海
+		// 会进入{}中执行语句
+		if (input > 80 && input <100) {
+			System.out.println("哎呦不错哦");
+		}
+		
+	}
+}

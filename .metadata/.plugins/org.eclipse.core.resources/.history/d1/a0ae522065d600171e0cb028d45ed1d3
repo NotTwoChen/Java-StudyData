@@ -1,0 +1,11 @@
+package com.lanou3g.change;
+
+public class Daughter extends Father {
+
+	@Override
+	public void eat() {
+		// TODO 自动生成的方法存根
+
+	}
+
+}

@@ -1,0 +1,31 @@
+package com.lanou3g.main;
+
+public class Punctuation {
+	public static void main(String[] args) {
+		
+		String[] a = {"~","!","@","$","%","^","&","*","(",")","_","+","{"
+				+ "}"
+				+ "|"
+				+ ":"
+				+ "<"
+				+ ">"
+				+ "?"
+				+ "`"
+				+ "-"
+				+ "="
+				+ "["
+				+ "]"
+				+ "2"
+				+ ";"
+				+ "'"
+				+ ","
+				+ "."
+				+ "/"
+				+ "'"
+				+ "0"
+				+ "1"}; 
+		System.out.println(a.length);
+		int punctuation = (int)Math.random()*14;
+		
+	}
+}

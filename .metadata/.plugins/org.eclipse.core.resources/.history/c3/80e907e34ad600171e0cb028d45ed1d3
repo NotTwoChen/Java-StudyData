@@ -1,0 +1,12 @@
+package inter;
+
+public class Company implements Work{
+	
+	// Work是一个接口
+	// 这里就是创建了一个接口的引用
+	private Work work;
+	
+	public void setWork(Work work) {
+		this.work = work;
+	}
+}
