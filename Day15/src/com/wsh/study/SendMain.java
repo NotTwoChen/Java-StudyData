@@ -22,6 +22,7 @@ public class SendMain {
         outputStream.write("son yet,son ha,I'm your father!!!".getBytes());
 
         // 关闭socket
+        outputStream.close();
         socket.close();
     }
 }

@@ -33,8 +33,10 @@ public class ReceiveMain {
 
         String content = new String(bytes);
 
-        System.out.println(content);
+        System.out.print(content);
 
+
+        serverSocket.close();
         accept.close();
 
 
