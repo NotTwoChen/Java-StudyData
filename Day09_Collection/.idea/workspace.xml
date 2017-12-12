@@ -31,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/lanou3g/exercises/Exercises.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="581">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -120,7 +120,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="341" />
     <option name="y" value="78" />
     <option name="width" value="1400" />
@@ -396,15 +396,15 @@
       <workItem from="1512908893619" duration="5016000" />
       <workItem from="1512963086972" duration="71000" />
       <workItem from="1512997609326" duration="4278000" />
-      <workItem from="1513040362958" duration="1264000" />
+      <workItem from="1513040362958" duration="1294000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120889000" />
+    <option name="totallyTimeSpent" value="120919000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1874" height="1096" extended-state="7" />
+    <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -790,7 +790,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/lanou3g/exercises/Exercises.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="581">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>

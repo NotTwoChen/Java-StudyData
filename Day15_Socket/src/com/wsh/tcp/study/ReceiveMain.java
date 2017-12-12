@@ -1,8 +1,7 @@
-package com.wsh.study;
+package com.wsh.tcp.study;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -12,7 +11,7 @@ public class ReceiveMain {
 
         // 创建一个接收方ServerSocket对象
         // 构造方法中传入的参数为9909
-        ServerSocket serverSocket = new ServerSocket(9909);
+        ServerSocket serverSocket = new ServerSocket(9999);
 
         // 从接收方,得到是谁发过来的
         // 因为接收方和发送方会建立连接
@@ -24,16 +23,33 @@ public class ReceiveMain {
         // 获得发送方的读取对象
         InputStream inputStream = accept.getInputStream();
 
-        byte[] bytes = new byte[1024];
+        byte[] bytes = new byte[3];
 
         // 调用inputStream的读取方法
         // 将accept中的内容
         // 读取到bytes这个字节数组中
-        inputStream.read(bytes);
+//        int read = inputStream.read(bytes);
 
-        String content = new String(bytes);
+        // 返回值为读取了多少数据
+        int len = 0;
 
-        System.out.print(content);
+        String c = "";
+
+        StringBuffer sb = new StringBuffer();
+        System.out.println("1");
+        while ((len = inputStream.read(bytes)) != -1){
+            System.out.println("2~");
+            // 根据字节数组,创建出一个字符串
+            // 取数组中,从0开始,到len-1长度的内容
+            String content = new String(bytes,0,len);
+
+//            System.out.print(content);
+//            System.out.println(len);
+//            c+= content;
+            sb.append(content);
+        }
+
+        System.out.println(sb);
 
 
         serverSocket.close();
