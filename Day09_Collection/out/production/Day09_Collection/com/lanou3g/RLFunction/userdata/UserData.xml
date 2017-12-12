@@ -40,10 +40,5 @@
     <username>yangxiao</username>  
     <password>yangxiao</password>  
     <work>Boss</work> 
-  </person>  
-  <person name="1"> 
-    <username>1</username>  
-    <password>1</password>  
-    <work>Worker</work>
-  </person> 
+  </person>
 </users>
