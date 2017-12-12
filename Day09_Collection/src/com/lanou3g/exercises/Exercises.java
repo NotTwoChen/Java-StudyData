@@ -25,7 +25,7 @@ public class Exercises {
          */
         int a = 0;
         int b = a * a;
-        
+
 
     }
 }
