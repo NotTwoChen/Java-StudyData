@@ -1,5 +1,9 @@
 package com.lanou3g.exercises;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Exercises {
     public static void main(String[] args) {
         /**
@@ -49,6 +53,37 @@ public class Exercises {
 //        }
         /**
          * 第四题:
+         */
+//        Scanner scanner = new Scanner(System.in);
+//        int input = scanner.nextInt();
+//        List list = new ArrayList();
+//        boolean b = true;
+//        while(b){
+//            int i = 0;
+//            if (input == 2){
+//                list.add(input);
+//                b = false;
+//                continue;
+//            }
+//            for (i = 2; i <= input-1; i++) {
+//                if (input % i == 0){
+//                    list.add(i);
+//                    input/=i;
+//                    i = input;
+//                    continue;
+//                }
+//                if (i == input-1){
+//                    list.add(input);
+//                    b = false;
+//                    continue;
+//                }
+//            }
+//        }
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i));
+//        }
+        /**
+         * 第五题:
          */
 
     }
