@@ -80,7 +80,7 @@ public class RegularExpressionDemo {
         String chinese = "无敌dhdj";
         boolean isMatched;//转义字符\
         //汉字字符,只有.能匹配,无敌是两个,所以需要两个点
-        isMatched = Pattern.matches("..\\w",chinese);
+        isMatched = Pattern.matches("..\\w\\w\\w\\w",chinese);
         System.out.println("无敌汉字匹配:"+isMatched);
         //{n}
         isMatched = Pattern.matches(".*d.*d.*",chinese);
