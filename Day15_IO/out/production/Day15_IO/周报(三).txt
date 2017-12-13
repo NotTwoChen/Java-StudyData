@@ -1,0 +1,271 @@
+﻿Java集合框架~集合框架被设计成要满足几个目标:
+1.该框架必须是高性能的,基本集合(动态数组,链表,树,哈希表)的实现也必须是高效的/
+2.改框架允许不同类型的集合,以类似的方式工作,具有高度的互操作性/
+3.对一个集合的扩展和适应必须是简单的/
+为此,整个集合框架就围绕一组标准接口而设计./
+集合框架是一个用来代表和操纵集合的统一架构:
+1.接口:是代表集合的抽象数据类型,接口允许集合独立操纵其代表的细节,在面向对象的语言中,接口通常形成一个层次/
+2.实现(类):是集合接口的具体实现,从本质上讲,它们是可重复使用的数据结构/
+3.算法:是实现集合接口的对象里的方法执行的一些有用的计算,例如:搜索和排序,这些算法被称为多态,那是因为相同的方法可以在相似的接口上有着不同的实线/
+除了集合,该框架也定义了几个Map接口和类,Map里存储的是键值对,尽管Map不是Collection,但是它们完全整合在集合中.
+Java集合框架提供了一套性能优良,使用方便的接口和类,Java集合框架位于java.util包中,所以当使用集合框架的时候需要进行导包/
+集合接口(已学):
+1.Collection接口:Collection是最基本的集合接口,一个Collection代表一组Object,即Collection的元素,Java不提供直接继承自Collection的类,只提供继承的子接口(如List和Set)/
+2.List接口:List接口是一个有序的Collection,使用此接口能够精确的控制每个元素插入的位置,能够通过索引来访问List的元素,而且允许有相同的元素/
+3.Set:Set具有与Collection完全一样的接口,只是行为上不同,Set不保存重复的元素./
+4.Map:将唯一的键映射到值/
+5.Map.Entry:描述在一个Map中的一个元素(键值对),是一个Map的内部类/
+Set和List的区别:
+1.Set接口实例存储的是无序的,不重复的数据,List接口实例存储的是有序的,可以重复的元素/
+2.Set检索效率低下,删除和插入效率高,插入和删除不会引起元素位置改变＜实现类有HashSet,TreeSet＞/
+3.List和数组类似,可以动态增长,根据实际存储的数据的长度自动增长List的长度,查找元素效率高,插入删除效率低,因为会引起其他元素位置改变＜实现类有ArrayList,LinkedList,Vector＞/
+集合实现类(集合类):
+Java提供了一套实现了Collection接口的标准集合类,其中一些是具体类,这些类可以直接拿来使用,而另外一些是抽象类,提供了接口的部分实现/
+LinkedList:该类实现了List接口，允许有null（空）元素。主要用于创建链表数据结构，该类没有同步方法，如果多个线程同时访问一个List，则必须自己实现访问同步，解决方法就是在创建List时候构造一个同步的List/例如：
+Listlist=Collections.synchronizedList(newLinkedList(...));(LinkedList 查找效率低)/
+ArrayList:该类实现了List的接口,实现了可变大小的数组,随机访问和遍历元素时,提供更好的性能,该类也是非同步的,在多线程的情况下不要使用,ArrayList增长当前长度的百分之五十,插入删除效率低/
+HashSet:该类实现了Set接口,不允许出现重复元素,不保证集合中元素的顺序,允许包含值为null的元素,但最多只能有一个/
+LinkedHAshSet:具有可预知迭代顺序的Set接口的哈希表和链接列表实现/
+TreeSet:该类实现了Set接口,可以实现排序等功能/
+HashMap:HashMap是一个散列表,它存储的内容是键值对映射.该类实现了Map接口,根据键的HashCode值存储数据,具有很快的访问速度,最多允许一条记录的键位null,不支持线程同步/
+LinkedHashSet:继承于HashMap,使用元素的自然顺序对元素进行排序/
+集合算法:集合框架定义了几种算法,可用于集合和映射,这些算法被定义为集合类的静态方法/在尝试比较不兼容的类型时,一些方法能够抛出ClassCastException异常,当试图修改一个不可修改的集合时.抛出UnsupportedOperationExeption异常/
+集合定义三个静态的变量:EMPTY_SET/EMPTY_LIST/EMPTY_MAP的,这些变量都不可改变/
+如何使用迭代器:通常情况下,遍历一个集合中的元素时,都是采用for循环或者增强for循环,这两个方法也可以用在集合框架,但是还有一种方法是采用迭代器遍历集合框架,它是一个对象,实现了iterator接口或者Listiterator接口/
+迭代器,使你能够通过循环来得到或者删除集合的元素/
+Listiterator继承了iterator,以允许双向遍历列表和修改元素/
+遍历ArrayList:
+1.第一种遍历方法使用foreach遍历List/
+2.第二种遍历方法是把链表变为数组相关的内容进行遍历/
+3.第三种遍历方法是使用迭代器进行相关遍历/
+使用第三种方法时可以不用担心在遍历的过程中会超出集合的长度/
+遍历Map:
+1.第一种遍历方法普遍使用,可以二次取值,通过Map.keySet遍历key和value/
+2.第二种遍历方法是通过Map.entrySet使用iterator遍历key和value/
+3.第三种遍历方法在遍历容量大的集合时推荐使用,是通过Map.entrySet遍历key和value/
+4.第四种遍历方法是通过Map.values()遍历所有的value,但不能遍历key/
+集合框架总结:Java集合框架是为程序员提供了预先包装的数据结构和算法来操作他们/集合是一个对象,可容纳其他对象的引用/集合接口声明对每一种类型的集合可执行的操作/集合框架的类和接口均在java.util包中/任何对象加入集合类后,自动转变为Object类型,所以在取出的时候,需要进行强制类型转换//////////
+Java异常处理:
+异常是程序中的一些错误,但并不是所有的错误都是异常,并且错误有时候是可以避免的/
+异常发生的原因有很多,通常包含以下几大类:
+1.用户输入了非法数据/
+2.要打开的文件不存/
+3.网络通信时连接中断,或者JVM内存溢出/
+这些异常有的是因为用户错误引起,有的是程序错误引起的,还有其他一些是因为物理错误引起的/
+要理解java异常处理是如何工作的,需要掌握以下三种类型的异常:
+1.检查性异常:最具代表的检查性异常是用户错误或问题引起的异常,这是程序员无法预见的,例如要打开一个不存在的文件时,一个异常就发生了,这些异常在编译时不能被简单地忽略/
+2.运行时异常:运行时异常是可能被程序员避免的异常,与检查性异常相反,运行时异常可以在编译时被忽略/
+3.错误:错误不是异常,而是脱离程序员控制的问题,错误在代码中通常被忽略,例如:当栈溢出时,一个错误就发生了,它们在编译也检查不到/
+Exception类的层次:
+所有的异常类是从Java.lang.Exception类继承的子类/
+Exception类是Throwable类的子类,除了Exception类外,Throwable还有一个子类Error/
+java程序通常不捕获错误,错误一般发生在严重故障时,它们在java程序处理的范畴之外/
+Error用来指示运行时环境发生的错误/
+异常类有两个主要的子类:IOException类和RuntimeException类/
+Java内置异常类:
+java语言定义了一些异常在java.lang标准包中/
+标准运行时异常类的子类是最常见的异常类,由于java.lang包是默认加载到所有的java程序的,所以大部分从运行时异常类继承而来的异常都可以直接使用/
+捕获异常/
+使用try和catch关键字可以捕获异常.try/catch代码块放在异常可能发生的地方/
+try/catch代码块中的代码成为保护代码,使用try/catch的语法如下:
+try{//程序代码}catch(Exception e){//catch块}//
+catch语句包含要捕获异常类型的声明,当保护代码块中发生一个异常时,try后面的catch块就会被检查/
+如果发生的异常包含在catch块中,异常会被传递到该catch块,这和传递一个参数到方法是一样的/
+多重捕获块:
+一个try代码块后面跟随多个catch代码块的情况就叫多重捕获/
+throws/throw关键字:
+如果一个方法没有捕获一个检查性异常,那么该方法是必须使用throws关键字来声明/
+throws关键字放在方法签名的尾部.也可以使用throw关键字抛出一个异常,无论它是新实例化的还是刚捕获到的/
+一个方法可以声明抛出多个异常,多个异常之间用逗号隔开/
+finally关键字:
+finally关键字用来创建在try代码块后面执行的代码块/
+无论是否发生异常,finally代码块中的代码总会被执行/
+在finally代码块中,可以运行清理类型等收尾善后性质的语句/
+finally代码块出现在catch代码块最后/
+注意事项:
+1.catch不能独立于try存在/
+2.在try/catch后面添加finally块并非强制性要求的/
+3.try代码后不能既没有catch块也没有finally块/
+4.try.catch/finally块之间不能添加任何代码/
+声明自定义异常:
+在java中你可以自定义异常,编写自己的异常类是需要记住下面的几点:
+1.所有异常都是必须是Throwable的子类/
+2.如果希望写一个检查性异常类,则需要继承Exception类/
+3.如果希望写一个运行时异常类,那么需要继承RuntimeException类/
+只继承Exception类来创建的异常类是检查性异常类/
+一个异常类和其它任何类一样,包含有变量和方法/
+异常使用可遵循下面的原则:
+1.在当前方法被覆盖时,覆盖它的方法必须抛出相同的异常或异常的子类/
+2.在当前方法声明中使用try-catch语句捕获异常/
+3.如果父类抛出多个异常,则覆盖方法必须抛出那些异类的一个子集,不能抛出新异常/
+XML:
+1.xml值可扩展标记语言/
+2.xml是一种很像html的标记语言/
+3.xml的设计宗旨是传输数据,而不是显示数据/
+4.xml标签没有被预定义,需要自行定义标签/
+5.xml被设计为具有自我描述性/
+6.xml是W3C的标准推荐/
+XML树结构:
+xml文档形成了一种树结构,它从根部开始,然后扩展到枝叶/
+第一行是xml声明,它定义xml的版本和所使用的编码/
+下一行是描述文档的根元素/
+根元素下的子孙标签都具有自己的属性和文本/
+xml命名规则:
+1.名称可以包含字母,数字以及其他的字符/
+2.名称不能以数字或者标点符号开始/
+3.名称不能以字母xml开始/
+4.名称不能包含空格/
+Java泛型:
+java泛型是jdk5中引入的一个新特性,泛型提供了编译时类型安全监测机制,该机制允许程序员在编译时检测到非法的类型/
+泛型的本质是参数化类型,也就是说所操作的数据类型被指定为一个参数/
+泛型方法:可以写一个泛型方法,该方法在调用时可以接受不同类型的参数,根据传递给泛型方法的参数类型,编译器适当地处理每一个方法调用/
+定义泛型方法的规则:
+1.所有泛型方法声明都有一个类型参数声明部分(由尖括号分隔),该类型参数声明部分在方法返回值类型之前/
+2.每一个类型参数声明部分包含一个或多个类型参数,参数间用逗号隔开,一个泛型参数,也被称为一个类型变量,是用于指定一个泛型类型名称的标识符/
+3.类型参数能够被用来声明返回值类型,并且能作为泛型方法得到的实际参数类型的占位符/
+4.泛型方法体的声明和其他方法一样,注意类型参数只能代表引用型类型,不能是原始类型/
+泛型类:
+泛型类的声明和非泛型类的声明类似,除了在类名后面添加了类型参数声明部分/
+和泛型方法一样,泛型类的类型参数声明部分也包含一个或多个类型参数,参数间用逗号隔开/
+一个泛型参数,也被称为一个类型变量,是用于指定一个泛型类型名称的标识符/
+因为他们接受一个或多个参数,这些类被称为参数化的类或参数化的类型/
+XML三种常见的解析技术:
+1.DOM:DOM解析器把xml文档转化为一个包含其内容的数,并能够对树进行遍历,用DOM解析使用编码很容易的添加和修改树中的元素,不过对性能和内存的需要比较高,尤其是XML文档很大的时候/
+2.SAX:SAX解析器采用了基于事件的模型,当只需要处理文档中所包含的部分数据时,SAX有良好的表现,但用SAX解析器的时候编码工作会比较困难,而且很难同时访问同一个文档中的多处不同数据/
+3.dom4j:dom4j是很优秀的java XML API,具备性能优异,功能强大和极端易用使用的特点,同时也是个开放源代码的软件/
+dom4j的使用:
+Document对象:
+1.读取xml文件,获得document对象
+SAXReader reader = new SAXReader();
+Document document = reader.read(new File("input.xml"));/
+2.解析XML形式的文本,得到document对象
+String text = "＜members＞＜/members＞";
+Document document = DocumentHelper.parseText(text);/
+3.主动创建document对象
+Document document = DocumentHelper.createDocument();
+Element root = document.addElement("member");//创建根节点/
+节点:
+1.获取文档的根节点:
+Element rootElm = document.getRootElement();/
+2.获取某节点的单个子节点
+//"member"是节点名
+Element memberElm = root.element("member");/
+3.获取节点的文字
+String text =  memberElm.getText();
+String text = root.elementText("name");/
+节点:
+1.获取某节点下名为"member"的所有子节点并进行遍历
+
+List nodes = rootElm.elements("member");
+    for (Iterator it = nodes.iterator(); it.hasNext();) {
+     		Element elm = (Element) it.next();
+    		// do something
+ }/
+2.对某节点下的所有子节点进行遍历
+
+for(Iterator it = root.elementIterator(); it.hasNext();){
+		Element element = (Element) it.next();
+		// do something
+}/
+dom4j的使用:
+1.某节点下添加子节点
+
+ Element ageElm = newMemberElm.addElement("age");/
+2.设置节点文字
+
+ ageElm.setText("29");/
+3.删除某节点
+
+ parentElm.remove(childElm);/
+4.添加一个CDATA节点
+
+ Element contentElm = infoElm.addElement("content");
+ contentElm.addCDATA(diary.getContent());/
+属性:
+1.获取某节点下的某属性
+
+  Element root = document.getRootElement();      
+       //属性名name
+       Attribute attribute = root.attribute("size");/
+2.获取属性的文字
+
+ String text = attribute.getText();
+ String text2 = root.element("name").attributeValue("firstname");/
+3.设置某节点的属性和文字
+
+ newMemberElm.addAttribute("name", "sitinspring");/
+dom4j的使用:
+1.设置属性的文字
+
+ Attribute attribute = root.attribute("name");   
+ attribute.setText("sitinspring");/
+2.删除某属性
+
+ Attribute attribute=root.attribute("size");
+ root.remove(attribute);/
+3.设置某节点的属性和文字
+Element root = document.getRootElement();       
+for(Iterator it = root.attributeIterator(); it.hasNext();){         
+	Attribute attribute = (Attribute) it.next();         
+	String text = attribute.getText();         
+	System.out.println(text);    
+}/
+将文档写入xml文件:
+1.文档中全为英文,不设置编码,直接写入的形式
+
+ XMLWriter writer = new XMLWriter(new  FileWriter("output.xml")); 
+ writer.write(document);
+ writer.close();/
+2.文档中含有中文,设置编码格式并写入的形式
+
+ OutputFormat format = OutputFormat.createPrettyPrint();
+ // 指定XML编码                   
+ format.setEncoding("GBK");       
+ XMLWriter writer = new  XMLWriter(newFileWriter("output.xml"),format); 
+ writer.write(document);
+ writer.close();/
+字符串和xml的转换:
+1.将字符串转化为xml
+
+ String text = 
+ “＜members＞＜member＞sitinspring＜/member＞＜/members＞";
+ Document document = DocumentHelper.parseText(text);/
+2.将文档或节点的xml转化为字符串
+
+ SAXReader reader = new SAXReader();
+ Document   document = reader.read(new File("input.xml"));            
+ Element root = document.getRootElement();                
+ String docXmlText = document.asXML();
+ String rootXmlText = root.asXML();
+ Element memberElm = root.element("member");
+ String memberXmlText = memberElm.asXML();/
+Java多线程编程:
+java给多线程编程提供了内置的支持/一个多线程程序包含两个或多个能并发运行的部分/程序的每一部分都称作一个线程,并且每个线程定义了一个独立的执行路径/
+多线程是多任务的一种特别的形式,但多线程使用了更小的资源开销/
+这里定义和线程相关的另一个术语:进程:一个进程包括由操作系统分配的内存空间,包含一个或多个线程,一个线程不能独立的存在,它必须是进程的一部分,一个线程一直运行,直到所有的非守候线程都结束运行后才能结束/
+多线程能满足程序员编写高效率的程序来达到充分利用cpu的目的/
+一个线程的生命周期:
+线程是一个动态执行的过程,它也有一个从产生到死亡的过程/
+1.新建状态:使用new关键字和Thread类或其子类建立一个线程对象后,该线程对象就处于新建状态.它保持这个状态知道程序start()这个线程/
+2.就绪状态:当线程对象调用了start()方法之后,该线程就进入就绪状态,就绪状态的线程处于就绪队列中,要等待jvm里线程调度器的调度/
+3.运行状态:如果就绪状态的线程获取cpu资源,就可以执行run(),此时线程便处于运行状态,处于运行状态的先后才能最为复杂,它可以变为阻塞状态/就绪状态和死亡状态/
+4.阻塞状态:如果一个线程执行了sleep/suspend等方法,失去所占用资源之后,该线程就从运行状态进入阻塞状态,在睡眠时间已到或获得设备资源后可以重新进入就绪状态,可以分为三种:
+1.等待阻塞:运行状态中的线程执行wait()方法,使线程进入到等待阻塞状态/
+2.同步阻塞:线程在获取synchronized同步锁失败/
+3.其他阻塞:通过调用线程的sleep或join发出了I/O请求时,线程就会进入到阻塞状态,当sleep状态超时,join等待线程终止或超时,或者I/O处理完毕,线程会重新转入就绪状态/
+5.死亡状态:一个运行状态的线程完成任务或者其他终止条件发生时,该线程就切换到终止状态/
+线程的优先级:
+每一个java线程都有一个优先级,这样有助于操作系统确定线程的调度顺序/
+java线程的优先级是一个整数.取值范围是1~10/
+默认情况下,每一个线程都会分配一个优先级5/
+具有较高优先级的线程对程序更重要,并且应该在低优先级的线程之前分配处理资源,但是,线程优先级不能保证线程执行的顺序,而且非常依赖于平台/
+创建一个线程:
+1.通过实现Runnable接口/
+2.通过集成Thread类本身/
+通过实现 Runnable 接口来创建线程:
+创建一个线程，最简单的方法是创建一个实现 Runnable 接口的类/为了实现 Runnable，一个类只需要执行一个方法调用 run()/可以重写该方法，重要的是理解的 run() 可以调用其他方法，使用其他类，并声明变量，就像主线程一样/在创建一个实现 Runnable 接口的类之后，可以在类中实例化一个线程对象/
+通过继承Thread来创建线程:创建一个线程的第二种方法是创建一个新的类，该类继承 Thread 类，然后创建一个该类的实例/
+继承类必须重写 run() 方法，该方法是新线程的入口点。它也必须调用 start() 方法才能执行/该方法尽管被列为一种多线程实现方式，但是本质上也是实现了 Runnable 接口的一个实例/
+创建线程的三种方式的对比:
+1. 采用实现 Runnable、Callable 接口的方式创见多线程时，线程类只是实现了 Runnable 接口或 Callable 接口，还可以继承其他类/
+2.使用继承 Thread 类的方式创建多线程时，编写简单，如果需要访问当前线程，则无需使用 Thread.currentThread() 方法，直接使用 this 即可获得当前线程

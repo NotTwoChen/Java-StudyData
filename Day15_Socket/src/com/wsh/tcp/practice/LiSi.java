@@ -21,17 +21,33 @@ public class LiSi {
         // 获得与这个ServerSocket连接的Socket的输出流
         OutputStream outputStream = accept.getOutputStream();
 
-        StringBuffer sb = new StringBuffer();
-        int len = 0;
-        while((len= inputStream.read(bytes)) != -1){
-            String a = new String(bytes,0,len);
-            sb.append(a);
-            System.out.println(sb);
-            sb.setLength(0);
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                StringBuffer sb = new StringBuffer();
+                int len = 0;
+                try {
+                    while((len= inputStream.read(bytes)) != -1){
+                        sb.append(new String(bytes,0,len));
+                        System.out.println(sb);
+                        sb.setLength(0);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+        String send = "";
+        while (!(send = scanner.nextLine()).equals("quit")) {
+            // 如果输入的内容不是quit,那么程序继续
 
-            String result = scanner.nextLine();
-            outputStream.write(result.getBytes());
+            outputStream.write(send.getBytes());
         }
+
+
+        /*String result = scanner.nextLine();
+        outputStream.write(result.getBytes());*/
         serverSocket.close();
     }
 }
