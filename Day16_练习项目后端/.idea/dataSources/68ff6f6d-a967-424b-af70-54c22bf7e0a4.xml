@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="day16">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="test"/>
+    <table id="6" parent="2" name="userscore"/>
+    <column id="7" parent="6" name="nickname">
+      <Position>1</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="8" parent="6" name="score">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="9" parent="6" name="time">
+      <Position>3</Position>
+      <DataType>mediumtext|0</DataType>
+    </column>
+  </database-model>
+</dataSource>

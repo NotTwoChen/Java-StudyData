@@ -2,31 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d1103d3-1309-425c-8e0d-79e40d1d95d8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/constant/Constant.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/GameTopTen$ResultBean.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/GameTopTen.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/GetGameTopTen.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/GetPhoneBelong.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/GetWeather.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/LogInBySource.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/LogInBySystem.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/Phone.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/SignInToSource.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/SignInToSystem.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/UserData.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/UserData.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/Verification.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/Weather.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/GameTopTen.class" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/GameTopTen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/GetGameTopTen.class" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/GetGameTopTen.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/HandSpeedGame.class" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/HandSpeedGame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/LogInBySystem.class" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/LogInBySystem.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day09_Collection/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Day09_Collection/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Day16_LittleProject/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/UserData.xml" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/UserData.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/HandSpeedGame.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/HandSpeedGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -109,11 +86,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="341" />
-    <option name="y" value="78" />
-    <option name="width" value="1400" />
-    <option name="height" value="1012" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1874" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -359,7 +336,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1874" height="1096" extended-state="7" />
+    <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />

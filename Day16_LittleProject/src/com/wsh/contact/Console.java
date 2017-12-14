@@ -1,9 +1,7 @@
 package com.wsh.contact;
 
 import com.wsh.constant.Constant;
-import com.wsh.must.GetGameTopTen;
-import com.wsh.must.visit;
-import com.wsh.must.GetWeather;
+import com.wsh.must.Visit;
 import com.wsh.must.HandSpeedGame;
 import com.wsh.user.UserData;
 import org.dom4j.Document;
@@ -58,14 +56,14 @@ public class Console {
                     switch (scanner.nextInt()) {
                         case 1:
                             try {
-                                GetWeather.getWeather();
+                                Visit.getWeather();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 2:
                             try {
-                                visit.getPhone();
+                                Visit.getPhone();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -79,7 +77,7 @@ public class Console {
                             break;
                         case 4:
                             try {
-                                GetGameTopTen.getTop();
+                                Visit.getTop();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }

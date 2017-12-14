@@ -15,12 +15,7 @@ import java.util.Scanner;
 
 public class HandSpeedGame {
 
-    public static final String[] BYTES = {
-            "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
-            "1","2","3","4","5","6","7","8","9","0",
-            "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
-            "~","!","@","#","$","%","^","&","*","(",")","_","+","{","}","[","]","<",">","?","/","|",",","."
-    };
+
     public static void Game(String username) throws IOException, DocumentException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("欢迎来到手速游戏测试平台:");
@@ -68,7 +63,7 @@ public class HandSpeedGame {
             if (number == 30){
                 random = (int)(Math.random()*86);//10+26+26+24
             }
-            gameList[i] = BYTES[random];
+            gameList[i] = Constant.BYTES[random];
             list = list + gameList[i];
         }
         System.out.println(list);

@@ -1,4 +1,4 @@
-package com.wsh.Exception;
+package com.wsh.exception;
 
 public class SignInException extends UserDataException {
 
