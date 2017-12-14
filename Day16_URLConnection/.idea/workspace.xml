@@ -2,30 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d1103d3-1309-425c-8e0d-79e40d1d95d8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/Exception/LogInException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/Exception/SignInException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/Exception/UserDataException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/Exception/UserNameExistException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/Exception/UserNameMismatchingPassWordException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/Exception/UsernameInexistenceException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/GetPhoneBelong.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/GetWeather.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/HandSpeedGame.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/LogInBySystem.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/Main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/Phone.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/Verification.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/Weather.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/LogInBySystem.class" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/LogInBySystem.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/Main.class" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day09_Collection/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Day09_Collection/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Day16_LittleProject/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/Day16_LittleProject.iml" afterPath="$PROJECT_DIR$/../Day16_LittleProject/Day16_LittleProject.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/LogInBySource.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/LogInBySource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/SignInToSource.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/SignInToSource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/SignInToSystem.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/SignInToSystem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/UserData.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/UserData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/UserData.xml" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/UserData.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/HandSpeedGame.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/HandSpeedGame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/LogInBySystem.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/LogInBySystem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/Main.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,7 +35,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/wsh/study/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
+            <state relative-caret-position="165">
               <caret line="19" column="43" lean-forward="true" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
               <folding />
             </state>
@@ -108,7 +91,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="341" />
     <option name="y" value="78" />
     <option name="width" value="1400" />
@@ -341,12 +324,12 @@
       <workItem from="1513135428740" duration="921000" />
       <workItem from="1513136383851" duration="7642000" />
       <workItem from="1513162220144" duration="4131000" />
-      <workItem from="1513213253880" duration="2800000" />
+      <workItem from="1513213253880" duration="5215000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17215000" />
+    <option name="totallyTimeSpent" value="19630000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -358,7 +341,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1874" height="1096" extended-state="7" />
+    <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -497,7 +480,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wsh/study/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
+        <state relative-caret-position="165">
           <caret line="19" column="43" lean-forward="true" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
           <folding />
         </state>

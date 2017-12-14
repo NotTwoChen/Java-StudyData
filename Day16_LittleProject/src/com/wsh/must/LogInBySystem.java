@@ -35,6 +35,11 @@ public class LogInBySystem {
                             }
                             break;
                         case 3:
+                            try {
+                                HandSpeedGame.Game(userData.getName());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                             break;
                         case 4:
                             break;
