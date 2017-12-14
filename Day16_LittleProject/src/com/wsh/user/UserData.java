@@ -1,11 +1,10 @@
-package com.wsh.must;
+package com.wsh.user;
 
 public class UserData {
 
     private String name;
     private String userName;
     private String passWord;
-
     @Override
     public String toString() {
         return "UserData{" +
@@ -14,7 +13,6 @@ public class UserData {
                 ", passWord='" + passWord + '\'' +
                 '}';
     }
-
     public UserData() {
     }
 

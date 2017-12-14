@@ -1,5 +1,6 @@
-package com.wsh.must;
+package com.wsh.main;
 
+import com.wsh.contact.Console;
 import org.dom4j.DocumentException;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ public class Main {
                 case 1:
                     scanner.nextLine();
                     try {
-                        SignInToSystem.signIn();
+                        Console.signIn();
                     } catch (DocumentException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
@@ -24,7 +25,7 @@ public class Main {
                 case 2:
                     scanner.nextLine();
                     try {
-                        LogInBySystem.logIn();
+                        Console.logIn();
                     } catch (DocumentException e) {
                         e.printStackTrace();
                     }

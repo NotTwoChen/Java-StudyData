@@ -1,16 +1,13 @@
 package com.wsh.must;
 
+import com.wsh.constant.Constant;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Date;
@@ -19,23 +16,11 @@ import java.util.Scanner;
 public class HandSpeedGame {
 
     public static final String[] BYTES = {
-            "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",//26//24-49
+            "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
             "1","2","3","4","5","6","7","8","9","0",
             "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
-            "~","!","@","#","$","%","^","&","*","(",")","_","+","{","}","[","]","<",">","?","/","|",",","."//24//0-23
+            "~","!","@","#","$","%","^","&","*","(",")","_","+","{","}","[","]","<",">","?","/","|",",","."
     };
-
-    public static void main(String[] args) {
-//        System.out.println(BYTES.length);
-//        for (int i = 0; i < 26; i++) {
-//
-//            int random = (int) (Math.random()*37);
-//            System.out.println(BYTES[random]);
-//        }
-
-//        easy(10);
-    }
-
     public static void Game(String username) throws IOException, DocumentException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("欢迎来到手速游戏测试平台:");
@@ -75,13 +60,13 @@ public class HandSpeedGame {
         for (int i = 0; i < gameList.length; i++) {
             int random = 0;
             if (number == 10){
-                random = (int) (Math.random()*36);
+                random = (int)(Math.random()*36);//10+26
             }
             if (number == 20){
-                random = (int)(Math.random()*62);
+                random = (int)(Math.random()*62);//10+26+26
             }
             if (number == 30){
-                random = (int)(Math.random()*86);
+                random = (int)(Math.random()*86);//10+26+26+24
             }
             gameList[i] = BYTES[random];
             list = list + gameList[i];
@@ -99,16 +84,23 @@ public class HandSpeedGame {
     }
 
     public static void output(long time,String username) throws IOException, DocumentException {
-        URL url = new URL("http://192.168.20.221:8080/day16/insert?username="+username+"&score="+time);
-        url.openConnection();
-        System.out.println("成绩已提交成功!");
-        getFirst();
+        URL url = new URL(Constant.URL_INSERT + "?username="+username+"&score="+time);
+        URLConnection urlConnection = url.openConnection();
+        InputStream inputStream = urlConnection.getInputStream();
+        byte[] bytes = new byte[1024];
+        int read = inputStream.read(bytes);
+        String result = new String(bytes,0,read,Constant.ENCODING);
+        if (result.equals("SUCCESS")){
+            System.out.println("成绩已提交成功!");
+            getFirst();
+        }else{
+            System.out.println("成绩提交失败");
+        }
     }
 
     public static void getFirst() throws IOException, DocumentException {
-
         SAXReader saxReader = new SAXReader();
-        Document document = saxReader.read(new URL("http://192.168.20.221:8080/day16/first"));
+        Document document = saxReader.read(new URL(Constant.URL_FIRST));
         Element rootElement = document.getRootElement();
         String nickname = rootElement.element("nickname").getText();
         String score = rootElement.element("score").getText();

@@ -1,6 +1,6 @@
-package com.wsh.must;
+package com.wsh.util;
 
-public class Phone {
+public class Telephone {
 
     /**
      * success : 1
