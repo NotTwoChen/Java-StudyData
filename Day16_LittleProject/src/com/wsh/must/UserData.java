@@ -2,13 +2,15 @@ package com.wsh.must;
 
 public class UserData {
 
+    private String name;
     private String userName;
     private String passWord;
 
     @Override
     public String toString() {
         return "UserData{" +
-                "userName='" + userName + '\'' +
+                "name='" + name + '\'' +
+                ", userName='" + userName + '\'' +
                 ", passWord='" + passWord + '\'' +
                 '}';
     }
@@ -16,9 +18,18 @@ public class UserData {
     public UserData() {
     }
 
-    public UserData(String userName, String passWord) {
+    public UserData(String name, String userName, String passWord) {
+        this.name = name;
         this.userName = userName;
         this.passWord = passWord;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUserName() {

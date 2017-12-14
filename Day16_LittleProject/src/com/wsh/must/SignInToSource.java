@@ -12,7 +12,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class SignInToSource {
-
     public static void signIn ( String userName , String passWord , String name) throws DocumentException, IOException {
         SAXReader saxReader = new SAXReader();
         Document read = saxReader.read(new File("src\\com\\wsh\\must\\UserData.xml"));
@@ -29,7 +28,4 @@ public class SignInToSource {
         xmlWriter.write(read);
         xmlWriter.close();
     }
-
-
-
 }
