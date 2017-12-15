@@ -1,6 +1,2 @@
 package com.wsh.exception;
-
-public class SignInException extends UserDataException {
-
-
-}
+public class SignInException extends UserDataException { }

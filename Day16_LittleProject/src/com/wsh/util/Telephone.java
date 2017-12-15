@@ -10,21 +10,13 @@ public class Telephone {
     private String success;
     private ResultBean result;
 
-    public String getSuccess() {
-        return success;
-    }
+    public String getSuccess() { return success; }
 
-    public void setSuccess(String success) {
-        this.success = success;
-    }
+    public void setSuccess(String success) { this.success = success; }
 
-    public ResultBean getResult() {
-        return result;
-    }
+    public ResultBean getResult() { return result; }
 
-    public void setResult(ResultBean result) {
-        this.result = result;
-    }
+    public void setResult(ResultBean result) { this.result = result; }
 
     public static class ResultBean {
         /**

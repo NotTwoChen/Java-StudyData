@@ -7,21 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f8573fa-65fc-4104-b771-04b935a4930e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/exception/NameInputErrorException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/exception/PasswordInputErrorException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/exception/SelectErrorException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/exception/UsernameInputErrorException.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/constant/Constant.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/contact/Console.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/contact/Source.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/HandSpeedGame.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/Visit.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/课堂笔记.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Day16_LittleProject/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/课堂笔记.txt" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/课堂笔记.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/Exception/SignInException.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/Exception/SignInException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/user/Main.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/user/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Console.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Console.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Source.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Source.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/课堂笔记.txt" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/课堂笔记.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Ranking.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Ranking.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Telephone.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Telephone.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Visit.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Visit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../单列模式/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../单列模式/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -405,12 +399,12 @@
       <updated>1513243765283</updated>
       <workItem from="1513243771143" duration="3782000" />
       <workItem from="1513250844894" duration="4029000" />
-      <workItem from="1513319544299" duration="1281000" />
+      <workItem from="1513319544299" duration="1285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9092000" />
+    <option name="totallyTimeSpent" value="9096000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1874" height="1096" extended-state="7" />

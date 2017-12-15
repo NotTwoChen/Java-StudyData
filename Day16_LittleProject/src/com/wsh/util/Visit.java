@@ -33,8 +33,8 @@ public class Visit {
     }
 
     public static void phoneGet() throws IOException {
+        System.out.println("请输入需要查询的号码:");
         Scanner scanner = new Scanner(System.in);
-        System.out.println("请输入需要查询的手机号:");
         String phone = scanner.nextLine();
         URL u = new URL(Constant.API_APP+"phone.get&phone="+phone+Constant.API_APPKEY_SIGN);
         String result = dataStore(u);
@@ -48,38 +48,29 @@ public class Visit {
     private static String dataStore(URL u) throws IOException {
         InputStream in = u.openStream();
         ByteArrayOutputStream out= new ByteArrayOutputStream();
-        try {
-            byte buf[]= new byte[1024];
+        try { byte buf[]= new byte[1024];
             int read = 0;
             while ((read = in.read(buf)) > 0) {
-                out.write(buf, 0, read);
-            }
-        }finally {
-            if (in != null) {
-                in.close();
-            }
-        }
+                out.write(buf, 0, read); }
+        }finally { if (in != null) {
+                in.close(); } }
         byte b[]=out.toByteArray( );
         return new String(b, "utf-8");
     }
 
     public static void startGame(String username) throws IOException, DocumentException {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("欢迎来到手速游戏测试平台:" +
                 "\n请选择游戏难度:" +
                 "\nⅠ.简单(10个字符)" +
                 "\nⅡ.一般(20个字符)" +
                 "\nⅢ.困难(30个字符)");
+        Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
         for (int i = 3; i > 0; i--) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            try { Thread.sleep(1000);
+            } catch (InterruptedException e) { e.printStackTrace(); }
             System.out.println("游戏"+i+"秒后开始");
-        }
-        System.out.println("游戏正式开始!");
+        }System.out.println("游戏正式开始!");
         long timeBegin = new Date().getTime();
         String list = duringGame(choice * 10);
         scanner.nextLine();
@@ -88,9 +79,7 @@ public class Visit {
             long timeExpend = timeEnd - timeBegin;
             System.out.println("恭喜你!成绩为:" + timeExpend + "毫秒");
             Visit.submitScore(timeExpend,username);
-        }else {
-            System.out.println("游戏失败!");
-        }
+        }else { System.out.println("游戏失败!"); }
     }
 
     public static String duringGame(int number) throws IOException, DocumentException {
