@@ -1,6 +1,6 @@
-package com.wsh.main;
+package com.wsh.user;
 
-import com.wsh.contact.Console;
+import com.wsh.util.Console;
 import org.dom4j.DocumentException;
 
 import java.io.IOException;

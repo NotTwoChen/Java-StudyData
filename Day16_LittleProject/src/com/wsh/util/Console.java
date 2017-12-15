@@ -1,8 +1,5 @@
-package com.wsh.contact;
+package com.wsh.util;
 
-import com.wsh.constant.Constant;
-import com.wsh.must.Visit;
-import com.wsh.must.HandSpeedGame;
 import com.wsh.user.UserData;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -17,6 +14,7 @@ import java.util.regex.Pattern;
 public class Console {
     static SAXReader saxReader = new SAXReader();
     static File file = new File(Constant.USERDATA_PATH);
+
     public static void signIn() throws DocumentException, IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入账号:");
@@ -40,6 +38,7 @@ public class Console {
         }else { System.out.println("账号输入错误!");
         }
     }
+
     public static void logIn() throws DocumentException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入账号:");
@@ -56,21 +55,21 @@ public class Console {
                     switch (scanner.nextInt()) {
                         case 1:
                             try {
-                                Visit.getWeather();
+                                Visit.weatherFuture();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 2:
                             try {
-                                Visit.getPhone();
+                                Visit.phoneGet();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                             break;
                         case 3:
                             try {
-                                HandSpeedGame.Game(userData.getName());
+                                Visit.startGame(userData.getName());
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -94,18 +93,23 @@ public class Console {
             System.out.println("账号不存在!");
         }
     }
+
     public static boolean isName(String name){
         return Pattern.matches(Constant.REGEX_NAME,name);
     }
+
     public static boolean isPhone(String userName){
         return Pattern.matches(Constant.REGEX_PHONE, userName);
     }
+
     public static boolean isEmail(String userName){
         return Pattern.matches(Constant.REGEX_EMAIL,userName);
     }
+
     public static boolean isPassword(String passWord){
         return Pattern.matches(Constant.REGEX_PASSWORD,passWord);
     }
+
     public static boolean signIn( String userName ) throws DocumentException {
         Document read = saxReader.read(file);
         Element rootElement = read.getRootElement();

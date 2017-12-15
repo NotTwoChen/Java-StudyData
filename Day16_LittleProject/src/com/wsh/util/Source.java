@@ -1,6 +1,5 @@
-package com.wsh.contact;
+package com.wsh.util;
 
-import com.wsh.constant.Constant;
 import com.wsh.user.UserData;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
@@ -16,7 +15,9 @@ import java.io.IOException;
 import java.util.List;
 public class Source {
     static SAXReader saxReader = new SAXReader();
+
     public static File file = new File(Constant.USERDATA_PATH);
+
     public static void signIn (String userName,String passWord,String name) throws DocumentException, IOException {
         Document read = saxReader.read(file);
         Element rootElement = read.getRootElement();
@@ -32,6 +33,7 @@ public class Source {
         xmlWriter.write(read);
         xmlWriter.close();
     }
+
     public static UserData logIn (String name) throws DocumentException {
         Document read = saxReader.read(file);
         Element rootElement = read.getRootElement();
