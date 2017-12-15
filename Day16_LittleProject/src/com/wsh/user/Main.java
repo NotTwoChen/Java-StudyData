@@ -1,5 +1,7 @@
 package com.wsh.user;
 
+import com.wsh.exception.SignInException;
+import com.wsh.exception.UserDataException;
 import com.wsh.util.Console;
 import org.dom4j.DocumentException;
 
@@ -20,6 +22,8 @@ public class Main {
                         e.printStackTrace();
                     } catch (IOException e) {
                         e.printStackTrace();
+                    } catch (UserDataException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case 2:
@@ -27,6 +31,10 @@ public class Main {
                     try {
                         Console.logIn();
                     } catch (DocumentException e) {
+                        e.printStackTrace();
+                    } catch (UserDataException e) {
+                        System.out.println(e.getMessage());
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                     break;

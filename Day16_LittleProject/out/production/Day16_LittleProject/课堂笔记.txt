@@ -1,6 +1,6 @@
 MySQL
 
-一   DDL语句整理
+一   DDL语句整理 database definition language
         创建数据库
         create database
         创建表
@@ -10,4 +10,4 @@ MySQL
         修改公式
         alter table 表名 + 要做的事情
         修改表名
-        alter
+        alter table 表名 rename to 新表名

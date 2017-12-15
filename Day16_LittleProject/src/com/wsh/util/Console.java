@@ -1,5 +1,6 @@
 package com.wsh.util;
 
+import com.wsh.exception.*;
 import com.wsh.user.UserData;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -15,7 +16,7 @@ public class Console {
     static SAXReader saxReader = new SAXReader();
     static File file = new File(Constant.USERDATA_PATH);
 
-    public static void signIn() throws DocumentException, IOException {
+    public static void signIn() throws DocumentException, IOException, UserDataException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入账号:");
         String newUserName = scanner.nextLine();
@@ -29,17 +30,17 @@ public class Console {
                     if (isName(newName)) {
                         Source.signIn(newUserName, newPassWord, newName);
                         System.out.println("用户注册成功!");
-                    } else { System.out.println("昵称输入错误!");
+                    } else { throw new NameInputErrorException();
                     }
-                } else { System.out.println("密码输入错误!");
+                } else { throw new PasswordInputErrorException();
                 }
-            }else{ System.out.println("账号已存在!");
+            }else{ throw new UserNameExistException();
             }
-        }else { System.out.println("账号输入错误!");
+        }else { throw new UsernameInputErrorException();
         }
     }
 
-    public static void logIn() throws DocumentException {
+    public static void logIn() throws DocumentException, UserDataException, IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入账号:");
         String userName = scanner.nextLine();
@@ -50,48 +51,24 @@ public class Console {
             if (passWord.equals(userData.getPassWord())){
                 System.out.println("用户"+userData.getName()+"登录成功!");
                 while(true) {
-                    System.out.println("请选择需要操作的功能:");
-                    System.out.println("Ⅰ.查询天气\nⅡ.查询手机号归属地\nⅢ.手速游戏\nⅣ.查询手速游戏全国排行榜");
+                    System.out.println("请选择需要操作的功能:\nⅠ.查询天气\nⅡ.查询手机号归属地\nⅢ.手速游戏\nⅣ.查询手速游戏全国排行榜");
                     switch (scanner.nextInt()) {
                         case 1:
-                            try {
-                                Visit.weatherFuture();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            Visit.weatherFuture();
                             break;
                         case 2:
-                            try {
-                                Visit.phoneGet();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            Visit.phoneGet();
                             break;
                         case 3:
-                            try {
-                                Visit.startGame(userData.getName());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            Visit.startGame(userData.getName());
                             break;
                         case 4:
-                            try {
-                                Visit.getTop();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            Visit.getTop();
                             break;
                         default:
-                            System.out.println("选择操作错误!");
-                            break;
-                    }
-                }
-            } else{
-                System.out.println("密码不正确!");
-            }
-        }else{
-            System.out.println("账号不存在!");
-        }
+                            throw new SelectErrorException(); } }
+            } else{ throw new UserNameMismatchingPassWordException(); }
+        }else{ throw new UsernameInExistenceException(); }
     }
 
     public static boolean isName(String name){
@@ -118,8 +95,6 @@ public class Console {
             String text = element.element("userName").getText();
             if (text.equals(userName)){
                 System.out.println("账号已存在!");
-                return false;
-            }
-        }return true;
+                return false; } }return true;
     }
 }

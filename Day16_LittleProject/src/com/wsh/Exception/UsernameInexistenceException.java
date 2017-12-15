@@ -1,6 +1,6 @@
 package com.wsh.exception;
 
-public class UsernameInexistenceException extends LogInException {
+public class UsernameInExistenceException extends LogInException {
 
     @Override
     public String getMessage() {

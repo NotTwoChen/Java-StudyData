@@ -7,21 +7,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f8573fa-65fc-4104-b771-04b935a4930e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/constant/Constant.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/contact/Console.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/contact/Source.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/main/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/HandSpeedGame.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/must/Visit.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/constant/Constant.class" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/constant/Constant.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/contact/Console.class" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/contact/Console.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/contact/Source.class" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/contact/Source.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/HandSpeedGame.class" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/HandSpeedGame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/Visit.class" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/Visit.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/user/UserData.class" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/user/UserData.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/exception/NameInputErrorException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/exception/PasswordInputErrorException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/exception/SelectErrorException.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/exception/UsernameInputErrorException.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/constant/Constant.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/contact/Console.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/contact/Source.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/HandSpeedGame.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/com/wsh/must/Visit.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Day16_LittleProject/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/user/UserData.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/user/UserData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/课堂笔记.txt" afterPath="$PROJECT_DIR$/../Day16_LittleProject/out/production/Day16_LittleProject/课堂笔记.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/user/Main.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/user/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Console.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Console.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Source.java" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/com/wsh/util/Source.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Day16_LittleProject/src/课堂笔记.txt" afterPath="$PROJECT_DIR$/../Day16_LittleProject/src/课堂笔记.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../单列模式/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../单列模式/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -124,7 +125,7 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1874" />
@@ -404,15 +405,15 @@
       <updated>1513243765283</updated>
       <workItem from="1513243771143" duration="3782000" />
       <workItem from="1513250844894" duration="4029000" />
-      <workItem from="1513319544299" duration="642000" />
+      <workItem from="1513319544299" duration="1281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8453000" />
+    <option name="totallyTimeSpent" value="9092000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1874" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1874" height="1096" extended-state="7" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />

@@ -44,7 +44,6 @@ public class Source {
                 Element passWord = element.element(Constant.XML_ELEMENT_BY_UD2);
                 Attribute attribute = element.attribute(Constant.XML_ATTRIBUTE_BY_UD);
                 return new UserData(attribute.getValue(),userName.getText(),passWord.getText());
-            }
-        }return null;
+            } }return null;
     }
 }
