@@ -1,5 +1,3 @@
 package com.wsh.exception;
 
-public class UserDataException extends Exception {
-
-}
+public class UserDataException extends Exception { }

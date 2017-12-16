@@ -16,7 +16,7 @@ public class Console {
     static SAXReader saxReader = new SAXReader();
     static File file = new File(Constant.USERDATA_PATH);
 
-    public static void inspect() throws DocumentException, IOException, UserDataException {
+    public static void signIn() throws DocumentException, IOException, UserDataException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入账号:");
         String newUserName = scanner.nextLine();

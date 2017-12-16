@@ -12,7 +12,7 @@ public class Main {
         while(true) { System.out.println("Ⅰ.注册\nⅡ.登录");
             switch (scanner.nextInt()) {
                 case 1: scanner.nextLine();
-                    try { Console.inspect();
+                    try { Console.signIn();
                     } catch (IOException e) { e.printStackTrace();
                     } catch (DocumentException e) { e.printStackTrace();
                     } catch (UserDataException e) { System.out.println(e.getMessage()); }

@@ -1,0 +1,225 @@
+Java线程死锁及解决方法:
+死锁是这样一种情形:多个线程同时被阻塞,它们中的一个或者全部都在等待某个资源被释放,由于线程被无限期地阻塞,因此程序不可能正常终止/
+Java死锁产生的四个必要条件:
+1.互斥使用,即当资源被一个线程使用(占用)时,别的线程不能使用/
+2.不可抢占,资源请求者不能强制从资源占有者手中夺取资源,资源只能有资源占有者主动释放/
+3.请求和保持,即当资源请求者在请求其他的资源的同时保持对原有资源的占有/
+4.循环等待,即存在一个等待队列:P1占有P2的资源,P2占有P3的资源,P3占有P1的资源,这样就形成了一个等待环路/
+当上述四个条件都成立的时候,便形成死锁,当然,死锁的情况下如果打破上述任何一个条件,便可让死锁消失/
+解决死锁问题的方法:
+1.一种是用synchronized/
+2.一种是用Lock显式锁实现/
+而如果不恰当的使用了锁,且出现同时要锁多个对象时,会出现死锁情况,为了解决这个问题,我们不使用显式的去锁,我们用信号量去控制/
+信号量可以控制资源能被多少线程访问,这里我们指定只能被一个线程访问,就做到了类似锁住,而信号量可以指定去获取的超时时间,我们可以根据这个超时时间,做一个额外处理/
+对于无法成功获取的情况,一般就是重复尝试,或者指定尝试的次数,也可以马上退出/
+Java网络编程:
+网络编程是指编写运行在多个设备的程序,这些设备通过网路连接起来/
+java.net包中J2SE的API包含有类和接口,它们提供低层次的通信细节,你可以直接使用这些类和接口,来专注于解决问题,而不是关注通信细节/
+Java.net包中提供了两种常见的网络协议的支持:
+1.TCP:TCP是传输控制协议的缩写,它保障了两个应用程序之间的可靠通信,通常用于互联网协议,被称TCP/IP/
+2.UDP:UDP是用户数据报协议的缩写,一个无连接的协议,提供了应用程序之间要发送的数据的数据包/
+Socket编程:
+套接字使用TCP提供了两台计算机之间的通信机制,客户端程序创建有一个套接字,并尝试里连接服务器的套接字/
+当连接建立时,服务器会创建一个Socket对象,客户端和服务器现在可以通过对Socket对象的写入和读取来进行通信/
+java.net.Socket类代表一个套接字,并且java.net.ServerSocket类为服务器程序提供了一种来监听客户端,并与他们建立连接的机制/
+以下步骤再两台计算机之间使用套接字建立TCP连接时会出现:
+1.服务器实例化一个ServerSocket对象,表示通过服务器上的端口通信/
+2.服务器调用ServerSocket类的accept()方法,该方法将一直等待,直到客户端连接到服务器上给定的端口/
+3.服务器正在等待时,一个客户端实例化一个Socket对象,指定服务器名称和端口号来请求连接/
+4.Socket类的构造函数试图将客户端连接到指定的服务器和端口号,如果通信被建立,则在客户端创建一个Socket对象能够与服务器进行通信/
+5.在服务器端,accept()方法返回服务器上一个新的Socket引用,该socket连接到客户端的socket/
+连接建立后,通过使用I/O流在进行通信,每一个socket都有一个输出流和一个输入流,客户端的输出流连接到服务器端的输入流,而客户端的输入流连接到服务器的输出入流/
+TCP是一个双向的通信协议,因此数据可以通过两个数据流在同一时间发送/
+ServerSocket类的方法:
+服务器应用程序通过使用java.net.ServerSocket类以获取一个端口,并且侦听客户端请求/
+ServerSocket类有四个构造方法:
+1.public ServerSocket(int port) throws IOException/即为创建绑定到特定端口的服务器套接字/
+2.public ServerSocket(int port, int backlog) throws IOException/即为利用指定的backlog创建服务器套接字并将其绑定到指定的本地端口号/
+3.public ServerSocket(int port, int backlog, InetAddress address) throws IOException/使用指定的端口/侦听backlog和要绑定到的本地IP地址创建服务器/
+4. 	public ServerSocket() throws IOException/即为创建非绑定服务器套接字/
+创建非绑定服务器套接字,如果ServerSocket构造方法没有抛出异常,就意味着应用程序已经成功绑定到指定的端口,并且侦听客户端请求/
+ServerSocket类的常用方法:
+1.public int getLocalPort()/即为返回此套接字在其上侦听的端口/
+2.publicSocket accept() throws IOException/即为侦听别接受到此套接字的连接/
+3.public void setSoTimeout(int timeout)/通过指定超时值启用/禁用So_TIMEOUT,以毫秒为单位/
+4. 	public void bind(SocketAddress host, int backlog)/即为将ServerSocket绑定到特定地址(IP地址和端口号)/
+Socket类的方法:
+java.net.Socket类代表客户端和服务器都用来互相沟通的套接字,客户端要获取一个Socket对象通过实例化,而服务器获得一个Socket对象则通过accept()方法的返回值/
+Socket类有五个构造方法:
+1. 	public Socket(String host, int port) throws UnknownHostException, IOException./即为创建一个流套接字并将其连接到指定主机上的指定端口号/
+2. 	public Socket(InetAddress host, int port) throws IOException/即为创建一个流套接字并将其连接到指定IP地址的指定端口号/
+3.public Socket(String host, int port, InetAddress localAddress, int localPort) throws IOException./
+创建一个套接字并将其连接到指定远程主机上的指定远程端口/
+4. 	public Socket(InetAddress host, int port, InetAddress localAddress, int localPort) throws IOException./
+创建一个套接字并将其连接到指定远程地址上的指定远程端口/
+5. 	public Socket()/
+通过系统默认类型的Socketmpl创建未连接套接字/
+当Socket构造方法返回,并没有简单的实例化了一个Socket对象,它实际上会尝试连接到指定的服务器和端口/
+Socket类中常用的方法:
+1.public void connect(SocketAddress host, int timeout) throws IOException/
+将此套接字连接到服务器,并指定一个超时值/
+2. 	public InetAddress getInetAddress()/
+返回套接字连接的地址/
+3.	public int getPort()/
+返回此套接字连接到的远程端口/
+4.public int getLocalPort()/
+返回此套接字绑定的本地端口/
+5.public SocketAddress getRemoteSocketAddress()/
+返回此套接字连接的端点的地址,如果未连接则返回null/
+6.public InputStream getInputStream() throws IOException/
+返回此套接字的输入流/
+7. 	public OutputStream getOutputStream() throws IOException/
+返回此套接字的输出流/
+8.public void close() throws IOException/
+关闭此套接字/
+Java流(Stream),文件(File)和IO
+java.io包几乎包含了所有操作输入/输出需要的类,所有这些流类代表了输入源和输出目标/
+java.io包中的流支持很多格式/比如:基本类型/对象/本地化字符集/
+一个流可以理解为一个数据的序列/输入流表示从一个源读取数据/输出流表示向一个目标写数据/
+java为I/O提供了强大的而灵活的支持,使其更广泛地应用到文件传输和网络编程中/
+读取控制台输入:
+Java的控制台输入有System.in完成/
+为了获得一个绑定到控制台的字符流,可以把System.in包装在一个BufferedReader对象中来创建一个字符流/
+基本语法:
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+BufferedReader对象创建后,我们便可以使用read()方法从控制台读取一个字符,或者用readLine(
+方法读取一个字符串/
+从控制台读取多字符输入:
+从BufferedReader对象读取一个字符要使用read()方法/
+语法:
+int read( ) throws IOException/
+每次调用read()方法,它从输入流读取一个字符并把该字符作为整数值返回,当流结束的时候返回-1,该方法抛出IOException/
+从控制台读取字符串:
+从标准输入读取一个字符串需要使用BufferedReader的readLIne()方法/
+语法:
+String readLine( ) throws IOException/
+JDK5后的版本可以使用Java Scanner类来获取控制台的输入/
+控制台输出:
+控制台的输出有print()和println()完成,这些方法都由类PrintStream定义,System.out是该类对象的一个引用/
+PrintStream继承了OutputStream类,并且实现了方法write().这样,write()也可以用阿里往控制台写操作/
+PrintStream定义write()的简单格式:
+void write(int byteval)/
+该方法将byteval的低八位字节写到流中/
+write()方法不经常使用,因为print()和println()方法使用更方便/
+读写文件:
+一个流被定义为一个数据序列。输入流用于从源读取数据，输出流用于向目标写数据/
+IO流:
+一:字符流:
+1.Reader:BufferedReader/InputStreamReader(FileReader)/StringReader/PipedReader/CharArrayReader/FilterReader(PushBackReader)/
+2.Writer:BufferedWriter/OutputStreamWriter(FileWriter)/PrinterWriter/StringWriter/PipedWriter/CharArrayWriter/FilterWriter/
+二:字节流:
+1.InputStream:FileInputStream/FilterInputStream(BufferedInputStream/DataInputStream/PushbackInputStream)/ObjectInputStream/PipedInputStream/SequenceInputStream/StringBufferedInputStream/ByteArrayInputStream/
+2.OutputStream:FileOutputStream/FilterOutputStream(BufferedOutputStream/DataOutputStream/PrintOutputStream)/ObjectOutputStream/PipedOutputStream/ByteArrayOutputStream/
+FileInputStream:
+该流用于从文件读取数据,它的对象可以用new来创建/
+有多种构造方法可以用来创建对象/
+可以使用字符串类型的文件名来创建一个输入流对象来读取文件:
+InputStream f = new FileInputStream("C:/java/hello");/
+也可以使用一个文件对象来创建一个输入流对象来读取文件,首先得使用File()方法来创建一个文件对象:
+File f = new File("C:/java/hello");
+InputStream out = new FileInputStream(f);/
+创建了InputStream对象,就可以使用方法来读取流或者进行其他的流操作/
+1.public void close() throws IOException{}/
+即为关闭此文件输入流并释放与此流有关的所有系统资源.抛出IO异常/
+2. 	protected void finalize()throws IOException {}/
+即为这个方法清除与该文件的连接/确保在不再被引用文件输入流时调用起close方法,抛出IO异常/
+3. 	public int read(int r)throws IOException{}/
+即为这个方法从InputStream对象读取指定字节的数据,返回为整数值,返回下一字节的数据,如果已经到结尾则返回-1/
+4.public int read(byte[] r) throws IOException{}/
+即为这个方法从输入流读取r.length长度的字节.返回读取的字节数,如果是文件结尾则返回-1/
+5.public int available() throws IOException{}/
+即为返回下一次对此输入流调用的方法可以不受阻塞地从此输入流读取的字节数,返回一个整数值/
+FileOutputStream:
+该类用来创建一个文件并向文件中写数据/
+如果该流在打开文件进行输出前,目标文件不存在,那么该流会创建该文件/
+有两个构造方法可以用来创建FileOutputStream对象/
+使用字符串类型的文件名来创建一个输出流对象:
+OutputStream f = new FileOutputStream("C:/java/hello")/
+也可以使用一个文件对象来创建一个输出流来写文件,首先得使用File()方法来创建一个文件对象:
+File f = new File("C:/java/hello");
+OutputStream f = new FileOutputStream(f);/
+创建OutputStream对象完成后,就可以使用方法来写入流或者进行其他的流操作:
+1.public void close() throws IOException{}/
+即为关闭此文件输入流并释放与此流有关的所有系统资源,抛出IO异常/
+2.protected void finalize()throws IOException {}/
+即为这个方法清除与该文件的连接,确保在不再引用文件输入流时调用其close方法,抛出IO异常/
+3.public void write(int w)throws IOException{}/
+即为这个方法把指定的字节写到输出流中/
+4. 	public void write(byte[] w)/
+即为把指定数组中w.length长度的字节写到OutputStream中/
+Java URL处理:
+URL中文名为统一资源定位符,有时也被俗称为网页地址/
+表示未互联网上的资源,如网页或者FTP地址/
+URL可以分为如下几个部分:
+protocol://host:port/path?query#fragment/
+protocol(协议)可以是 HTTP、HTTPS、FTP 和 File，port 为端口号，path为文件路径及文件名/
+HTTP 协议的 URL 实例如下:
+http://www.runoob.com/index.html?language=cn#j2se/
+URL解析:
+1.协议为(protocol):http/
+2.主机为(host:port):www.xxx.com/
+3.端口号为(port):80,以上URL实例并未指定端口,应HTTP协议默认的端口号为80/
+4.文件路径为(path):/index.html/
+5.请求参数(query):language = cn/
+6.定位位置(fragment):j2se,定位到网页中id属性为j2se的HTML元素位置/
+URL类方法:
+在java.net包中定义了URL类,该类用来处理有关URL的内容/
+java.net.URL提供了丰富的URL构建方式,并可以通过java.net.URL来获取资源/
+1.public URL(String protocol, String host, int port, String file) throws MalformedURLException/
+即为通过给定的参数(协议/主机名/端口号/文件名)创建URL/
+2.public URL(String protocol, String host, String file) throws MalformedURLException/
+即为使用指定的协议/主机名/文件名创建URL,端口使用协议的默认端口/
+3.	public URL(String url) throws MalformedURLException/
+即为通过给定的URL字符串创建URL/
+4.public URL(URL context, String url) throws MalformedURLException/
+即为使用基地址和相对URL创建/
+URL类中包含了很多方法用于访问URL的各个部分:
+1.public String getPath()/
+即为返回URL路径部分/
+2.public String getQuery()/
+即为返回URL查询部分/
+3.public String getAuthority()/
+即为获取此URLd授权部分/
+4.public int getPort()/
+即为返回URL端口部分/
+5.public int getDefaultPort()/
+即为返回协议的默认端口号/
+6.public String getProtocol()/
+即为返回URL的协议/
+7.public String getHost()/
+即为返回URL的主机/
+8.public String getFile()/
+即为返回URL文件名部分/
+9.public String getRef()/
+即为获取此URL的锚点(也称为"引用")/
+10.public URLConnection openConnection() throws IOException/
+即为打开一个URL连接,并运行客户端访问资源/
+URLConnections类方法:
+openConnection() 返回一个 java.net.URLConnection/
+URLConnection方法列表:
+1	Object getContent()/
+检索URL链接内容/
+2	Object getContent(Class[] classes)/
+检索URL链接内容/
+3	String getContentEncoding()/
+返回头部 content-encoding 字段值/
+4	int getContentLength()/
+返回头部 content-length字段值/
+5	String getContentType()/
+返回头部 content-type 字段值/
+6	int getLastModified()/
+返回头部 last-modified 字段值/
+7	long getExpiration()/
+返回头部 expires 字段值/
+8	long getIfModifiedSince()/
+返回对象的 ifModifiedSince 字段值/
+9	public void setDoInput(boolean input)/
+URL 连接可用于输入和/或输出。如果打算使用 URL 连接进行输入，则将 DoInput 标志设置为 true；如果不打算使用，则设置为 false。默认值为 true/
+10	public void setDoOutput(boolean output)/
+URL 连接可用于输入和/或输出。如果打算使用 URL 连接进行输出，则将 DoOutput 标志设置为 true；如果不打算使用，则设置为 false。默认值为 false/
+11	public InputStream getInputStream() throws IOException/
+返回URL的输入流，用于读取资源/
+12	public OutputStream getOutputStream() throws IOException/
+返回URL的输出流, 用于写入资源/
+13	public URL getURL()/
+返回 URLConnection 对象连接的URL/
