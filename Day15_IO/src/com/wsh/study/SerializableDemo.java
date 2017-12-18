@@ -11,7 +11,7 @@ public class SerializableDemo {
         Object pet = new Pet();
         FileInputStream fileInputStream = new FileInputStream("src/pet.out");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-//        objectInputStream.readObject();
+//        Object object = objectInputStream.readObject();
     }
 
     @Test
