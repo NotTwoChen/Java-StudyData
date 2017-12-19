@@ -1,0 +1,16 @@
+三:每个用户的姓名,及其在2016年之前的评论数量
+
+select uname,要评论数量,所以需要在查询comment表时根据用户分组,分组后取和
+from hw_user ,comment
+where 在查评论时,datetime>’2016-01-01 00:00:00’
+group uid
+
+(1)查询表comment满足时间条件的数据,并根据uid分组,查出uid列和分组后每组的数量(别名cc)
+(2)给第(1)步生成的结果集起一个别名, rdt
+(3)使用连接查询,查询hw_user.uname 和rdt.cc 
+
+两列,查询rdt和hw_user两个表,条件是hw_user.uid=rdt.uid;
+
+
+
+

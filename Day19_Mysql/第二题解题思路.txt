@@ -1,0 +1,17 @@
+二:查询年龄在三十到六十之间的用户的姓名,评论过的书籍名称
+
+select 用户姓名:hw_user.uname 评论过的书籍名称:book.bkname 
+from 用户表  评论表 书籍表
+where 用户表:age between 30 and 60  
+	要查询该用户评论过的书籍,所以要去评论表中查询符合该用户uid的书籍的bkid: 	                         
+	hw_user.uid=comment.uid
+	再根据得到的书籍的bkid去书籍表中查询名称
+
+(1)先查出符合年龄条件的结果集,查列uid,uname两列(uid用于后面的查询中,uname最后用来显示)起别名为:result_age
+(2)再从结果集result_age中查询出uid,这时候生成的结果集可以看成一个集合(多行单列)
+(3) 查询评论表的bkid列和uid列,条件是uid的值存在第(2)步生成的结果集中.(用关键字IN),由因为评论中会有同一个用户评论多次同一个书籍的情况,所以要用distinct关键字去重.
+(4) 这时候就基本查出了每个符合条件的数据,但是还需要找到要求显示的内容(现在只找到了各种id,还需要根据id找名字和书名)
+(5)给第(3)步查出的结果集起一个别名rbu
+(6)使用连接查询查列:hw_user.uname,book.bkname两列,查询表rbu,book,hw_user
+(7)rbu inner join book on 条件为bkid相同
+(8) inner join hw_user 条件为uid相同

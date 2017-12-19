@@ -1,0 +1,9 @@
+四,查询刘青云评论过的书籍id及评论的次数
+
+select 书籍id,评论的次数(需要根据书籍id分组)
+from hw_user(需要确定刘青云的uid),comment
+where uname=‘刘青云’得到uid后,去comment表中查询comment.uid=刘青云的uid
+group bkid
+
+(1)在表hw_user中查询刘青云的uid,会生成一个单行单列的结果集,这个结果集就可以直接用于where判断条件
+(2)在表comment中查询符合刘青云uid的数据,并且按照bkid分组,查询出bkid,和分组后的每个bkid组的数量(聚合函数count(bkid) 别名:评论次数)
