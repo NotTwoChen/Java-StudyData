@@ -1,0 +1,18 @@
+package com.wsh.study;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class QueryRunnerSon extends QueryRunner {
+
+    @Override
+    public <T> T query(Connection conn, String sql, ResultSetHandler<T> rsh, Object... params) throws SQLException {
+        T query = super.query(conn, sql, rsh, params);
+        conn.close();
+        return query;
+    }
+}
+
