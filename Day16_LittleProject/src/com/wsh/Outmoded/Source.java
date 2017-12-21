@@ -1,6 +1,7 @@
-package com.wsh.util;
+package com.wsh.Outmoded;
 
 import com.wsh.user.UserData;
+import com.wsh.util.Constant;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;

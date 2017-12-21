@@ -39,9 +39,11 @@ public class Main8 {
         });
         // 对已知的某个类进行扩展
 
-        Iterator<User> iterator = query.iterator();
+//        Iterator<User> iterator = query.iterator();
         for (User user : query) {
-            System.out.println(user.toString());
+            if (user.getId() == 1) {
+                System.out.println(user.toString());
+            }
         }
 
 

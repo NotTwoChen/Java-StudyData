@@ -18,7 +18,6 @@ public class Main2 {
         Statement statement = connection.createStatement();
         int i = statement.executeUpdate("INSERT INTO hw_user VALUES (NULL ,'张一山',40,'北京')");
         //  受影响的行数
-
         System.out.println(i);
         statement.close();
         connection.close();
