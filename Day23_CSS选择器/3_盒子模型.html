@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>盒子模型</title>
+    <style type="text/css">
+        body{
+            margin: 0;
+        }
+        .outer{
+            background-color: darkblue;
+            padding: 20px;
+            margin: 20px;
+            border:dashed 10px blue;
+            width: 300px;
+            height: 200px;
+            /*
+                上下左右的内间距都是20px
+            */
+        }
+        .inner{
+            background-color: darkcyan;
+            margin: 20px 20px;
+            /*
+                上下是20px
+                左右是20px
+            */
+        }
+        span{
+            /*
+                因为span是内联元素
+                所以对它设置宽高是无效的
+            */
+            width: 200px;
+            height: 50px;
+            font-size: 30px;
+            color: burlywood;
+            background-color: darkred;
+
+            margin: 30px;
+            padding: 30px;
+        }
+        img{
+            width: 200px;
+            height: 200px;
+            background-color: darkslategray;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">1
+
+        <div class="inner">
+            儿子,儿子,我是你爸爸
+        </div>1
+    </div>
+    <div class="outer">
+        1
+    </div>
+    <!--
+    元素的类型（分类）
+        对于块级元素:
+            什么是块级元素?
+            独占一行
+            可以设置宽高属性
+        块级元素之间的margin属性
+        相遇时,会取较大的值
+        div,h1~h6,table,form,p
+
+        内联元素/行内元素
+                可以与其他元素共处一行
+                不可以设置宽高属性,上下外间距
+        span,input,em,strong,mark
+
+        内联块状元素
+                可以与其他元素共处一行
+                可以设置宽高属性,上下外边距
+        img
+    -->
+    <span>我是span</span>
+    <img src="http://pic.ffpic.com/files/2013/0817/sj0831wy02.jpg" alt="厉害了">
+</body>
+</html>
