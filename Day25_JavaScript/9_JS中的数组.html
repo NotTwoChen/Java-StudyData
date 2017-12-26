@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组</title>
+</head>
+<body>
+
+    <h1></h1>
+    <h1></h1>
+
+</body>
+<Script type="text/javascript">
+    // 定义一个数组
+    var array = [1,2,"哈哈"];
+
+    // 使用角标访问
+    console.log(array[0]);
+
+    // 循环
+    // 使用forEach方法遍历数组
+    // 该方法,接受一个回调函数
+    // 所以我们定义了一个匿名房阿发
+    // 并且给该方法定义了两个参数
+    // 当浏览器解析到该代码,也就是forEach
+    // 会自动帮我们调用传入的方法
+    // 并且第一个参数会传入数组的元素
+    // 第二个参数传入该元素对应的角标
+    array.forEach(function (content,index) {
+        console.log(content + "\t" + index);
+    })
+
+    var songs = ["北风卷地白草折,胡天八月即飞雪",
+        "忽如一夜春风来,千山万水总是情"]
+
+
+    var h1s = document.getElementsByTagName("h1");
+    for(var i = 0 ; i < h1s.length;i++){
+//        h1s[i].innerText = songs[i];
+        var node = h1s.item(i);
+        node.innerText = songs[i];
+        node.style.color = "red";
+    }
+</Script>
+</html>

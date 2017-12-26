@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加和删除元素</title>
+</head>
+<body>
+    <div>咱们能不能不放假?我真的很爱学习!!!</div>
+</body>
+    <Script type="text/javascript">
+        // 创建一个h1标签
+        var h1 = document.createElement("h1");
+        h1.style.color = "red";
+        h1.innerText = "商女不知亡国恨,隔江犹唱后庭花";
+
+        var body = document.getElementsByTagName("body");
+        body[0].appendChild(h1)
+        var divs = document.getElementsByTagName("div");
+        body[0].removeChild(divs[0])
+//        document.appendChild(h1)
+
+    </Script>
+</html>

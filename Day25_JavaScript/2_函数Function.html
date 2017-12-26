@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数</title>
+    <script type="text/javascript">
+
+        // 声明一个Function,名字叫helloFunction
+        // 但是并不会被执行,只有被调用了才会执行
+        function helloFunction() {
+            console.log("hello js function")
+        }
+        //        helloFunction();
+
+        // 对于带参数的函数
+        // 如果在调用时,传递的参数数量少于参数列表总数
+        // 那么,未被赋值的形参的值为undefined
+        // 如果在调用时,传递的参数数量大于参数列表中的参数总数
+        // 那么,多余的参数不会进入函数体中,不会有影响
+        function paramFunc(name, age) {
+            console.log(name);
+            console.log(age);
+        }
+
+        function resultFunc(a, b) {
+            return a+b;
+        }
+
+        function jiujiuchengfabiao(n) {
+            var content = "";
+            for (var i = 1; i <= n; i++) {
+                content = content + i + "*" + n + "=" + (i * n) + "\t";
+            }
+            console.log(content);
+            if (n != 9) {
+                jiujiuchengfabiao(n + 1);
+            }
+        }
+        jiujiuchengfabiao(1,1);
+        // 我们定义的函数,都给了window
+        // 也就是说我们定义的成员变量,成员方法
+        // 都变成了window的属性,方法
+    </script>
+</head>
+<body>
+
+<button onclick="helloFunction()">有本事你就把我点死</button>
+<br>
+
+<button onclick="paramFunc('张三',19,'男')">来吧来吧!!!!!!!!!!!!!!</button>
+<br>
+
+<button onclick="window.alert(resultFunc(10,resultFunc(20,resultFunc(30,40,50))))">死吧</button>
+<br>
+</body>
+</html>

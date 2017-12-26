@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>登录</title>
 </head>
-<body>
+<body onload="startTime()">
     <div>
         <div style="background-color: #ffffff;height: 70px">
             <div style="margin: 0px auto;width: 1181px">
@@ -20,6 +20,7 @@
                     <div style="float: left">
                         <a href="" style="text-decoration-line: none;color: #4477d0">帮助与文档</a>
                     </div>
+                    <div id="txt" style="color: #4477d0;font-size: 17px;float: right;margin-left: 20px"></div>
                 </div>
             </div>
         </div>
@@ -36,7 +37,7 @@
                         <div style="margin: 20px 0px;height: 50px;padding: 0px;">
                             <img src="img/人.png" style="height: 25px ; width: 25px;float: left;position: absolute;top: 115px;">
                             <div style="float: left;height: 50px;width: 325px;padding: 0px">
-                                <input type="text" name="account" placeholder="不二云账号/不二邮箱账号" style="height: 46px;width: 298px;border: solid 1px #848484;padding-left: 25px">
+                                <input onfocus="inputFocus(this)" onblur="inputBlur(this)" id="username" type="text" name="account" placeholder="不二云账号/不二邮箱账号" style="height: 46px;width: 298px;border: solid 1px #848484;padding-left: 25px">
                             </div>
                         </div>
                     </div>
@@ -44,7 +45,7 @@
                         <div style="margin: 20px 0px;height: 50px;padding: 0px;">
                             <img src="img/锁.png" style="height: 25px ; width: 25px;float: left;position: absolute;top: 185px;">
                             <div style="float: left;height: 50px;width: 325px;padding: 0px">
-                                <input type="password" name="account" placeholder="登录密码" style="height: 46px;width: 298px;border: solid 1px #848484;padding-left: 25px">
+                                <input onfocus="inputFocus(this)" onblur="inputBlur(this)" id="password" type="password" name="account" placeholder="登录密码" style="height: 46px;width: 298px;border: solid 1px #848484;padding-left: 25px">
                             </div>
                         </div>
                     </div>
@@ -61,12 +62,12 @@
                         </div>
                     </div>
                     <div style="float: left;font-size: x-large;margin: 15px 0px">
-                        <input type="submit" value="登 录" style="background-color: #3385ff;width: 325px;height: 50px;border: none;font-size: x-large;font-weight: 100;color: white">
+                        <input onclick="submits(this    )" type="submit" value="登 录" style="background-color: #3385ff;width: 325px;height: 50px;border: none;font-size: x-large;font-weight: 100;color: white">
                     </div>
                     <div>
                         <div style="font-size: small;float: left">
                             还没有账号?
-                            <a href="" style="text-decoration-line: none;color: blue">免费注册</a>
+                            <a href="注册.html" style="text-decoration-line: none;color: blue">免费注册</a>
                         </div>
                         <div style="float: right;font-size: small">
                             <a href=""style="text-decoration-line: none;color: blue">忘记密码?</a>
@@ -77,4 +78,45 @@
         </div>
     </div>
 </body>
+<Script type="text/javascript">
+    function inputFocus(ele) {
+        ele.style.outline = "none"
+        ele.style.border = "solid 1px red"
+        ele.style.fontSize = "large"
+    }
+    function inputBlur(ele) {
+        ele.style.border = "solid 1px #848484"
+        ele.style.fontSize = "small"
+    }
+    function submits(ele) {
+        ele.style.backgroundColor = getRandomColor()
+        ele.style.color = getRandomColor()
+        ele.style.border = "dashed 1px white"
+    }
+    function getRandomColor() {
+        var colors = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+        var color = '#';
+        for (var i = 0 ; i < 6 ; i ++ ){
+            var j = Math.round(Math.random()*15)
+            color += colors[j];
+        }return color;
+    }
+    function startTime()
+    {
+        var today=new Date()
+        var h=today.getHours()
+        var m=today.getMinutes()
+        var s=today.getSeconds()
+        m=checkTime(m)
+        s=checkTime(s)
+        document.getElementById('txt').innerHTML=h+":"+m+":"+s
+        t=setTimeout('startTime()',500)
+    }
+    function checkTime(i)
+    {
+        if (i<10)
+        {i="0" + i}
+        return i
+    }
+</Script>
 </html>

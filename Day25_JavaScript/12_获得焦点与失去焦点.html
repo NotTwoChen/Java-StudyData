@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获得焦点与失去焦点</title>
+</head>
+<body>
+
+    <!--
+        onfocus:当获得焦点时
+        onblur:当失去焦点时
+    -->
+
+    <input type="text" id="username" onfocus="inputFocus(this)" onblur="inputBlur(this)">
+
+
+</body>
+<Script type="text/javascript">
+    function inputFocus(ele) {
+        ele.style.color = "red"
+        ele.style.fontSize = "30px"
+    }
+    function inputBlur(ele) {
+        ele.style.color = "blue"
+        ele.style.fontSize = "15px"
+    }
+
+
+</Script>
+</html>
