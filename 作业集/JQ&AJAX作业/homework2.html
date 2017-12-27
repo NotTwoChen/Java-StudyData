@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>weather</title>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <input id="city" type="text">
+    <button id="btn">查询天气</button>
+    <table border="1">
+    </table>
+</body>
+<script type="text/javascript">
+    $('#btn').click(function () {
+        var val = $('input').val();
+        $.ajax({
+            type: 'get',
+            url: 'http://api.k780.com/?app=weather.future&weaid='+val+'&appkey=30513&sign=b91c1acd58df496d80253490ad9d5221',
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            success: function (data) {
+                if (data != null) {
+                    $('tr').remove()
+                    $('table').append(
+                        $('<tr>').append(
+                            $('<td>').text("星期")).append(
+                            $('<td>').text("城市")).append(
+                            $('<td>').text("天气")).append(
+                            $('<td>').text("温度")).append(
+                            $('<td>').text("日期")).append(
+                            $('<td>').text("制作人"))
+                    )
+                    $.each(data.result, function (index, obj) {
+                        $('table').append(
+                            $('<tr>').append(
+                                $('<td>').text(obj['week'])
+                            ).append(
+                                $('<td>').text(obj['citynm'])
+                            ).append(
+                                $('<td>').text(obj['weather'])
+                            ).append(
+                                $('<td>').text(obj['temperature'])
+                            ).append(
+                                $('<td>').text(obj['days'])
+                            ).append(
+                                $('<td>').text('王森浩')
+                            )
+                        )
+                    })
+                }
+            }
+        })
+    })
+</script>
+</html>
