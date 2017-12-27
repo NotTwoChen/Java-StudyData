@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作业1</title>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+        body~div{
+            width: 600px;
+            height: 600px;
+            padding: 0
+        }
+        #diamonds{
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            text-align: center;
+            color: #767577;
+            line-height: 50px;
+            margin: 0 auto;
+            border: solid 0.5px black
+        }
+        #open{
+            width: 396px;
+            height: 50px;
+            background-color: blue;
+            text-align: center;
+            line-height: 50px;
+            border: solid 0
+        }
+        #home{
+            width: 396px;
+            height: 600px;
+            border: solid 2px black ;
+            float: left;
+            padding: 0
+        }
+        #handle{
+            width: 196px;
+            height: 300px;
+            border: solid 2px #767577;
+            float: left;
+            display: none
+        }
+        #handle #close{
+            margin: 20px 0 0 10px
+        }
+        #handle #recover{
+            margin: 20px 10px 0 30px
+        }
+        h4{
+            margin: 10px 60px
+        }
+        #red{
+            background-color: red;
+        }
+        #yellow{
+            background-color: yellow;
+        }
+        #blue{
+            background-color: blue;
+        }
+        #background~button{
+            width: 50px;
+            height: 30px;
+            border: solid 1px black;
+            float: left;
+            margin: 0 5px;
+            text-align: center;
+            line-height: 30px
+        }
+        #width+#height~button{
+            width: 50px;
+            height: 30px;
+            background-color: #767577;
+            border: solid 1px black;
+            float: left;margin: 0 5px;
+            text-align: center;
+            line-height: 30px
+        }
+        span{
+            margin-left: 185px
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="home">
+            <button onclick="handleClickedOpen()" id="open">点击设置样式</button>
+            <div id="diamonds">王森浩</div>
+            <span>xxx</span>
+        </div>
+        <div id="handle">
+
+            <h4 id="background">选择背景</h4>
+            <button onclick="changeColor(this)" id="red">红色</button>
+            <button onclick="changeColor(this)" id="yellow">黄色</button>
+            <button onclick="changeColor(this)" id="blue">蓝色</button>
+
+            <h4 id="width">选择宽度</h4>
+            <button onclick="changeWidth(this)">100</button>
+            <button onclick="changeWidth(this)">200</button>
+            <button onclick="changeWidth(this)">300</button>
+
+            <h4 id="height">选择高度</h4>
+            <button onclick="changeHeight(this)">100</button>
+            <button onclick="changeHeight(this)">200</button>
+            <button onclick="changeHeight(this)">300</button>
+
+            <button onclick="recover()" id="recover">恢复</button>
+            <button onclick="handleClickedClose()" id="close">确定</button>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    function handleClickedOpen() {
+        var handle = document.getElementById('handle');
+        handle.style.display = "block";
+    }
+    function handleClickedClose() {
+        var handle = document.getElementById('handle');
+        handle.style.display = "none";
+    }
+    function recover() {
+        $('#diamonds').css({"width":"50px","height":"50px","background-color":"black","line-height":"50px"})
+    }
+    function changeColor(color) {
+        var color = $(color).css("backgroundColor");
+        $('#diamonds').css({"backgroundColor":color})
+    }
+    function changeWidth(width) {
+        var text = $(width).text();
+        $('#diamonds').css({"width":text+"px"})
+    }
+    function changeHeight(height) {
+        var text = $(height).text();
+        $('#diamonds').css({"height":text+"px","line-height":text+"px"})
+    }
+</script>
+</html>
