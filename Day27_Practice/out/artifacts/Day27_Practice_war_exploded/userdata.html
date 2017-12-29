@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UserData</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<table border="1" style="text-align: center">
+
+</table>
+</body>
+<script type="text/javascript">
+    $.get(
+        "http://localhost:8080/DataTable",
+        function (data, status) {
+            if (status == "success"){
+                var parseJSON = $.parseJSON(data);
+                if (parseJSON != null){
+                    $('tr').remove();
+                    $('table').append(
+                        $('<tr>').append(
+                            $('<td>').text("昵称")
+                        ).append(
+                            $('<td>').text("账号")
+                        ).append(
+                            $('<td>').text('密码')
+                        )
+                    );
+                    $.each(parseJSON,function (index, obj) {
+                        $('table').append(
+                            $('<tr>').append(
+                                $('<td>').text(obj['name'])
+                            ).append(
+                                $('<td>').text(obj['username'])
+                            ).append(
+                                $('<td>').text(obj['password'])
+                            )
+                        )
+                    })
+                }
+            }
+        }
+    )
+</script>
+</html>

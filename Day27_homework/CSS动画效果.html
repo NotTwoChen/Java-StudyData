@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过渡</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+        .div{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            transition: width 2s;
+            margin: 20px;
+        }
+        .div:nth-of-type(1){
+            transition: width 2s linear;
+        }
+        .div:nth-of-type(2){
+            transition: width 2s ease;
+        }
+        .div:nth-of-type(3){
+            transition: width 2s linear 2s;
+        }
+        .div:nth-of-type(4){
+            transition: width 2s linear,
+                        height 2s linear 2s;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="div"></div>
+    <div class="div"></div>
+    <div class="div"></div>
+    <div class="div"></div>
+    <button id="btn">加个字吧</button>
+</body>
+<script type="text/javascript">
+    $('#btn').click(function () {
+        $('.div').css({
+            "width":"500px",
+            "height":"500px",
+        })
+    })
+</script>
+</html>

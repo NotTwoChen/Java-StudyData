@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transform变换</title>
+    <style type="text/css">
+        .outer{
+            width: 400px;
+            height: 400px;
+            background-color: #767577;
+            transform-style: preserve-3d    ;
+            transform: rotateY(0deg);
+        }
+        .div{
+            margin: 200px auto;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /*transform:translateX(200px) translateY(200px) translateZ(200px);*/
+            transform:scale(0.5)
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="div"></div>
+    </div>
+</body>
+</html>
