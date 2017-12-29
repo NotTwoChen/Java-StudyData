@@ -13,6 +13,15 @@
 
 </head>
 <body>
+<form action="Insert" method="post">
+    <label for="username">username</label>
+    <input type="text" id="username" name="username">
+    <label for="password">password</label>
+    <input type="text" id="password" name="password">
+    <label for="name">name</label>
+    <input type="text" id="name" name="name">
+    <input type="submit">
+</form>
   <button id="btn">
       查询数据
   </button>
@@ -22,6 +31,5 @@
     $('#btn').click(function () {
         window.location="userdata.html"
     })
-
 </script>
 </html>

@@ -5,11 +5,19 @@
          version="3.1">
     <servlet>
         <servlet-name>data</servlet-name>
-        <servlet-class>com.wsh.homework.PracticeServlet</servlet-class>
+        <servlet-class>com.wsh.queryTable.servlet.QueryServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>data</servlet-name>
         <url-pattern>/DataTable</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>insert</servlet-name>
+        <servlet-class>com.wsh.insertData.servlet.InsertServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>insert</servlet-name>
+        <url-pattern>/Insert</url-pattern>
     </servlet-mapping>
 
 </web-app>

@@ -7,16 +7,15 @@
 </head>
 <body>
 <table border="1" style="text-align: center">
-
 </table>
 </body>
 <script type="text/javascript">
     $.get(
         "http://localhost:8080/DataTable",
         function (data, status) {
-            if (status == "success"){
+            if (status === "success"){
                 var parseJSON = $.parseJSON(data);
-                if (parseJSON != null){
+                if (parseJSON !== null){
                     $('tr').remove();
                     $('table').append(
                         $('<tr>').append(
