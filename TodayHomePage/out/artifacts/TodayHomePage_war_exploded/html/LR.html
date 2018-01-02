@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LR</title>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+        #navigationBar{
+            height: 100px;
+            background-color: #ffffff;
+            margin: 0;
+        }
+        #projectBar{
+            height: 900px;
+            background-color: #f5f8fa;
+            margin: 0;
+        }
+        #menuBar{
+            width: 1200px;
+            height: 100px;
+            margin: 0 auto;
+        }
+        .floatLeft{
+            float: left;
+        }
+        .floatRight{
+            float: right;
+        }
+        #menuRight{
+            color: #4477d0;
+        }
+        #txt{
+            margin-left: 20px;
+        }
+        #menuBar div{
+            margin: 0 auto;
+            line-height: 5;
+        }
+        #menuBar #txt{
+            margin-left: 20px;
+        }
+        #menuBar img{
+            margin-top: 10px;
+        }
+
+
+
+    </style>
+</head>
+<body onload="startTime()">
+<div>
+    <div id="navigationBar">
+        <div id="menuBar">
+            <div class="floatLeft">
+                <a href="LR.html">
+                    <img src="../img/logo.jpg" alt="不二云logo">
+                </a>
+            </div>
+            <div class="floatLeft">登录/注册</div>
+            <div class="floatRight" id="menuRight">
+                <div class="floatLeft">不二云首页</div>
+                <div class="floatLeft">丨</div>
+                <div class="floatLeft">帮助手册</div>
+                <div id="txt" class="floatLeft"></div>
+            </div>
+        </div>
+    </div>
+    <div id="projectBar">
+
+    </div>
+</div>
+
+</body>
+<script type="text/javascript">
+    function startTime() {
+        var today = new Date()
+        var date = today.toLocaleDateString();
+        var time = today.toLocaleTimeString();
+        document.getElementById('txt').innerHTML =date + " " + time
+        setTimeout('startTime()', 500)
+    }
+
+</script>
+</html>

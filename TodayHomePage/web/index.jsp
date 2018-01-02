@@ -14,6 +14,6 @@
   $END$
   </body>
   <script type="text/javascript">
-    window.location = "html/register.html"
+    window.location = "register.html"
   </script>
 </html>
