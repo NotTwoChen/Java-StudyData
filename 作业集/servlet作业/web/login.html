@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+        #navigationBar{
+            background-color: #ffffff;
+            height: 70px
+        }
+        #menuBar{
+            background-color: #f5f8fa;
+            height: 900px
+        }
+        #navigationBar>div{
+            margin: 0px auto;
+            width: 1181px
+        }
+        .floatLeft{
+            float: left;
+        }
+        .floatRight{
+            float: right;
+        }
+        #logo{
+            height: 70px
+        }
+        #navigationBar>div>div{
+            height: 54px;
+            margin-top: auto;
+            padding-top: 25px
+        }
+        #navigationBar>div>div>div>a{
+            text-decoration-line: none;
+            color: #4477d0
+        }
+        #txt{
+            color: #4477d0;
+            font-size: 17px;
+            margin-left: 20px
+        }
+        #advertising{
+            position: absolute;
+            left: 400px;
+            top: 300px;
+            height: 300px;
+            width: 440px
+        }
+        #advertising>a>img{
+            height: 300px;
+        }
+        #contentBar{
+            background-color: #ffffff;
+            position: absolute;
+            left: 940px;
+            top: 200px;
+            height: 500px;
+            width: 400px
+        }
+        #contentBar>form{
+            width: 325px;
+            margin: 50px auto;
+            padding: 0;
+            line-height: 1
+        }
+        form>h2{
+            margin: 0;
+            padding: 10px 0 0;
+            text-align: center
+        }
+        .input{
+            margin: 20px 0;
+            padding: 0;
+            line-height: 1;
+            color: #222
+        }
+        .input>div{
+            margin: 20px 0px;
+            height: 50px;
+            padding: 0px
+        }
+        .input>div>img{
+            height: 25px;
+            width: 25px;
+            position: absolute;
+            top: 115px;
+            left: 40px
+        }
+        .input>div>.lock{
+            top: 185px;
+        }
+        .input>div>div{
+            height: 50px;
+            width: 325px;
+            padding: 0
+        }
+        .input>div>div>input{
+            height: 46px;
+            width: 298px;
+            border: solid 1px #848484;
+            padding-left: 25px
+        }
+        form>#checkBox{
+            margin: 100px 0px 15px 0px;
+            padding: 0;
+            font-size: small;
+            height: 15px
+        }
+        #checkBox a{
+            color: blue
+        }
+        .submit{
+            font-size: x-large;
+            margin: 15px 0
+        }
+        #submit{
+            background-color: #3385ff;
+            width: 325px;
+            height: 50px;
+            border: none;
+            font-size: x-large;
+            font-weight: 100;
+            color: white
+        }
+        .hint{
+            font-size: small
+        }
+        form>div>div>a{
+            text-decoration-line: none;
+            color: blue
+        }
+    </style>
+</head>
+<body onload="startTime()">
+<div>
+    <div id="navigationBar">
+        <div>
+            <a href="" class="floatLeft"><img id="logo" src="img/logo.jpg"></a>
+            <div class="floatLeft" style="font-size: large">登录</div>
+            <div class="floatRight">
+                <div class="floatLeft">
+                    <a href="">不二云首页</a>
+                </div>
+                <div class="floatLeft">丨</div>
+                <div class="floatLeft">
+                    <a href="">帮助与文档</a>
+                </div>
+                <div id="txt" class="floatLeft"></div>
+            </div>
+        </div>
+    </div>
+    <div id="menuBar">
+        <div id="advertising">
+            <a href=""><img src="img/广告.jpg"></a>
+        </div>
+        <div id="contentBar">
+            <form action="login" method="post">
+                <h2>不二云登录</h2>
+                <div class="input">
+                    <div><img src="img/人.png" class="floatLeft">
+                        <div class="floatLeft">
+                            <input onfocus="inputFocus(this)" onblur="inputBlur(this)" id="username" type="text" name="username" placeholder="不二云账号/不二邮箱账号">
+                        </div>
+                    </div>
+                </div>
+                <div class="input">
+                    <div><img src="img/锁.png" class="floatLeft lock">
+                        <div class="floatLeft">
+                            <input onfocus="inputFocus(this)" onblur="inputBlur(this)" id="password" type="password" name="password" placeholder="登录密码">
+                        </div>
+                    </div>
+                </div>
+                <div id="checkBox">
+                    <div class="floatLeft"><input type="checkbox">
+                        <span>同意并遵守<a href="">《服务条款》</a></span>
+                    </div>
+                    <div class="floatRight"><input type="checkbox">
+                        <span>15天免登录</span>
+                    </div>
+                </div>
+                <div class="floatLeft submit">
+                    <input onclick="submits()" id="submit" type="submit" value="登 录">
+                </div>
+                <div>
+                    <div class="floatLeft hint">还没有账号?<a href="register.html">免费注册</a></div>
+                    <div class="floatRight hint"><a href="">忘记密码?</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<Script type="text/javascript">
+    function inputFocus(ele) {
+        ele.style.outline = "none"
+        ele.style.border = "solid 1px red"
+        ele.style.fontSize = "large"
+    }
+
+    function inputBlur(ele) {
+        ele.style.border = "solid 1px #848484"
+        ele.style.fontSize = "small"
+    }
+    function submits() {
+        $('#submit').css(
+            {"backgroundColor":getRandomColor},
+            {"color":getRandomColor},
+            {"border":"dashed 1px white"});
+    }
+    function getRandomColor() {
+        var colors = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            var j = Math.round(Math.random() * 15)
+            color += colors[j];
+        }
+        return color;
+    }
+    function startTime() {
+        var today = new Date()
+        var date = today.toLocaleDateString();
+        var time = today.toLocaleTimeString();
+        document.getElementById('txt').innerHTML =date + " " + time
+        setTimeout('startTime()', 500)
+    }
+</Script>
+</html>
