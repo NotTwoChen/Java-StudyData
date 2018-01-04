@@ -1,44 +1,75 @@
 package com.wsh.project.dao;
 
-import com.wsh.project.QueryRunner.NewQueryRunner;
 import com.wsh.project.bean.UserData;
 import com.wsh.project.util.JdbcUtil;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class userDao {
+public class UserDao {
 
 
     public static List<UserData> query(){
-
+        List<UserData> query = new ArrayList<>();
         try {
-            List<UserData> query = new NewQueryRunner().query(
+            query = new QueryRunner().query(
                     JdbcUtil.getConnection(),
                     "select * from userdata",
                     new BeanListHandler<UserData>(UserData.class)
             );
-            return query;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return query;
+    }
+    public static UserData query(String username){
+        UserData userData = new UserData();
+        try {
+            userData = new QueryRunner().query(
+                    JdbcUtil.getConnection(),
+                    "select * from userdata where username = ?",
+                    new BeanHandler<UserData>(UserData.class),
+                    username
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userData;
+    }
+    public static UserData query(String username,String password){
+        UserData userData = new UserData();
+        try {
+            Connection connection = JdbcUtil.getConnection();
+            userData = new QueryRunner().query(
+                    connection,
+                    "select * from userdata where username = ? and password = ?",
+                    new BeanHandler<UserData>(UserData.class),
+                    username, password
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userData;
     }
 
     public static int insert(UserData userData){
+        int update = 0;
         try {
-            int update = new NewQueryRunner().update(
+             update = new QueryRunner().update(
                     JdbcUtil.getConnection(),
                     "insert into userdata values(?,?,?)",
                     userData.getName(),
                     userData.getUsername(),
                     userData.getPassword()
             );
-            return update;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+        return update;
     }
 }

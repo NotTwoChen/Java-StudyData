@@ -10,7 +10,6 @@ import java.util.Properties;
 
 public class JdbcUtil {
 
-    private static String driverName;
     private static String url;
     private static String database;
     private static String user;
@@ -22,15 +21,13 @@ public class JdbcUtil {
         InputStream jdbc = classLoader.getResourceAsStream("jdbc.properties");
         try {
             properties.load(jdbc);
-            driverName = properties.getProperty("driverName");
+            String driverName = properties.getProperty("driverName");
             url = properties.getProperty("url");
             database = properties.getProperty("database");
             user = properties.getProperty("user");
             password = properties.getProperty("password");
             Class.forName(driverName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

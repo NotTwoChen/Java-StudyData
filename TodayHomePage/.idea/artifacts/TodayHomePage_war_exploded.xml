@@ -11,6 +11,7 @@
           <element id="library" level="project" name="libs" />
         </element>
       </element>
+      <element id="module-output" name="TodayHomePage" />
     </root>
   </artifact>
 </component>

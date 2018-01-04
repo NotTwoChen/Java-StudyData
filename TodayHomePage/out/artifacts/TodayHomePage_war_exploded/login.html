@@ -140,7 +140,7 @@
             <div class="floatLeft" style="font-size: large">登录</div>
             <div class="floatRight">
                 <div class="floatLeft">
-                    <a href="">不二云首页</a>
+                    <a href="index.jsp">不二云首页</a>
                 </div>
                 <div class="floatLeft">丨</div>
                 <div class="floatLeft">
@@ -192,6 +192,16 @@
 </div>
 </body>
 <Script type="text/javascript">
+    $.get(
+        "login",
+        function (data) {
+            if (data){
+                console.log(data);
+                $('#username').val(data);
+            }
+        }
+    );
+
     function inputFocus(ele) {
         ele.style.outline = "none"
         ele.style.border = "solid 1px red"

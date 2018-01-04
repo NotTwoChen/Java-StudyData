@@ -1,13 +1,14 @@
 package com.wsh.project.servlet;
 
 import com.wsh.project.bean.UserData;
-import com.wsh.project.dao.userDao;
+import com.wsh.project.dao.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -15,28 +16,31 @@ import java.util.List;
 public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("utf-8");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        List<UserData> query = userDao.query();
-        for (UserData userData : query) {
-            if (userData.getUsername().equals(username)){
-                if (userData.getPassword().equals(password)){
-                    String name = userData.getName();
-                    if (name == null){
-                        name = "用户名未定义";
-                    }
-                    getServletContext().setAttribute("name",name);
-                    response.sendRedirect("home.html");
-                    break;
-                }else {
-                    response.sendRedirect("login.html");
+        UserData query = UserDao.query(username);
+        if (query != null){
+            if (query.getPassword().equals(password)){
+                String name = query.getName();
+                if (name == null) {
+                    name = query.getUsername()+"(昵称未定义)";
                 }
+                HttpSession session = request.getSession();
+                session.setAttribute("name",name);
+                session.setAttribute("username",query.getUsername());
+                response.sendRedirect("index.jsp");
+                return;
             }
         }
+            response.sendRedirect("login.html");
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
-        Object name = getServletContext().getAttribute("name");
-        response.getWriter().write(name.toString());
+        HttpSession session = request.getSession();
+        session.setAttribute("name",null);
+        String username = (String) session.getAttribute("username");
+        response.getWriter().write(username);
+
     }
 }

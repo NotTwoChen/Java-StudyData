@@ -1,7 +1,7 @@
 package com.wsh.project.servlet;
 
 import com.wsh.project.bean.UserData;
-import com.wsh.project.dao.userDao;
+import com.wsh.project.dao.UserDao;
 import net.sf.json.JSONArray;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
         UserData userData = new UserData();
         try {
             BeanUtils.populate(userData,parameterMap);
-            if (userDao.insert(userData) > 0){
+            if (UserDao.insert(userData) > 0){
                 response.sendRedirect("login.html");
             }else {
                 response.sendRedirect("register.html");
@@ -34,8 +34,10 @@ public class RegisterServlet extends HttpServlet {
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
-        List<UserData> query = userDao.query();
-        JSONArray jsonArray = JSONArray.fromObject(query);
-        response.getWriter().write(jsonArray.toString());
+        List<UserData> query = UserDao.query();
+        if (query != null){
+            JSONArray jsonArray = JSONArray.fromObject(query);
+            response.getWriter().write(jsonArray.toString());
+        }
     }
 }

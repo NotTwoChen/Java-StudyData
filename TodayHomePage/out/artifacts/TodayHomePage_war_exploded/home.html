@@ -5,41 +5,79 @@
     <title>不二云首页</title>
     <script src="js/jquery-3.2.1.min.js"></script>
     <style type="text/css">
-
+        #navigationBar{
+            background-color: #ffffff;
+            height: 70px
+        }
+        #menuBar{
+            background-color: #f5f8fa;
+            height: 900px
+        }
+        #navigationBar>div{
+            margin: 0px auto;
+            width: 1181px
+        }
+        .floatLeft{
+            float: left;
+        }
+        .floatRight{
+            float: right;
+        }
+        #logo{
+            height: 70px
+        }
+        #navigationBar>div>div{
+            height: 54px;
+            margin-top: auto;
+            padding-top: 25px
+        }
+        #navigationBar>div>div>div>a{
+            text-decoration-line: none;
+            color: #4477d0
+        }
+        #txt{
+            color: #4477d0;
+            font-size: 17px;
+            margin-left: 20px
+        }
+        #user{
+            color: red;
+            height: 54px;
+            margin-top: auto;
+            margin-left: 10px ;
+            padding-top: 25px;
+            font-size: large
+        }
     </style>
 </head>
 <body onload="startTime()">
-    <div>
-        <div style="background-color: #ffffff;height: 70px">
-            <div style="margin: 0px auto;width: 1181px">
-                <a href="" style="float: left;height: 54px">
-                    <img src="img/logo.jpg" style="height: 70px">
-                </a>
-                <div style="float: left;height: 54px;margin-top: auto;padding-top: 25px;font-size: large">首页</div>
-                <div id="user" style="color: red;float: left;height: 54px;margin-top: auto;margin-left: 10px ;padding-top: 25px;font-size: large"></div>
-                <div style="float: right;height: 54px;margin-top: auto;padding-top: 25px">
-                    <div style="float: left">
-                        <a href="" style="text-decoration-line: none;color: #4477d0">不二云首页</a>
-                    </div>
-                    <div style="float: left">丨</div>
-                    <div style="float: left">
-                        <a href="" style="text-decoration-line: none;color: #4477d0">帮助与文档</a>
-                    </div>
-                    <div id="txt" style="color: #4477d0;font-size: 17px;float: right;margin-left: 20px"></div>
+<div>
+    <div id="navigationBar">
+        <div>
+            <a href="" class="floatLeft"><img id="logo" src="img/logo.jpg"></a>
+            <div class="floatLeft" style="font-size: large">首页</div>
+            <div id="user" class="floatLeft"></div>
+            <div class="floatRight">
+                <div class="floatLeft">
+                    <a href="">不二云首页</a>
                 </div>
+                <div class="floatLeft">丨</div>
+                <div class="floatLeft">
+                    <a href="">帮助与文档</a>
+                </div>
+                <div id="txt" class="floatLeft"></div>
             </div>
         </div>
-        <div style="background-color: #f5f8fa;height: 900px">
-
-        </div>
     </div>
-
+</div>
 </body>
 <script type="text/javascript">
     $.get(
         "http://localhost:8080/TodayHomePage/login",
         function (data) {
-            $('#user').text(data);
+            if (data){
+                $('#user').text(data);
+            }
         }
     );
     function startTime() {
