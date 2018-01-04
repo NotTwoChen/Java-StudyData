@@ -78,6 +78,37 @@ public class Book {
         this.content = content;
     }
 
+    public Book(String bname, String author, int price, String cover, String content) {
+        this.bname = bname;
+        this.author = author;
+        this.price = price;
+        this.cover = cover;
+        this.content = content;
+    }
+
+    public Book(String bname, String author, int price, String cover) {
+        this.bname = bname;
+        this.author = author;
+        this.price = price;
+        this.cover = cover;
+    }
+
+    public Book(String bname, String author, int price) {
+        this.bname = bname;
+        this.author = author;
+        this.price = price;
+    }
+
+    public Book(String bname, String author) {
+        this.bname = bname;
+        this.author = author;
+    }
+
+    public Book(String bname) {
+        this.bname = bname;
+    }
+
+
     public Book() {
 
     }

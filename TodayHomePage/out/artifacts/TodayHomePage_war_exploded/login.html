@@ -136,7 +136,7 @@
 <div>
     <div id="navigationBar">
         <div>
-            <a href="" class="floatLeft"><img id="logo" src="img/logo.jpg"></a>
+            <a href="login.html" class="floatLeft"><img id="logo" src="img/logo.jpg"></a>
             <div class="floatLeft" style="font-size: large">登录</div>
             <div class="floatRight">
                 <div class="floatLeft">
@@ -152,7 +152,7 @@
     </div>
     <div id="menuBar">
         <div id="advertising">
-            <a href=""><img src="img/广告.jpg"></a>
+            <a href="login.html"><img src="img/广告.jpg"></a>
         </div>
         <div id="contentBar">
             <form action="login" method="post">
@@ -194,9 +194,8 @@
 <Script type="text/javascript">
     $.get(
         "login",
-        function (data) {
-            if (data){
-                console.log(data);
+        function (data,status) {
+            if (data && status === "success"){
                 $('#username').val(data);
             }
         }

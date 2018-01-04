@@ -1,4 +1,4 @@
-<%--
+<%@ page import="net.sf.json.JSONArray" %><%--
   Created by IntelliJ IDEA.
   User: 王森浩
   Date: 2017/12/29
@@ -12,7 +12,7 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="css/index_css.css">
   </head>
-  <body onload="startTime()">
+  <body onload="startTime()" onkeypress="btnClick()">
   <div>
     <div id="navigationBar">
       <div>
@@ -27,6 +27,7 @@
           <a href="login.html" onclick="exit()">退出</a>
           <%
           }else {
+                request.getRequestDispatcher("login.html").forward(request,response);
           %>
           <a href="login.html">登录</a>
           <span>丨</span>
@@ -48,10 +49,18 @@
       </div>
     </div>
     <div id="menuBar">
+
       <div id="bookList">
-        <%--<table border="1" style="text-align: center">--%>
-          <%--<img src="img/此书暂无封面.jpg" alt="">--%>
-        <%--</table>--%>
+        <div style="height: 50px">
+          <div class="floatLeft">
+            <%--<form action="bookQuery" method="get">--%>
+              <input type="text" name="bookInfo" id="query" placeholder="查询书籍/作者">
+              <button onclick="btnClick()" id="btn">查询</button>
+              <%--<input type="submit" value="查询">--%>
+            <%--</form>--%>
+          </div>
+          <div class="floatRight">管理书籍</div>
+        </div>
 
       </div>
     </div>
@@ -59,14 +68,40 @@
   </body>
   <script type="text/javascript">
 
+    function btnClick() {
+        var bookInfo = $('#query').val();
+        $.post(
+            "query",{"bookInfo":bookInfo},
+            function (data,status) {
+                if (status === "success" && data){
+                    var parse = JSON.parse(data);
+                    $('table').css({"display":"none"});
+                    $.each(parse,function (index, obj) {
+                        var bid = obj['bid'];
+                        $('#book'+bid).css({"display":"block"});
+                    })
+                }
+
+            }
+        )
+    }
+
+
+
     $.getJSON(
         "book",
         function (data) {
             if (data !== null) {
                 $('table').remove();
                 $.each(data,function (index,obj) {
-                    if (obj['cover'] === null){
+                    if (!obj['author']) {
+                        obj['author'] = "佚名"
+                    }
+                    if (!obj['cover']) {
                         obj['cover'] = "img/此书暂无封面.jpg"
+                    }
+                    if (!obj['price']) {
+                        obj['price'] = "此书暂未上架!"
                     }
                     $('#bookList').append(
                         $('<table>').append(
@@ -74,8 +109,8 @@
                                 $('<td>').append(
                                     $('<a>').append(
                                     $('<img>').attr("src",obj['cover'])
-                                    ).attr("href","book?bid="+obj['bid'])
-                                )
+                                    ).attr("href","bookContent.jsp?bid="+obj['bid'])
+                                ).css("height","200px")
                             )
                         ).attr("border",1).append(
                             $('<tr>').append(
@@ -83,7 +118,7 @@
                             )
                         ).append(
                             $('<tr>').append(
-                                $('<td>').text("书名:"+obj['bname'])
+                                $('<td>').text("书名:《"+obj['bname']+"》")
                             )
                         ).append(
                             $('<tr>').append(
@@ -91,69 +126,15 @@
                             )
                         ).append(
                             $('<tr>').append(
-                                $('<td>').text("价钱:"+obj['price'])
+                                $('<td>').text("价钱:￥"+obj['price'])
                             )
-                        )
+                        ).attr("id","book"+obj['bid'])
                     )
+
                 });
-                $('table').attr("border",1);
             }
         }
     );
-
-
-//    $('.book').mouseleave(function () {
-//        $(".content").eq( $(this).index()).css("display","none")
-//    });
-
-//    console.log($('.book'));
-//    $('.book').mouseenter(function () {
-//        console.log("sss");
-//        $(".content").eq( $(this).index()).css("dispaly","block")
-//    });
-//    $('.book').mouseleave(function () {
-//        $(this).children("span").css({"display":"none"})
-//    });
-
-    //    $.getJSON(
-//        "book",
-//        function (data) {
-//            if (data !== null) {
-//                $('tr').remove();
-//                $('table').append(
-//                    $('<tr>').append(
-//                        $('<td>').text("书号"))
-//                        .append(
-//                        $('<td>').text("书名"))
-//                        .append(
-//                        $('<td>').text("作者"))
-//                        .append(
-//                        $('<td>').text("价格"))
-//                        .append(
-//                        $('<td>').text("封面"))
-//                );
-//                $.each(data,function (index,obj) {
-//                    $('table').append(
-//                        $('<tr>').append(
-//                            $('<td>').text(obj['bid']))
-//                            .append(
-//                                $('<td>').text(obj['bname']))
-//                            .append(
-//                                $('<td>').text(obj['author']))
-//                            .append(
-//                                $('<td>').text(obj['price']))
-//                            .append(
-//                                $('<td>').append(
-//                                    $('<img>').attr("src",obj['cover'])
-//                            )
-//                        )
-//                    )
-//                })
-//            }
-//        }
-//    );
-
-
     function exit() {
         $.get(
             "login",

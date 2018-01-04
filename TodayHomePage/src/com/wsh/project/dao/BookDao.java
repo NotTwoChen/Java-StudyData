@@ -40,6 +40,34 @@ public class BookDao{
         }
         return book;
     }
+    public List<Book> queryByName(String bookInfo){
+        List<Book> bookList = new ArrayList<>();
+        try {
+            bookList = new QueryRunner().query(
+                    JdbcUtil.getConnection(),
+                    "select * from book where bname=?",
+                    new BeanListHandler<Book>(Book.class),
+                    bookInfo
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bookList;
+    }
+    public List<Book> queryByAuthor(String bookInfo){
+        List<Book> bookList = new ArrayList<>();
+        try {
+            bookList = new QueryRunner().query(
+                    JdbcUtil.getConnection(),
+                    "select * from book where author=?",
+                    new BeanListHandler<Book>(Book.class),
+                    bookInfo
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bookList;
+    }
 
     public int insert(Book book){
         int update = 0;

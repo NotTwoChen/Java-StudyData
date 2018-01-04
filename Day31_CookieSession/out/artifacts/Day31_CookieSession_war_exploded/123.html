@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>秀堂</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="keywords" content="ShowTime!!!"/>
+    <meta id="metaFileId" name="description" content="72be700d"/>
+
+    <meta id="wechatAuthUrl" name="wechatAuthUrl" content="//api.s.wps.cn/wxauth"/>
+    <meta id="readCountIncUrl" name="readCountIncUrl" content="//api.s.wps.cn/updateReadCount"/>
+
+    <meta id="i18nFilePathId" name="i18nFilePathId" content="//h5.z211.top/static/p/20171206184055"/>
+
+    <meta id="fetchWechatInfoUrl" name="fetchWechatInfoUrl" content="//api.s.wps.cn/fetchWechatInfoUrl"/>
+
+
+    <META content="@ShowTime" name="twitter:site"/>
+    <META content="summary" name="twitter:card"/>
+
+    <META content="ShowTime" property="og:site_name"/>
+    <META content="object" property="og:type"/>
+    <META content="" property="og:url"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: block !important;
+            min-height: 740px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-color: #2b3236;
+            width: 100%;
+            height: 100%;
+            font-family: "Microsoft YaHei", "SimSun", sans-serif !important;
+        }
+    </style>
+    <script async src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="//h5.z211.top/static/lib/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
+
+
+    <script>
+        window.offline = false;
+        window.isDebug = false;
+        window.formHost = "//api.s.wps.cn";
+        window.reportHost = "//s.wps.cn";
+        window.baseUrl = "wpsxiu.cn/t";
+        window.jsonUrl = "//h5.z211.top/p/72be700d_a67b.json";
+        window.resBase = "//h5.z211.top/static";
+        window.linkCheck = "//s.wps.cn/service";
+        window.publishDocType = "template";
+        window.scriptChart = "//h5.z211.top/static/lib/chart.min.js";
+        window.scriptEffect = "//h5.z211.top/static/lib/proton-1.0.0.js";
+        window.scriptPhotoset = "//h5.z211.top/static/lib/flux.min.js";
+        window.wechatAppId="";
+        try{
+            window.publishInfo =  {"docId":"72be700d","publishId":"72be700d","latestId":"a67b","cover":"//f.h5.wps.cn/uImage/329127712/1512466855212_635f1256.gif%40base%40tag%3DimgScale%26h%3D400%26w%3D400%26c%3D1%26f%3D1%26cox%3D0%26coy%3D0","title":"蓝色炫酷星光科技企业通用邀请函","desc":"画蓝色炫酷星光科技企业通用邀请函","bgMusic":"//g.h5.wps.cn/userMusic/329127712/1512628239382_5effba66.mp3","hasChart":false,"hasEffect":false,"hasWechat":false,"hasPhotoset":false,"hasForm":false,"logoUrl":"","baseUrl":"wpsxiu.cn/t","version":"2","staticBase":"//h5.z211.top/static/p/20171206184055","domain":"wpsxiu.cn"};
+            window._i18Map = JSON.parse('{"itemRequired":"为必填项","wrongPhoneFormat":"电话格式不对","wrongMailFormat":"邮件格式不对","allItemEmpty":"请填写信息","submit_ok":"提交成功","submit_failed":"提交失败，请重试","alreadySubmitted":"已经提交过了，亲","form_submit_end":"当前表单已截止提交","form_open_in_wechat":"请在微信中打开使用","form_submit_within_interval":"请不要重复提交","ok":"好的","second":"秒","send_verify_code_failed":"不能获取验证码","verifyCodeInvalid":"验证码无效","copy":"复制链接分享","scanCode":"微信扫一扫分享","paySuccTip":"&nbsp;&nbsp;&nbsp;&nbsp;温馨提示：已画册已经放在“我的画册”里。建议您克隆一份后再修改，以防误删、误改后无法恢复。"}');
+        }catch(e){
+            console.error(e);
+        }
+        window.fid="72be700d";
+        window._i18nProp = function(key){
+            return (window._i18Map||{})[key];
+        };
+        var pureAjax = function (url,callback){
+            // if(window.location.protocol=='file:') {
+            if(window.offline) {
+                callback&&callback(null, window.json);
+            } else {
+                if(window.fetch){
+                    fetch(url).then(function(response){
+                        if(response.status==200){return response.text();
+                        }else {
+                            var error=new Error(response.statusText);
+                            error.response=response;throw error
+                        }
+                    }).then(function(ret){
+                        callback(null,ret);
+                    }).catch(function(error){
+                        console.error(error);
+                        callback(error)
+                    })
+                }else{
+                    try{
+                        var xhr=new XMLHttpRequest();
+                        xhr.onreadystatechange=function(){
+                            if(xhr.readyState==4){
+                                if(xhr.status==200){
+                                    callback(null,xhr.responseText);
+                                }else{
+                                    console.error("ajax"+url+"error!");
+                                    callback(response.statusText)
+                                }
+                            }
+                        };
+                        xhr.open("GET",url,true);xhr.send(null);
+                    }catch(e) {
+                        callback(e);
+                    }
+                }
+            }
+        };
+        if(!window.dataCalling){
+            window.dataCalling = true;
+            pureAjax(window.jsonUrl,function(err,json){
+                err&&console.error(err);
+                if(json){
+                    window.dataJson = JSON.parse(json);
+                    if(window.dataJSONCallback){
+                        window.dataJSONCallback(window.dataJson);
+                        delete window.dataJson;
+                        delete window.dataCalling;
+                        return;
+                    }
+                }
+            })
+        }
+        window.delayExec = function(call,time){
+            setTimeout(call,time||10000);
+        };
+    </script>
+    <script>var _czc = _czc || [];_czc.push(["_setAccount", "1256699459"]);</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','UA-78181722-2','auto');ga('send','pageview');</script>
+</head>
+<body style="min-height:0px; width:auto;height:auto">
+<div style="display: none;"><img id="shareImage" src=""/></div>
+<div id="root" style="position:absolute;left:0px;top:0px;width:414px;height:628px;overflow:hidden">
+    <section id="mainPreview" class="transPoint" style="background-color:transparent;position:absolute"></section>
+    <span id="shareBnt" style="position: absolute;display: none" class="shareBnt"></span>
+
+    <div id="fullScreen" class="fullScreen" style="position: absolute;display: none">
+    </div>
+    <div id="musicContainer" style="position: absolute;width:72px;height: 72px">
+        <div id="musicPlayer" data-bgmusic="" style="position: absolute;display: none" class="musicStart">
+        </div>
+    </div>
+    <div id="report" style="position: absolute;width:35px;height:25px;display: none">
+        <a style="cursor: pointer;" id="reportViolation">举报</a>
+    </div>
+</div>
+</div>
+<div class="preload-container" id="preload-container"
+     style="flex-direction: column;display: none;align-items: center;justify-content: center;">
+    <div id="preload"
+         style="background-color:transparent;width:80px;height: 80px;background-size: contain;background-repeat:no-repeat;background-image: url('//h5.z211.top/static/images/preload.gif')"></div>
+</div>
+<div id="previousSlider" style="position:absolute;width: 36px;left:0px;top:0px;display: none;">
+    <div id="previousArrow" style="position:absolute;width:36px;height:36px;top:50%;" class="previousArrow"></div>
+</div>
+<div id="nextSlider" style="position:absolute;width: 36px;left: 0px;top:0px;display: none;">
+    <div id="nextArrow" style="position:absolute;width:36px;height:36px;top:50%;" class="nextArrow"></div>
+</div>
+<div id="videoCover" style="display: none;background-color: rgba(0,0,0,.5);position: absolute">
+    <div id="videoContainer" style="width: 100%;height: 100%;position: absolute;left: 0px;top: 0px;"></div>
+    <a id="videoClose" style="position: absolute;right: 15px;top: 15px;width: 20px;height: 20px;"></a>
+</div>
+<div style="display:none"><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256699459'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256699459' type='text/javascript'%3E%3C/script%3E"));</script></div>
+<div class="form_submit_dialog">
+    <div id="form_submit_dialog_body" style="text-align:center">dialog body</div>
+</div>
+<script>
+    try{
+        var clientW = document.documentElement.clientWidth;
+        var clientH = document.documentElement.clientHeight;
+        var node = document.getElementById("preload-container");
+        node.style.display="flex";
+        node.style.width=document.documentElement.clientWidth+"px";
+        node.style.height=document.documentElement.clientHeight+"px";
+    }catch(e){
+
+    }
+</script>
+<script src="//h5.z211.top/static/lib/fingerprint2.min.js"></script>
+<script src="//h5.z211.top/static/lib/url.min.js"></script>
+<script>$.holdReady(true);
+$.holdReady(true);
+$.holdReady(true);
+$.holdReady(true);
+$.holdReady(true);
+if (window.offline) {
+    window.pcJS = [];
+    window.delayJS = []
+} else {
+    window.pcJS = ["//h5.z211.top/static/lib/jquery.zclip.min.js", "//h5.z211.top/static/lib/jquery.qrcode-0.12.0.min.js"];
+    window.delayJS = ["//h5.z211.top/static/lib/jquery.fbmodel.js"]
+}
+</script>
+<script src="//h5.z211.top/static/lib/hammer.min.js"></script>
+<script src="//h5.z211.top/static/lib/Tween.js"></script>
+<script src="//h5.z211.top/static/lib/jquery.qrcode-0.12.0.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="//h5.z211.top/static/p/20171206184055/publish.css"/>
+<link rel="stylesheet" type="text/css" href="//h5.z211.top/static/lib/anim.css"/>
+<script src="//h5.z211.top/static/p/20171206184055/publish2.js"></script>
+
+<script src="//h5.z211.top/static/statistics/libCobraStat.js"></script>
+
+
+<script>window.pcJS = ["//h5.z211.top/static/lib/jquery.zclip.min.js"];</script>
+
+
+<script>
+    animate();
+    function animate() {
+        requestAnimationFrame(animate);
+        TWEEN.update();
+    }
+</script>
+</body>
+</html>

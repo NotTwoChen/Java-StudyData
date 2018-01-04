@@ -37,7 +37,7 @@
     color: red;
     height: 54px;
     margin-top: auto;
-    margin-left: 330px ;
+    margin-left: 300px ;
     padding-top: 25px;
     font-size: large
 }
@@ -49,10 +49,29 @@
 table{
     text-align: center;
     float: left;
+    width: 160px;
+    height: 320px;
+}
+td{
+    width: 150px;
+    display: block;
+    overflow: hidden;
+    height: 20px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+td:hover{
+    overflow: visible;
 }
 #bookList{
     width: 1120px;
     height: 900px;
     margin:0 auto;
     background-color: #d8d7d2
+}
+.block{
+    display: block;
+}
+.none{
+    display: none;
 }
