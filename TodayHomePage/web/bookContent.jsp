@@ -23,7 +23,7 @@
             height: 900px
         }
         #navigationBar>div{
-            margin: 0px auto;
+            margin: 0 auto;
             width: 1181px
         }
         .floatLeft{
@@ -53,7 +53,7 @@
             color: red;
             height: 54px;
             margin-top: auto;
-            margin-left: 330px ;
+            margin-left: 5% ;
             padding-top: 25px;
             font-size: large
         }
@@ -72,6 +72,23 @@
             height: 900px;
             margin:0 auto;
             background-color: #d8d7d2
+        }
+        ul{
+            padding: 1% 3%;
+        }
+        li{
+            list-style-type: none;
+        }
+        li>img{
+            width: 180px;
+        }
+        h1{
+            padding-left: 230px;
+            font-size: 30px;
+            line-height: 28px;
+        }
+        li>ul{
+            padding-left: 240px;
         }
     </style>
 </head>
@@ -112,15 +129,12 @@
     </div>
     <div id="menuBar">
         <div id="bookList">
-            <%
-                Book bid = new BookDao().query(Integer.decode(request.getParameter("bid")));
-            %>
+
 
         </div>
     </div>
 
 </div>
-</body>
 </body>
 <script type="text/javascript">
     $.post(
@@ -137,18 +151,48 @@
                         obj['content'] = "《"+obj['bname']+"》暂无简介"
                     }
                     $('#bookList').append(
-                        $('<table>').append(
-                            $('<tr>').append(
-                                $('<td>').append(
-                                    $('<img>').attr("src", obj['cover'])
-                                )
+                        $('<ul>').append(
+                            $('<li>').append(
+                                $('<img>').attr({"src":obj['cover']}).css({"float":"left"})
                             ).append(
-                                $('<td>').append(
-                                    $('<td>').text("简介:" + obj['content'])
+                                $('<h1>').text("《"+obj['bname']+"》")
+                            ).append(
+                                $('<ul>').append(
+                                    $('<li>').append(
+                                        $('<span>').text("作").css({"color":"#999","font-size":"12px"}).append(
+                                            $('<span>').text("者:").css({"color":"#999"}).css("margin-left","12px")))
+                                        .append($('<span>').text(obj['author']).css("margin-left","12px")).css("margin-bottom","5px"))
+                                    .append(
+                                        $('<span>').text("书").css({"color":"#999","font-size":"12px"}).append(
+                                            $('<span>').text("号:").css({"color":"#999"}).css("margin-left","12px"))
+                                    .append($('<span>').text(obj['bid']).css("margin-left","12px")))
+                            ).append(
+                                $('<span>').text("价").css({"color":"#999","font-size":"12px"}).css("margin-left","60px").append(
+                                    $('<span>').text("格:").css({"color":"#999"}).css("margin-left","12px")
+                                ).append(
+                                    $('<span>').text("￥"+obj['price']).css({"margin-left":"12px","color":"#f77a36","font-size":"25px"})
                                 )
+//                                    .text("￥"+obj['price'])
                             )
-                        ).attr("border", 1)
+                        ).append(
+                            $('<li>').append(
+                                $('<p>').text(obj['content']).css({"float":"left"})
+                            )
+                        )
                     )
+//                    $('#bookList').append(
+//                        $('<table>').append(
+//                            $('<tr>').append(
+//                                $('<td>').append(
+//                                    $('<img>').attr("src", obj['cover'])
+//                                )
+//                            ).append(
+//                                $('<td>').append(
+//                                    $('<td>').text("简介:" + obj['content'])
+//                                )
+//                            )
+//                        ).attr("border", 1)
+//                    )
                 }
             }
         }

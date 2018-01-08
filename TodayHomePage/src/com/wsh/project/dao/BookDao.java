@@ -40,6 +40,21 @@ public class BookDao{
         }
         return book;
     }
+    public List<Book> queryByCid(int cid){
+        List<Book> book = new ArrayList<>();
+        try {
+            book = new QueryRunner().query(
+                    JdbcUtil.getConnection(),
+                    "select * from book where cid=?",
+                    new BeanListHandler<Book>(Book.class),
+                    cid
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return book;
+    }
+
     public List<Book> queryByName(String bookInfo){
         List<Book> bookList = new ArrayList<>();
         try {

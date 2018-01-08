@@ -7,6 +7,7 @@ public class Book {
     private int price;
     private String cover;
     private String content;
+    private int cid;
 
     @Override
     public String toString() {
@@ -17,6 +18,7 @@ public class Book {
                 ", price=" + price +
                 ", cover='" + cover + '\'' +
                 ", content='" + content + '\'' +
+                ", cid=" + cid +
                 '}';
     }
 
@@ -68,7 +70,15 @@ public class Book {
         this.content = content;
     }
 
-    public Book(int bid, String bname, String author, int price, String cover, String content) {
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
+    public Book(int bid, String bname, String author, int price, String cover, String content, int cid) {
 
         this.bid = bid;
         this.bname = bname;
@@ -76,38 +86,8 @@ public class Book {
         this.price = price;
         this.cover = cover;
         this.content = content;
+        this.cid = cid;
     }
-
-    public Book(String bname, String author, int price, String cover, String content) {
-        this.bname = bname;
-        this.author = author;
-        this.price = price;
-        this.cover = cover;
-        this.content = content;
-    }
-
-    public Book(String bname, String author, int price, String cover) {
-        this.bname = bname;
-        this.author = author;
-        this.price = price;
-        this.cover = cover;
-    }
-
-    public Book(String bname, String author, int price) {
-        this.bname = bname;
-        this.author = author;
-        this.price = price;
-    }
-
-    public Book(String bname, String author) {
-        this.bname = bname;
-        this.author = author;
-    }
-
-    public Book(String bname) {
-        this.bname = bname;
-    }
-
 
     public Book() {
 

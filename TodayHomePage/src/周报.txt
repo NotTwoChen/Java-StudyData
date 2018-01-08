@@ -1,0 +1,210 @@
+Servlet:
+    初始化参数:
+        全局参数:当应用启动时,就已经被设置好的内容,全局参数需要在web.xml中配置,因为是全局的,所以每个Servlet都能得到
+        局部参数:为每个Servlet单独配置的初始化参数
+    ServletConfig:
+        在web.xml中,对每个Servlet的配置,都会被抽象成一个ServletConfig对象
+        在AServlet中获得ServletConfig,则这个ServletConfig中的内容就都是AServlet的配置信息
+ServletContext:
+    ServletContext,是Servlet上下文对象,表示Servlet所处的对象,Tomcat,也叫做Servlet容器
+        当Tomcat启动时,对应应用的ServletContext就会被创建
+        当Tomcat关闭时,会将ServletContext销毁
+        所以ServletContext的生命周期最长
+重定向的特点:
+    浏览器地址发生变化:
+        本来要访问的路径重定向以后会有所变化
+    请求次数:
+        是二次请求:
+            第一次请求服务器返回重定向状态码
+            指定二次请求路径后,浏览器开始第二次请求
+    路径范围:
+        重定向是让浏览器再次发起一个请求
+        路径可以是任意一个URL
+        既可以访问本应用的jsp,也可以访问外部应用的网站
+    路径格式:
+        是一个绝对的路径
+        因为对于浏览器来说,并不知道,再次发生请求时要发送给哪个应用,所以需要绝对路径来指明
+响应体/响应体/请求头:
+    响应体:
+        传给前端的JSON数据
+        用于HTML中显示:
+            ServletOutputStream:发送字节数据的流
+            PrintWriter:发送字符数据的流
+                两个流不能同时使用
+            显示图片步骤:
+                使用FileInputStream读取图片
+                将读取的图片流通过read方法存进字节数组中
+                使用response.setOutputStream().write()方法,将字节数组写入到浏览器中
+    响应头:
+        在后端发送一些键值对到前端,一般用来设置某些新信息
+        添加响应头的方法:
+            addHeader("Location","/项目名称/Servlet路径")/setHeader("Location","/项目名称/Servlet路径")/setStatus(302);
+                add和set的区别:
+                    set是给某一个头设置内容
+                    add是给某一个头添加内容
+                    也就是说多个add,头就有多个内容
+                            多个set,头却只有一个内容
+    请求头:
+        浏览器发起请求时,会封装一些键值对传输给服务器,这些键值对就叫请求头
+        (因为是在发起请求时)通过Referer请求头的值,可以判断档次请求是不是从本应用中发起的,
+            如果值为null:说明是从浏览器中直接输入的
+            如果值非null:说明是从本应用中发起的
+状态码:
+    200:成功
+    302:重定向
+    404:客户端出错(访问的资源不存在)
+    505:服务器出错###方法
+        setStatus(sc):发送正确的状态码
+        sendError(sc):发送错误的状态码
+Servlet的生命周期:
+    带参数的init(config)
+    service(req,resp);
+    destroy();
+域对象:
+    域就表示一个范围,从发起请求到请求被响应的这个范围,由request对象表示,也就是Request域对象
+    域属性与参数的区别:
+        参数是由浏览器传递给服务器的
+        域属性是在服务器内部设置的
+
+请求转发与请求包含:
+    请求转发:
+        只有最后一个目标资源,可以响应浏览器
+    请求包含:
+        多个Servlet都可以响应浏览器
+    请求转发/包含与重定向的区别:
+        请求次数:
+            请求转发:1次
+            重定向:2次
+        地址路径变化:
+            转发:不会发生改变
+            重定向:会改变为重定向的目标路径
+        范围:
+            请求转发:只能转发到本应用中的资源
+            重定向:任意路径
+        路径:
+            请求转发:相对路径
+            重定向:绝对路径
+    重定向实际上是在浏览器中执行的,而请求转发是在服务器中执行的
+Request的get方法:
+    String getScheme():获取协议(http)
+    String getServerName():获取服务器名(localhost)
+    int getServerPort():获取服务器端口(8080)
+    String getContextPath():获取项目名(/Request&Response)
+    String getServletPath():获取Servlet路径(/as)
+    String getQueryString():获取参数部分,即问号后面的部分
+    String getRequestURL():获取请求URL,等于项目名称+Servlet路径(/Request&Response/as)
+
+Request和Response:
+    Response:用来设置服务器响应给客户端的内容
+    Request:封装了客户端所有的请求数据
+什么是Servlet:
+    Servlet是JavaWeb的三大组件之一:
+        属于动态资源:
+            Servlet的作用是处理请求,服务器会把接受到的请求交给Servlet来处理
+    Servlet通常有三个操作:
+        接受请求数据
+        处理请求
+        完成响应
+创建Servlet的方式:
+    实现Servlet接口/继承GenericServlet类/继承HttpServlet类,会专门对Http请求提供一些方法
+JSP:
+    JSP是一种运行在服务端的脚本语言,是用来开发动态网页的JavaWeb程序开发的重要技术
+    JSP域:
+        PageContext:
+            代理域:当前的jsp页面
+        Request:
+            一个请求链
+        Session:
+            整个会话
+        Application
+            ServletContext:
+                整个应用程序
+    九大内置对象:
+        application/config/ exception/page/PageContext/request/response/session/out
+    Jsp基本原理:
+        当JSP页面被第一次访问时,服务器会把JSP文件编程成java文件(就是一个Servlet类)
+        然后编译成.class文件,执行.class文件创建给类对象,调用service方法
+        第二次请求同一jsp文件时,如果该文件未被改动,则直接调用service方法
+    请求转发:
+        <jsp:forward page = "index.jsp"/>
+    PageContext对象:
+        代理域:
+            使用PageContext,可以向其他域镀锡中设置属性,例如:
+                PageContext.setAttribute("game","Session",PageContext.SESSION_SCOPE);
+                PageContext.findAttribute("xxx")会在所有域中查找,从小到大查找
+                可以在参数中指定查找的域pageContext.findAttribute("xxx",pageContext.REQUEST_SCOPE)
+    session对象:
+        用户在浏览某个网站时,从进入到网站到浏览器关闭期间就属于一次会话
+        session对象保存的信息,可以在该会话过程中的不同页面共享
+        一般用来保存账号密码
+    exception对象
+        只会产生在错误处理页面
+        <%@page isErrorPage = "true"%>
+        可以指定当前页面为错误页面
+        jsp可以设置当出现异常时转发到一个错误页面
+        可以在错误处理页面使用内置对象exception
+    请求包含:<jsp:include page = "index.jsp"/>
+        是动态包含:
+            会先创建出两个.jsp文件,再包含进本文件
+            会生成两个.java文件
+
+Cookie
+    什么是cookie
+        cookie是服务器保存到客户端的,由服务器创建,当客户端又一次访问服务器时,会将上次请求得到cookie再发送给服务器
+        cookie是有服务器创建保存到客户端浏览器的一个键值对
+        默认情况下,一个cookie的到期时间为会话结束,也就是会保存到浏览器关闭时
+    cookie的一些方法
+        response.addHeader("Set-Cookie","gender=男");
+        Set-Cookie:响应头
+        gender = 男:对应响应头的值
+        服务器保存Cookie的响应头:Set-Cookie:gender=男 是键值对的形式
+        当浏览器请求服务器时,会将该服务器保存的Cookie随着请求发送给服务器,然后浏览器归还Cookie的请求头
+    JavaWeb中使用Cookie
+        原始方式:
+            使用response发送Set-Cookie响应头
+                    response.addHeader();
+            使用request获取Cookie请求头
+                    request.getHeader();
+        便捷方式:
+            使用response.addCookie()方法向浏览器保存Cookie
+                Cookie aa = new Cookie("","")
+                aa.setPath(path) 设置cookie保存路径
+                aa.setMaxAge(xxs) 设置保存时间,单位秒,如果设置为0,则表示销毁该cookie
+        销毁cookie
+            response.addCookie(aa);
+            使用request.getCookies()方法获取浏览器归还的Cookie
+            request.getCookies();
+        然后for循环取出
+EL表达式概述
+    使用EL可以获得JSP四大域中的域属性:
+        EL表达式的格式:${}
+        获取请求参数中,参数名为name的值,并输出到JSP页面中:${param.name}
+        EL内置对象:
+            十一个内置对象,其中十个是Map,只有pageContext不是Map,是PageContext类型
+            参数相关:param paramValues
+            请求头相关:header headerValues
+            全局参数:initParam
+            Cookie相关:cookie
+        EL是JSP内置的表达式语言,由于语言规范,java脚本逐渐被淘汰,不再使用,转而使用EL表达式和动态表情来代替java脚本
+        EL替代的是<%=...%>,也就是只能作为输出
+    请求参数与域属性的区别:
+        请求参数是在浏览器发起请求时,传递给服务器的
+        域属性是在服务器中,后添加的
+        请求参数不可以修改
+        域属性可添加,修改,移除
+JSTL简介:
+    JSTL(JSP Standar Tag Library)是JSP标准标签库,使用JSTL的标签,可以提高开发效率,减少JSP页面中代码量,保持页面的简洁性和良好的可读性,可维护性
+
+    JSTL是apache对EL表达式的扩展,JSTL依赖EL,JSTL是一种标签语言
+
+    JSTL含有四个定制标签库:
+    -core标记库:
+        主要功能为:
+            操作作用域的变量,流程控制,URL生成和操作等,通常和EL表达式结合使用,EL作为JSTL标签的属性值
+    format标记库:
+        主要用来格式化数据,比如数字和日期等,支持使用本地化资源束进行JSP页面的国际化
+    xml标记库:
+        该标记库包含一些标记,这些标记用来操作以XML表示的数据
+    sql标记库:
+        该标记库定义了用来查询关系数据库的操作
+

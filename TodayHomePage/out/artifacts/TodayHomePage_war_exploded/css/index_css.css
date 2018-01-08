@@ -1,13 +1,17 @@
+body{
+    margin: auto;
+    padding: 0;
+}
 #navigationBar{
     background-color: #ffffff;
     height: 70px
 }
 #menuBar{
-    background-color: #f5f8fa;
-    height: 900px
+    background-color: #f3f0dd;
+    /*height: 900px*/
 }
 #navigationBar>div{
-    margin: 0px auto;
+    margin: 0 auto;
     width: 1181px
 }
 .floatLeft{
@@ -20,7 +24,7 @@
     height: 70px
 }
 #navigationBar>div>div{
-    height: 54px;
+    height: 45px;
     margin-top: auto;
     padding-top: 25px
 }
@@ -37,7 +41,7 @@
     color: red;
     height: 54px;
     margin-top: auto;
-    margin-left: 300px ;
+    margin-left: 5% ;
     padding-top: 25px;
     font-size: large
 }
@@ -47,10 +51,21 @@
     font-size: 15px;
 }
 table{
-    text-align: center;
+    margin-left: 30px;
     float: left;
     width: 160px;
-    height: 320px;
+    height: 300px;
+    border: none;
+    display: block;
+    padding: 4px 0 0 2px;
+}
+table:hover{
+    background-color: #acacac;
+}
+tr{
+    display: block;
+    margin-bottom: 20px;
+    padding: 4px 0 0 2px;
 }
 td{
     width: 150px;
@@ -59,15 +74,26 @@ td{
     height: 20px;
     text-overflow: ellipsis;
     white-space: nowrap;
+    border: none;
 }
 td:hover{
     overflow: visible;
 }
 #bookList{
     width: 1120px;
-    height: 900px;
+    /*height: 900px;*/
     margin:0 auto;
-    background-color: #d8d7d2
+    background-color: #eeeeee
+}
+#bookList::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+#menuBar::after{
+    content: "";
+    display: block;
+    clear: both;
 }
 .block{
     display: block;

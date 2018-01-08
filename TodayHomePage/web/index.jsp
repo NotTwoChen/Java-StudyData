@@ -11,6 +11,27 @@
     <title>不二云首页</title>
     <script src="js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="css/index_css.css">
+    <style type="text/css">
+      #menu>button{
+        width: 160px;
+        height: 50px;
+        margin-bottom: 10px;
+        border: solid 1px grey;
+        border-radius: 5px;
+      }
+      #manage>button{
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+        border: solid 1px grey;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+      #books{
+        float: left;
+        width: 960px;
+      }
+    </style>
   </head>
   <body onload="startTime()" onkeypress="btnClick()">
   <div>
@@ -51,16 +72,40 @@
     <div id="menuBar">
 
       <div id="bookList">
-        <div style="height: 50px">
-          <div class="floatLeft">
-            <%--<form action="bookQuery" method="get">--%>
+        <div id="menu" class="floatLeft" style="width: 160px;height: 900px;margin-top: 50px;">
+          <button style="background-color: #3385ff" onclick="menuClick(this)" name="0">全部书籍</button>
+          <button onclick="menuClick(this)" name="1">经济管理</button>
+          <button onclick="menuClick(this)" name="2">成功励志</button>
+          <button onclick="menuClick(this)" name="3">历史传记</button>
+          <button onclick="menuClick(this)" name="4">两性情感</button>
+          <button onclick="menuClick(this)" name="5">亲子少儿</button>
+          <button onclick="menuClick(this)" name="6">文学艺术</button>
+          <button onclick="menuClick(this)" name="7">社会科学</button>
+          <button onclick="menuClick(this)" name="8">原创小说</button>
+          <button onclick="menuClick(this)" name="9">科技开发</button>
+          <button onclick="menuClick(this)" name="10">其他分类</button>
+
+        </div>
+        <div class="floatLeft" style="height: 50px;width: 960px">
+          <div class="floatRight">
+            <div id="manage">
+              <button>
+                <a href="" >管理书籍</a>
+              </button>
+              <a href="baidu.com">
+                <button>账户设置</button>
+              </a>
+
+            </div>
+          </div>
+          <div class="floatRight" style="margin: 15px 25px">
               <input type="text" name="bookInfo" id="query" placeholder="查询书籍/作者">
               <button onclick="btnClick()" id="btn">查询</button>
-              <%--<input type="submit" value="查询">--%>
-            <%--</form>--%>
           </div>
-          <div class="floatRight">管理书籍</div>
+
         </div>
+        <div id="books"></div>
+
 
       </div>
     </div>
@@ -68,6 +113,17 @@
   </body>
   <script type="text/javascript">
 
+    function menuClick(tag) {
+        var text = $(tag).text();
+        var attr = $(tag).attr("name");
+        console.log(attr);
+        if (text === "全部书籍"){
+            $('table').css({"display":"block"});
+        }else{
+            $('table').css({"display":"none"});
+            $('table[name='+attr+']').css({"display":"block"});
+            }
+    }
     function btnClick() {
         var bookInfo = $('#query').val();
         $.post(
@@ -85,9 +141,6 @@
             }
         )
     }
-
-
-
     $.getJSON(
         "book",
         function (data) {
@@ -103,34 +156,31 @@
                     if (!obj['price']) {
                         obj['price'] = "此书暂未上架!"
                     }
-                    $('#bookList').append(
+                    $('#books').append(
                         $('<table>').append(
                             $('<tr>').append(
                                 $('<td>').append(
+                                    // TODO 书籍详情页的转换和得到
                                     $('<a>').append(
                                     $('<img>').attr("src",obj['cover'])
-                                    ).attr("href","bookContent.jsp?bid="+obj['bid'])
-                                ).css("height","200px")
-                            )
-                        ).attr("border",1).append(
-                            $('<tr>').append(
-                                $('<td>').text("书号:"+obj['bid'])
+                                    )
+                                        .attr("href","bookContent.jsp?bid="+obj['bid'])
+                                ).css({"height":"200px","box-shadow":"0 5px 5px #b0b0b0","border-radius":"10px"})
                             )
                         ).append(
                             $('<tr>').append(
-                                $('<td>').text("书名:《"+obj['bname']+"》")
+                                $('<td>').text("《"+obj['bname']+"》").css({"text-aline":"left"})
                             )
                         ).append(
                             $('<tr>').append(
-                                $('<td>').text("作者:"+obj['author'])
+                                $('<td>').append(
+                                    $('<span>').html(obj['author']).css({"font-size":"10px","float":"left"})
+                                ).append(
+                                    $('<span>').html("￥"+obj['price']).css({"font-size":"10px","float":"right","color":"red"})
+                                )
                             )
-                        ).append(
-                            $('<tr>').append(
-                                $('<td>').text("价钱:￥"+obj['price'])
-                            )
-                        ).attr("id","book"+obj['bid'])
+                        ).attr({"id":"book"+obj['bid'],"border":1,"name":obj['cid']})
                     )
-
                 });
             }
         }
@@ -149,6 +199,7 @@
           document.getElementById('txt').innerHTML =date + " " + time
           setTimeout('startTime()', 500)
       }
+
 
   </script>
 </html>

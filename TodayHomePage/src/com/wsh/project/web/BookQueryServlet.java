@@ -1,8 +1,11 @@
 package com.wsh.project.web;
 
 import com.wsh.project.bean.Book;
+import com.wsh.project.bean.Classify;
 import com.wsh.project.dao.BookDao;
+import com.wsh.project.dao.ClassifyDao;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,9 +33,14 @@ public class BookQueryServlet extends HttpServlet {
         JSONArray jsonArray = JSONArray.fromObject(bookList);
         response.getWriter().write(jsonArray.toString());
     }
-
+    private ClassifyDao classifyDao = new ClassifyDao();
+    private BookDao bookDao = new BookDao();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Book book = new Book("","",0,"","");
-
+        response.setContentType("text/html;charset=utf-8");
+        String classname = request.getParameter("classname");
+        Classify classify = classifyDao.queryByClassname(classname);
+        List<Book> bookList = bookDao.queryByCid(classify.getCid());
+        JSONArray jsonObject = JSONArray.fromObject(bookList);
+        response.getWriter().write(jsonObject.toString());
     }
 }
