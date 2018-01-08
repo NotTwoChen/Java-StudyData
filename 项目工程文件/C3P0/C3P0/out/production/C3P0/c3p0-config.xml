@@ -1,0 +1,22 @@
+
+<c3p0-config>
+    <default-config>
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <!--<property name="jdbcUrl">jdbc:mysql://172.16.52.203:3306/stu</property>-->
+        <!--<property name="user">root</property>-->
+        <!--<property name="password">1987222</property>-->
+        <property name="jdbcUrl">jdbc:mysql://localhost:3306/autologin</property>
+        <property name="user">root</property>
+        <property name="password">123456</property>
+
+        <property name="initialPoolSize">10</property>
+        <property name="maxIdleTime">30</property>
+        <property name="maxPoolSize">100</property>
+        <property name="minPoolSize">10</property>
+
+
+
+    </default-config>
+
+
+</c3p0-config>

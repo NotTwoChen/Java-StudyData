@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Day12~15_图书商城:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Day12_15__war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Day12~15_图书商城/web/Web2" />
+      <element id="javaee-facet-resources" facet="Day12~15_图书商城/web/Web" />
+      <element id="javaee-facet-resources" facet="Day12~15_图书商城/web/Web3" />
+    </root>
+  </artifact>
+</component>
