@@ -48,19 +48,23 @@
 		height: 36px;
 		width: 146px;
 	}
+    img{
+        height: 150px;
+    }
 </style>
   </head>
   
   <body>
+
   <div>
-    <img src="<c:url value='/book_img/8758723-1_l.jpg'/>" border="0"/>
+    <img src="<c:url value='/${requestScope.book.image}'/>" border="0"/>
   </div>
   <ul>
-    <li>书名：Java开发详解</li>
-    <li>作者：张孝祥</li>
-    <li>单价：39.9元</li>
+    <li>书名：${requestScope.book.bname}</li>
+    <li>作者：${requestScope.book.author}</li>
+    <li>单价：${requestScope.book.price}</li>
   </ul>
-  <form id="form" action="<c:url value='/jsps/cart/list.jsp'/>" method="post">
+  <form id="form" action="<c:url value='/cart?method=add&bid=${requestScope.book.bid}'/>" method="post">
   	<input type="text" size="3" name="count" value="1"/>
   </form>
   <a href="javascript:document.getElementById('form').submit();"></a>

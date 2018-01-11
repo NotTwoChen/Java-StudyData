@@ -5,9 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    
-    <title>main</title>
-    
+    <title>不二云书城</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -42,14 +40,14 @@
   
   <body>
 <table class="table" align="center">
-	<tr style="background: #4682B4; height: 120px; ">
+	<tr style=" height: 120px; ">
 		<td colspan="2" align="center">
 			<iframe frameborder="0" src="<c:url value='/jsps/top.jsp'/>" name="top"></iframe>
 		</td>
 	</tr>
 	<tr>
 		<td width="120" style="padding:5px;" align="center" valign="top">
-			<iframe frameborder="0" width="120" src="<c:url value='/jsps/left.jsp'/>" name="left"></iframe>
+			<iframe frameborder="0" width="120" src="<c:url value='/category?method=findAll'/>" name="left"></iframe>
 		</td>
 		<td>
 			<iframe frameborder="0" src="<c:url value='/jsps/body.jsp'/>" name="body"></iframe>

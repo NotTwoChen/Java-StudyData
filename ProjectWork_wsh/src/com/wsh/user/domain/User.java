@@ -1,5 +1,11 @@
 package com.wsh.user.domain;
-
+/**
+ *  entity class from database bookstore with table tb_user.
+ *  Compiles all fields of a table into an entity class private property.
+ *  And all attribute get/set methods are given.
+ *  Create a constructor that has arguments and no arguments.
+ *  Finally, the toString method is used to output the entity class attribute with String type.
+ */
 public class User {
     private String uid;
     private String username;
@@ -7,6 +13,18 @@ public class User {
     private String email;
     private String code;
     private int state;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid='" + uid + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", code='" + code + '\'' +
+                ", state='" + state + '\'' +
+                '}';
+    }
 
     public User() {
     }
@@ -19,18 +37,6 @@ public class User {
         this.email = email;
         this.code = code;
         this.state = state;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "uid='" + uid + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", code='" + code + '\'' +
-                ", state=" + state +
-                '}';
     }
 
     public String getUid() {

@@ -2,7 +2,7 @@
 <c3p0-config>
 	<default-config>
 		<!--指定连接数据源的基本属性-->
-		<property name="jdbcUrl">jdbc:mysql://localhost:3306/projectwork</property>
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/bookstore</property>
 		<property name="driverClass">com.mysql.jdbc.Driver</property>
 		<property name="user">root</property>
 		<property name="password">123</property>
@@ -16,5 +16,7 @@
 		<property name="maxPoolSize">8</property>
 		<!--每个连接同时可以使用的Statement对象的个数-->
 		<property name="maxStatementPerConnection">5</property>
+		<!--最大空闲时间,60秒内未使用则连接被丢弃,若为0则永不丢弃-->
+		<property name="maxIdleTime">60</property>
 	</default-config>
 </c3p0-config>

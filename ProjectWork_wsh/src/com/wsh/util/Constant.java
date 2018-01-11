@@ -10,4 +10,11 @@ public class Constant {
 
     public static final String REGEX_PASSWORD = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,14}";
 
+    public static final String MY_EMAIL_ACCOUNT = "320828748@qq.com";
+
+    public static final String MY_EMAIL_PASSWORD = "vwwedoaiswwhcaae";
+
+    public static final String MY_EMAIL_SMTPHOST = "smtp.qq.com";
+
+
 }

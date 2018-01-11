@@ -9,6 +9,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="libs" />
+          <element id="library" level="module" name="JUnit4" module-name="ProjectWork_wsh" />
         </element>
       </element>
     </root>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 王森浩
@@ -8,9 +9,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>不二云首页</title>
   </head>
   <body>
-  $END$
+  <h1>
+    <a href="<c:url value="/jsps/user/register.jsp"/> ">不二云注册</a>
+  </h1>
+  <h1>
+    <a href="<c:url value="/jsps/user/login.jsp"/>">不二云登录</a>
+  </h1>
+  <h1>
+    <a href="<c:url value="/adminjsps/login.jsp"/>">管理员登录</a>
+  </h1>
+
   </body>
 </html>

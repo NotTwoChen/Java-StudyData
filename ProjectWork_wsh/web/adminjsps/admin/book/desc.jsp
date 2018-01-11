@@ -36,22 +36,21 @@
   
   <body>
   <div>
-    <img src="<c:url value='/book_img/20029394-1_l.jpg'/>" border="0"/>
+    <img src="<c:url value='/${requestScope.book.image}'/>" border="0"/>
   </div>
-  <form style="margin:20px;" id="form" action="javascript:alert('操作成功！');" method="post">
-  	图书名称：<input type="text" name="bname" value="精通Spring2.x"/><br/>
-  	图书单价：<input type="text" name="price" value="63.2元"/><br/>
-  	图书作者：<input type="text" name="author" value="陈华雄"/><br/>
+  <form style="margin:20px;" id="form" action="<c:url value="/adminBook?bid=${requestScope.book.bid}"/>" method="post">
+	<input type="hidden" name="image" value="${requestScope.book.image}"><br/>
+  	图书名称：<input type="text" name="bname" value="${requestScope.book.bname}"/><br/>
+  	图书单价：<input type="text" name="price" value="${requestScope.book.price}"/>元<br/>
+  	图书作者：<input type="text" name="author" value="${requestScope.book.author}"/><br/>
   	图书分类：<select style="width: 150px; height: 20px;" name="cid">
-     		<option value="">JavaSE</option>
-    		<option value="">JavaEE</option>
-			<option value="">JavaScript</option>
-			<option value="">Hibernate</option>
-			<option value="">Struts</option>
-			<option value="" selected='selected'>Spring</option>
+	  <c:forEach items="${requestScope.categoryList}" var="category">
+		  <option value="${category.cid}">${category.cname}</option>
+	  </c:forEach>
+			<%--<option value="" selected='selected'>Spring</option>--%>
     	</select><br/>
-  	<input type="submit" name="method" value="del" onclick="return confirm('是否真要删除该图书？');"/>
-  	<input type="submit" name="method" value="mod"/>
+  	<input type="submit" name="method" value="del" onclick="return confirm('是否确认删除图书');"/>
+  	<input type="submit" name="method" value="mod" onclick="return confirm('是否确认修改图书')"/>
   </form>
   </body>
 </html>

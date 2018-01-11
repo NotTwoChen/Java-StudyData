@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.wsh.category.domain.Category" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -13,39 +14,36 @@
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	  <link href="../../../NotTwoCloud/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	  <script src="../../../NotTwoCloud/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+	  <script src="../../../NotTwoCloud/js/bootstrap.min.js" type="text/javascript"></script>
 	<style type="text/css">
 		*{
 			font-size:10pt;
 			text-align: center;
 		}
-		div {
-			background: #87CEFA; 
-			margin: 3px; 
-			padding: 3px;
-		}
 		a {
 			text-decoration: none;
+		}
+		.list-group{
+			border: solid 1px black;
+			border-radius: 5px;
 		}
 	</style>
   </head>
   
   <body>
-<div>
-	<a href="<c:url value='/jsps/book/list.jsp'/>">全部分类</a>
-</div>
+  <c:if test="${sessionScope.user != null}">
+	  <div class="list-group">
+		  <a class="list-group-item" href="<c:url value='/book?method=findAll&page=1'/>">全部分类</a>
+	  </div>
+	  <c:forEach items="${requestScope.categoryList}" var="category" begin="0" end="${requestScope.categoryList.size()}" step="1">
+		  <div class="list-group">
+			  <a class="list-group-item" href="<c:url value='/book?method=findByCid&cid=${category.cid}'/>">${category.cname}</a>
+		  </div>
+	  </c:forEach>
+  </c:if>
 
 
-<div>
-	<a href="<c:url value='/jsps/book/list.jsp'/>">JavaSE分类</a>
-</div>
-<div>
-	<a href="<c:url value='/jsps/book/list.jsp'/>">JavaEE分类</a>
-</div>
-<div>
-	<a href="<c:url value='/jsps/book/list.jsp'/>">Javascript分类</a>
-</div>
   </body>
 </html>

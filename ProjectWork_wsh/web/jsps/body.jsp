@@ -15,13 +15,30 @@
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+      <link href="../../../NotTwoCloud/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+      <script src="../../../NotTwoCloud/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+      <script src="../../../NotTwoCloud/js/bootstrap.min.js" type="text/javascript"></script>
+      <style type="text/css">
+          body{
+              margin-top: 110px;
+          }
+          p{
+              margin-left: 45px;
+              font-size: 25px;
+          }
 
+      </style>
   </head>
   
   <body>
-    <h1>欢迎，欢迎！热烈欢迎！</h1>
+    <p>
+        In NotTwoCloud, you can find more information about the books you buy,
+    </p>
+    <p>
+        because NotTwoCloud is a website that has its own unique way of selling books and functions.
+    </p>
+    <p>
+        Such as user registration and login function.
+    </p>
   </body>
 </html>

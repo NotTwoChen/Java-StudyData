@@ -1,44 +1,54 @@
 package com.wsh.book.domain;
-
+/**
+ *  entity class from database bookstore with table book.
+ *  Compiles all fields of a table into an entity class private property.
+ *  And all attribute get/set methods are given.
+ *  Create a constructor that has arguments and no arguments.
+ *  Finally, the toString method is used to output the entity class attribute with String type.
+ */
 public class Book {
 
-    private int bid;
+    private String bid;
     private String bname;
-    private int price;
+    private float price;
     private String author;
-    private String cover;
-    private int cid;
+    private String image;
+    private String cid;
+    private int del;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bid='" + bid + '\'' +
+                ", bname='" + bname + '\'' +
+                ", price=" + price +
+                ", author='" + author + '\'' +
+                ", image='" + image + '\'' +
+                ", cid='" + cid + '\'' +
+                ", del=" + del +
+                '}';
+    }
 
     public Book() {
     }
 
-    public Book(int bid, String bname, int price, String author, String cover, int cid) {
+    public Book(String bid, String bname, float price, String author, String image, String cid, int del) {
 
         this.bid = bid;
         this.bname = bname;
         this.price = price;
         this.author = author;
-        this.cover = cover;
+        this.image = image;
         this.cid = cid;
+        this.del = del;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "bid=" + bid +
-                ", bname='" + bname + '\'' +
-                ", price=" + price +
-                ", author='" + author + '\'' +
-                ", cover='" + cover + '\'' +
-                ", cid=" + cid +
-                '}';
-    }
+    public String getBid() {
 
-    public int getBid() {
         return bid;
     }
 
-    public void setBid(int bid) {
+    public void setBid(String bid) {
         this.bid = bid;
     }
 
@@ -50,11 +60,11 @@ public class Book {
         this.bname = bname;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -66,19 +76,27 @@ public class Book {
         this.author = author;
     }
 
-    public String getCover() {
-        return cover;
+    public String getImage() {
+        return image;
     }
 
-    public void setCover(String cover) {
-        this.cover = cover;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public int getCid() {
+    public String getCid() {
         return cid;
     }
 
-    public void setCid(int cid) {
+    public void setCid(String cid) {
         this.cid = cid;
+    }
+
+    public int getDel() {
+        return del;
+    }
+
+    public void setDel(int del) {
+        this.del = del;
     }
 }

@@ -18,10 +18,9 @@ public class BaseServlet extends HttpServlet {
         Method method = null;
         try {
             method = this.getClass().getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
-        } catch (Exception var10) {
-            throw new RuntimeException("您要调用的方法：" + methodName + "它不存在！", var10);
+        } catch (Exception e) {
+            throw new RuntimeException("方法不存在!~");
         }
-
         try {
             String result = (String)method.invoke(this, request, response);
             if (result != null && !result.trim().isEmpty()) {
@@ -38,8 +37,9 @@ public class BaseServlet extends HttpServlet {
                     }
                 }
             }
-        } catch (Exception var9) {
-            throw new RuntimeException(var9);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("方法调用异常!~");
         }
     }
 }

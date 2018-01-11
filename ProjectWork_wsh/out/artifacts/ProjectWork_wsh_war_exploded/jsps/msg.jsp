@@ -19,11 +19,11 @@
   </head>
   
   <body>
-<h1>${msg }</h1>
+<h1>${requestScope.message}</h1>
 <ul>
-  <li><a href="<c:url value='/index.jsp'/>">��ҳ</a></li>
-  <li><a href="<c:url value='/jsps/user/login.jsp'/>">��¼</a></li>
-  <li><a href="<c:url value='/jsps/user/regist.jsp'/>">ע��</a></li>
+  <li><a href="<c:url value='/index.jsp'/>">跳转到不二云书城</a></li>
+  <li><a href="<c:url value='/jsps/user/login.jsp'/>">跳转到登录页面</a></li>
+  <li><a href="<c:url value='/jsps/user/register.jsp'/>">跳转到注册页面</a></li>
 </ul>
   </body>
 </html>

@@ -36,88 +36,41 @@
 <h1>我的订单</h1>
 
 <table border="1" width="100%" cellspacing="0" background="black">
-	<tr bgcolor="rgb(78,78,78)" bordercolor="rgb(78,78,78)" style="color: white;">
-		<td colspan="6">
-			订单：8691b4150a0641e7a8729fd5e668820c　成交时间：2013-06-04 15:56:53　金额：<font color="red"><b>126.4</b></font>	已收货（完成）
-		</td>
-	</tr>
-	<tr bordercolor="rgb(78,78,78)" align="center">
-		<td width="15%">
-			<div><img src="<c:url value='/book_img/20385925-1_l.jpg'/>" height="75"/></div>
-		</td>
-		<td>书名：Struts2深入详解</td>
-		<td>单价：63.2元</td>
-		<td>作者：孙鑫</td>
-		<td>数量：2</td>
-		<td>小计：126.4元</td>
-	</tr>
-  
- 
+	<c:forEach items="${requestScope.orderList}" var="order">
+		<tr bgcolor="rgb(78,78,78)" bordercolor="rgb(78,78,78)" style="color: white;">
+			<td colspan="6">
+				订单：${order.oid}　
+				成交时间：${order.ordertime}　
+				金额：<font color="red"><b>${order.total}</b></font>
+				<c:if test="${order.state == 1}">
+					用户未付款
+				</c:if>
+				<c:if test="${order.state == 2}">
+					<a href="<c:url value="/adminOrder?method=changeState&state=${order.state}&oid=${order.oid}"/>" onclick="return confirm('订单已发货')">(已付款)未发货</a>
+				</c:if>
+				<c:if test="${order.state == 3}">
+					用户未收货
+				</c:if>
+				<c:if test="${order.state == 4}">
+					<a href="<c:url value="/adminOrder?method=changeState&state=${order.state}&oid=${order.oid}"/>" onclick="return confirm('订单已完成')">已收货(完成订单)</a>
+				</c:if>
+			</td>
+		</tr>
+		<c:forEach items="${order.orderItemList}" var="orderItem">
+			<tr bordercolor="rgb(78,78,78)" align="center">
+				<td width="15%">
+					<div><img src="<c:url value='/${orderItem.book.image}'/>" height="75"/></div>
+				</td>
+				<td>书名：${orderItem.book.bname}</td>
+				<td>单价：${orderItem.book.price}元</td>
+				<td>作者：${orderItem.book.author}</td>
+				<td>数量：${orderItem.count}</td>
+				<td>小计：${orderItem.subtotal}元</td>
+			</tr>
+		</c:forEach>
 
+	</c:forEach>
 
-	<tr bgcolor="rgb(78,78,78)" bordercolor="rgb(78,78,78)" style="color: white;">
-		<td colspan="6">
-			订单：153839427aa94f359fe51932d9f9e383　成交时间：2013-06-04 15:02:31　金额：<font color="red"><b>63.2</b></font>　
-				   <a href="javascript:alert('发货成功！')">发货</a>
-		</td>
-	</tr>
-	<tr bordercolor="rgb(78,78,78)" align="center">
-		<td width="15%">
-			<div><img src="<c:url value='/book_img/20029394-1_l.jpg'/>" height="75"/></div>
-		</td>
-		<td>书名：精通Spring2.x</td>
-		<td>单价：63.2元</td>
-		<td>作者：陈华雄</td>
-		<td>数量：1</td>
-		<td>小计：63.2元</td>
-	</tr>
-  
-
-
- 
-	<tr bgcolor="rgb(78,78,78)" bordercolor="rgb(78,78,78)" style="color: white;">
-		<td colspan="6">
-			订单：d1b85bfc71564b18bf7802582a9fd934　成交时间：2013-06-04 15:01:01　金额：<font color="red"><b>137.0</b></font>	已收货（完成）
-		</td>
-	</tr>
-	<tr bordercolor="rgb(78,78,78)" align="center">
-		<td width="15%">
-			<div><img src="<c:url value='/book_img/20285763-1_l.jpg'/>" height="75"/></div>
-		</td>
-		<td>书名：Java核心技术卷1</td>
-		<td>单价：68.5元</td>
-		<td>作者：qdmmy6</td>
-		<td>数量：2</td>
-		<td>小计：137.0元</td>
-	</tr>
-  
-
-
-	<tr bgcolor="rgb(78,78,78)" bordercolor="rgb(78,78,78)" style="color: white;">
-		<td colspan="6">
-			订单：o1　成交时间：2013-06-04 12:47:41　金额：<font color="red"><b>100.0</b></font>　未付款
-		</td>
-	</tr>
-	<tr bordercolor="rgb(78,78,78)" align="center">
-		<td width="15%">
-			<div><img src="<c:url value='/book_img/9317290-1_l.jpg'/>" height="75"/></div>
-		</td>
-		<td>书名：Java编程思想（第4版）</td>
-		<td>单价：75.6元</td>
-		<td>作者：qdmmy6</td>
-		<td>数量：2</td>
-		<td>小计：300.0元</td>
-	</tr>
-	<tr bordercolor="rgb(78,78,78)" align="center">
-		<td width="15%">
-			<div><img src="<c:url value='/book_img/20285763-1_l.jpg'/>" height="75"/></div>
-		</td>
-		<td>书名：Java核心技术卷1</td>
-		<td>单价：68.5元</td>
-		<td>作者：qdmmy6</td>
-		<td>数量：3</td>
-		<td>小计：500.0元</td>
-	</tr>
 </table>
   </body>
 </html>

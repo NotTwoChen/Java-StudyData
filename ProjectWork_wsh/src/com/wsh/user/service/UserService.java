@@ -5,79 +5,54 @@ import com.wsh.user.domain.User;
 import com.wsh.user.service.exception.*;
 import com.wsh.util.Constant;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.io.UnsupportedEncodingException;
-import java.util.Properties;
-import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class UserService{
-
     private UserDao ud = new UserDao();
-
-    public String getUUID(){
-        return UUID.randomUUID().toString().replaceAll("-", "");
-    }
-
-    public void register(User form) throws EmailHasBeenRegisteredException, UsernameHasBeenRegisteredException {
-        User user1 = ud.findByUsername(form.getUsername());
-        if (user1 == null){
-            User user2 = ud.findByEmail(form.getUsername());
-            if (user2 == null){
-                ud.insert(form);
-            }else {
-                throw new EmailHasBeenRegisteredException();
-            }
-        }else {
-            throw new UsernameHasBeenRegisteredException();
-        }
-    }
+    // 注册时首先检查form数据格式是否正确
     public void checkFormat(User form) throws UsernameFormatErrorException, PasswordFormatErrorException, EmailFormatErrorException {
-
         if (Pattern.matches(Constant.REGEX_NAME,form.getUsername())){
             if (Pattern.matches(Constant.REGEX_PASSWORD,form.getPassword())){
-                if (!Pattern.matches(Constant.REGEX_EMAIL,form.getEmail())) {
-                    throw new EmailFormatErrorException();
-                }
-            }else {
-                throw new PasswordFormatErrorException();
-            }
-        }else {
-            throw new UsernameFormatErrorException();
-        }
+                if (Pattern.matches(Constant.REGEX_EMAIL,form.getEmail())) {
+                }else { throw new EmailFormatErrorException(); }
+            }else { throw new PasswordFormatErrorException(); }
+        }else { throw new UsernameFormatErrorException(); }
     }
-//    @Test
-    public void sendEmail(String code) throws UnsupportedEncodingException, MessagingException {
-        String myEmailAccount = "320828748@qq.com";
-        String myEmailPassword = "vwwedoaiswwhcaae";
-        String myEmailSMTPHost = "smtp.qq.com";
-        String receiveMailAccount = "3588501054@qq.com";
-        Properties properties = new Properties();
-        properties.setProperty("mail.transport.protocol", "smtp");
-        properties.setProperty("mail.smtp.host", myEmailSMTPHost);
-        properties.setProperty("mail.smtp.auth", "true");
-        properties.setProperty("mail.smtp.port","465");
-        properties.setProperty("mail.smtp.ssl.enable","true");
-        Authenticator authenticator = new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(myEmailAccount, myEmailPassword);
-            }
-        };
-        Session session = Session.getInstance(properties,authenticator);
-//        session.setDebug(true);
-        MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(myEmailAccount));
-        message.setRecipients(Message.RecipientType.TO,receiveMailAccount);
-        message.setSubject("不二云");
-        message.setContent("<html><head ><meta charset='utf-8'>"
-                        + "</head><body>内容：为了保证您的 不二云 帐户的安全，请验证您的电子邮件地址。<br>"
-                        + "<a href='http://192.168.20.194:8080/NotTwoCloud/user?method=activate&&code="+code+"'>点击此处来验证您的电子邮件地址。</a><br>" +
-                        "验证您的电子邮件地址让您能够：使用 不二云 令牌，更改您的不二云帐户凭据，" +
-                        "使用交易与市场确认，以及在您无法访问帐户或是忘记密码时，找回您的 不二云 帐户。</body></html>",
-                "text/html;charset=utf-8");
-        Transport.send(message);
+    // 其次检查username是否已经存在,email是否已经存在
+    public void register(User form) throws EmailHasBeenRegisteredException, UsernameHasBeenRegisteredException {
+        if (ud.queryByUsername(form.getUsername()) == null) {
+            if (ud.queryByEmail(form.getEmail()) == null) {
+                ud.insert(form);
+            }else { throw new EmailHasBeenRegisteredException(); }
+        }else { throw new UsernameHasBeenRegisteredException(); }
+    }
+    // 检查激活链接参数code是否存在对应用户,若存在则检查激活状态
+    public void active(String code) throws UserNotExistException, UserActivatedException {
+        User user = ud.queryByCode(code);
+        if (user == null){ throw new UserNotExistException();
+        }else if (user.getState() == 1){ throw new UserActivatedException();
+        }else { ud.update(code); }
+    }
+    // 登录时根据参数form的数据查询是否存在对应用户,若存在则检查密码是否对应,若对应则检查激活状态
+    public User login(User form) throws UsernameNotExistException, PasswordErrorException, UserNotActiveException {
+        User user = ud.queryByUsername(form.getUsername());
+        if (user != null){
+            if (user.getPassword().equals(form.getPassword())){
+                if (user.getState() > 0){
+                    return user;
+                }else { throw new UserNotActiveException(); }
+            }else { throw new PasswordErrorException(); }
+        }else { throw new UsernameNotExistException(); }
+    }
+    //
+    public User checkstate(String adminname,String password) throws AdminnameExitException, AdminPasswordErrorException {
+        User user = ud.queryByAdminname(adminname);
+        if (user.getState() != 2){
+            throw new AdminnameExitException();
+        }else if (!user.getPassword().equals(password)){
+            throw new AdminPasswordErrorException();
+        }else {
+            return user;
+        }
     }
 }

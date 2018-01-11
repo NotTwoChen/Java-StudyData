@@ -27,56 +27,97 @@
 		text-align: center;
 		float: left;
 	}
+    img{
+        height: 150px;
+    }
+    ul{
+        width: 820px;
+        float: left;
+    }
+    li{
+        float: left;
+        list-style: none;
+    }
+    a{
+        text-decoration-line: none;
+        color: red;
+    }
+    span{
+        text-align: center;
+        line-height: 34px;
+        width: 34px;
+        height: 34px;
+        border: solid 1px grey;
+        border-radius: 5px;
+        cursor:pointer;
+        display: block;
+    }
+    span:hover{
+        background-color: grey;
+    }
 </style>
   </head>
   
   <body>
+  <nav>
+      <ul>
+          <c:if test="${requestScope.page > 6}">
+              <li>
+                  <a href="<c:url value="/book?method=findAll&page=1"/>">
+                      <span>&laquo;&laquo;</span>
+                  </a>
+              </li>
+          </c:if>
+          <c:if test="${requestScope.page > 1}">
+              <li>
+                  <a href="<c:url value="/book?method=findAll&page=${requestScope.page-1}"/>" >
+                      <span>&laquo;</span>
+                  </a>
+              </li>
+          </c:if>
+          <c:set value="" var="begin"/>
+          <c:set value="" var="end"/>
+          <c:if test="${requestScope.page < 6 && requestScope.pages < 11}">
+              <c:set value="1" var="begin"/>
+              <c:set value="${requestScope.pages}" var="end"/>
+          </c:if>
+          <c:if test="${requestScope.page < 6 && requestScope.pages > 10}">
+              <c:set value="1" var="begin"/>
+              <c:set value="10" var="end"/>
+          </c:if>
+          <c:if test="${requestScope.page > 5 && requestScope.page + 4 < requestScope.pages}">
+              <c:set value="${requestScope.page-5}" var="begin"/>
+              <c:set value="${requestScope.page+4}" var="end"/>
+          </c:if>
+          <c:if test="${requestScope.page + 4 >= requestScope.pages && requestScope.pages > 5}">
+              <c:set value="${requestScope.pages-9}" var="begin"/>
+              <c:set value="${requestScope.pages}" var="end"/>
+          </c:if>
+          <c:forEach var="page" begin="${begin}" end="${end}">
+              <c:if test="${page == requestScope.page}">
+                  <li><span style="background-color: grey">${page}</span></li>
+              </c:if>
+              <c:if test="${page != requestScope.page}">
+                  <li><a href="<c:url value="/book?method=findAll&page=${page}"/>"><span>${page}</span></a></li>
+              </c:if>
+          </c:forEach>
+          <c:if test="${requestScope.page != requestScope.pages}">
+              <li><a href="<c:url value="/book?method=findAll&page=${requestScope.page+1}"/>"><span>&raquo;</span></a></li>
+          </c:if>
+          <c:if test="${requestScope.page < requestScope.pages - 4}">
+              <li><a href="<c:url value="/book?method=findAll&page=${requestScope.pages}"/> "><span>&raquo;&raquo;</span></a></li>
+          </c:if>
+      </ul>
+  </nav>
 
-  <div class="icon">
-    <a href="<c:url value='/jsps/book/desc.jsp'/>"><img src="<c:url value='/book_img/8758723-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/jsps/book/desc.jsp'/>">Java开发详解</a>
-  </div>
-  <div class="icon">
-    <a href="<c:url value='/jsps/book/desc.jsp'/>"><img src="<c:url value='/book_img/8991366-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/jsps/book/desc.jsp'/>">Java开发详解</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/jsps/book/desc.jsp'/>"><img src="<c:url value='/book_img/9265169-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/jsps/book/desc.jsp'/>">Java开发详解</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/jsps/book/desc.jsp'/>"><img src="<c:url value='/book_img/9317290-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/jsps/book/desc.jsp'/>">Java开发详解</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/jsps/book/desc.jsp'/>"><img src="<c:url value='/book_img/20029394-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/jsps/book/desc.jsp'/>">Java开发详解</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/jsps/book/desc.jsp'/>"><img src="<c:url value='/book_img/20285763-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/jsps/book/desc.jsp'/>">Java开发详解</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/jsps/book/desc.jsp'/>"><img src="<c:url value='/book_img/20385925-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/jsps/book/desc.jsp'/>">Java开发详解</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/jsps/book/desc.jsp'/>"><img src="<c:url value='/book_img/22722790-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/jsps/book/desc.jsp'/>">Java开发详解</a>
-  </div>
-   <div class="icon">
-    <a href="<c:url value='/jsps/book/desc.jsp'/>"><img src="<c:url value='/book_img/22788412-1_l.jpg'/>" border="0"/></a>
-      <br/>
-   	<a href="<c:url value='/jsps/book/desc.jsp'/>">Java开发详解</a>
-  </div>
+  <c:forEach items="${requestScope.bookList}" var="book">
+      <div class="icon">
+          <a href="<c:url value='/book?method=load&bid=${book.bid}'/>"><img src="<c:url value='${book.image}'/>" border="0"/></a>
+          <br/>
+          <a href="<c:url value='/book?method=load&bid=${book.bid}'/>">${book.bname}</a>
+      </div>
+  </c:forEach>
+
 
   
   </body>
