@@ -2,8 +2,6 @@ package com.wsh.admin.web;
 
 import com.wsh.user.domain.User;
 import com.wsh.user.service.UserService;
-import com.wsh.user.service.exception.AdminPasswordErrorException;
-import com.wsh.user.service.exception.AdminnameExitException;
 import com.wsh.user.service.exception.LoginException;
 import com.wsh.user.web.BaseServlet;
 
@@ -20,13 +18,14 @@ public class AdminServlet extends BaseServlet {
         String message = null;
         User admin = new User();
         try {
-            admin = us.checkstate(adminname, password);
+            admin = us.checkState(adminname, password);
         } catch (LoginException e) {
             message = e.getMessage();
         } finally {
             if (message != null){
+                request.setAttribute("adminname",adminname);
                 request.setAttribute("message",message);
-                return "f:/adminjsps/msg.jsp";
+                return "f:/adminjsps/login.jsp";
             }
         }
         request.getSession().setAttribute("admin",admin);

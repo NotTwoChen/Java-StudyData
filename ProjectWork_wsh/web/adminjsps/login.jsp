@@ -39,7 +39,7 @@
 		<h2 class="form-signin-heading">管理员登录</h2>
 		<h3 class="form-signin-heading">${requestScope.message}</h3>
 		<input type="hidden" name="method" value="login">
-		<input id="inputEmail" class="form-control" placeholder="Username" name="adminname" value="${requestScope.form.username}" type="text">
+		<input id="inputEmail" class="form-control" placeholder="Username" name="adminname" value="${requestScope.adminname}" type="text">
 		<input id="inputPassword" class="form-control" placeholder="Password" name="password" type="password">
 		<button class="btn btn-lg btn-primary btn-block" type="submit">进入后台</button>
 	</form>
