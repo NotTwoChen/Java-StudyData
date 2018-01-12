@@ -90,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/wsh/user/service/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="54" column="52" lean-forward="true" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
+            <state relative-caret-position="125">
+              <caret line="49" column="26" lean-forward="true" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
               <folding>
                 <element signature="method#checkFormat#0;class#UserService#0" expanded="false" />
                 <element signature="method#register#0;class#UserService#0" expanded="false" />
@@ -125,12 +125,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="top.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="top.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/jsps/top.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
               <caret line="55" column="48" lean-forward="true" selection-start-line="55" selection-start-column="48" selection-end-line="55" selection-end-column="48" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tb_user" pinned="false" current-in-tab="false">
+        <entry file="das://table:/81aad505/d84f0549-536c-4349-aabb-61f828c79758/bookstore.tb_user">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -206,9 +215,9 @@
         <option value="$PROJECT_DIR$/src/com/wsh/admin/web/AdminServlet.java" />
         <option value="$PROJECT_DIR$/web/adminjsps/login.jsp" />
         <option value="$PROJECT_DIR$/src/com/wsh/user/service/exception/AdminnameExitException.java" />
-        <option value="$PROJECT_DIR$/src/com/wsh/user/service/UserService.java" />
         <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/web/jsps/top.jsp" />
+        <option value="$PROJECT_DIR$/src/com/wsh/user/service/UserService.java" />
       </list>
     </option>
   </component>
@@ -719,7 +728,7 @@
       <workItem from="1515545909057" duration="39741000" />
       <workItem from="1515632733552" duration="27931000" />
       <workItem from="1515670912120" duration="11726000" />
-      <workItem from="1515718250637" duration="1930000" />
+      <workItem from="1515718250637" duration="2139000" />
     </task>
     <servers />
   </component>
@@ -756,7 +765,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="152373000" />
+    <option name="totallyTimeSpent" value="152582000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1048,13 +1057,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/81aad505/d84f0549-536c-4349-aabb-61f828c79758/bookstore.tb_user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/jsps/user/register.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1138,19 +1140,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/wsh/user/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="54" column="52" lean-forward="true" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
-          <folding>
-            <element signature="method#checkFormat#0;class#UserService#0" expanded="false" />
-            <element signature="method#register#0;class#UserService#0" expanded="false" />
-            <element signature="method#active#0;class#UserService#0" expanded="false" />
-            <element signature="method#login#0;class#UserService#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/wsh/user/service/exception/AdminnameExitException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -1183,6 +1172,26 @@
         <state relative-caret-position="198">
           <caret line="55" column="48" lean-forward="true" selection-start-line="55" selection-start-column="48" selection-end-line="55" selection-end-column="48" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/81aad505/d84f0549-536c-4349-aabb-61f828c79758/bookstore.tb_user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/wsh/user/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="49" column="26" lean-forward="true" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+          <folding>
+            <element signature="method#checkFormat#0;class#UserService#0" expanded="false" />
+            <element signature="method#register#0;class#UserService#0" expanded="false" />
+            <element signature="method#active#0;class#UserService#0" expanded="false" />
+            <element signature="method#login#0;class#UserService#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

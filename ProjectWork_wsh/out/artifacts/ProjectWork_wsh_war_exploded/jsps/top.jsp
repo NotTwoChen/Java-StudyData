@@ -55,9 +55,9 @@
 		</li>
 		<li role="presentation"><a href="<c:url value='/jsps/cart/list.jsp'/>" target="body">我的购物车</a></li>
 		<li role="presentation"><a href="<c:url value='/order?method=myOrder'/>" target="body">我的订单</a></li>
-		<li role="presentation"><a href="<c:url value='/user?method=quit'/>" target="_parent">退出</a></li>
+		<li role="presentation"><a href="<c:url value='/user?method=quit'/>" target="_parent" onclick="javascript.alert('用户已退出!~')">退出</a></li>
 	<c:if test="${sessionScope.user.state == 2}">
-		<li role="presentation"><a href="<c:url value="/adminjsps/login.jsp/"/>" target="_parent">管理员后台</a></li>
+		<li role="presentation"><a href="<c:url value="/admin?method=login&adminname=${sessionScope.user.username}&password=${sessionScope.user.password}"/>" target="_parent">管理员后台</a></li>
 	</c:if>
 </c:if>
 	</ul>

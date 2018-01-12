@@ -47,7 +47,7 @@ public class UserService{
     //
     public User checkState(String adminname, String password) throws AdminnameExitException, AdminPasswordErrorException, UsernameNotExistException {
         User user = ud.queryByAdminname(adminname);
-        if (user != null){
+        if (user == null){
             throw new UsernameNotExistException();
         }else if (user.getState() != 2){
             throw new AdminnameExitException();
