@@ -45,9 +45,11 @@ public class UserService{
         }else { throw new UsernameNotExistException(); }
     }
     //
-    public User checkState(String adminname, String password) throws AdminnameExitException, AdminPasswordErrorException {
+    public User checkState(String adminname, String password) throws AdminnameExitException, AdminPasswordErrorException, UsernameNotExistException {
         User user = ud.queryByAdminname(adminname);
-        if (user.getState() != 2){
+        if (user != null){
+            throw new UsernameNotExistException();
+        }else if (user.getState() != 2){
             throw new AdminnameExitException();
         }else if (!user.getPassword().equals(password)){
             throw new AdminPasswordErrorException();
