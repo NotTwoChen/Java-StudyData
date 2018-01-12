@@ -10,6 +10,15 @@
 <html>
   <head>
     <title>不二云首页</title>
+    <link href="../../../NotTwoCloud/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="../../../NotTwoCloud/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="../../../NotTwoCloud/js/bootstrap.min.js" type="text/javascript"></script>
+    <style type="text/css">
+      a{
+        font-size: 20px;
+        margin: 20px 0 0 50%;
+      }
+    </style>
   </head>
   <body>
   <h1>
