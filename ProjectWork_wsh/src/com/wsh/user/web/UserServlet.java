@@ -31,7 +31,7 @@ public class UserServlet extends BaseServlet {
         String code = uid+new GetUUID().getUUID();
         form.setUid(uid);
         form.setCode(code);
-        form.setState(0);
+        form.setState(1);
         String message = null;
         try {
             us.checkFormat(form);

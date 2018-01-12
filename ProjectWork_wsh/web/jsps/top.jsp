@@ -33,7 +33,7 @@
 		border: solid 1px black;
 		border-radius: 5px;
 		text-align: center;
-		width: 120px;
+		/*width: 120px;*/
 	}
 	ul{
 		margin-left: 5px;
