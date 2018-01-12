@@ -23,10 +23,10 @@
 		}
 		body{
 			text-align:center;
-			margin: 0px;
+			margin: 0;
 		}
 		.table{
-			width:100%;
+			width:1024px;
 			height:100%;
 			border:1px solid gray;/*固定边框,1像素*/
 		    border-collapse: collapse;/*单线的列表边框*/
@@ -43,7 +43,7 @@
   
   <body>
 <table class="table" align="center">
-	<tr style="background: rgb(78,78,78); height: 120px; ">
+	<tr style="height: 120px; ">
 		<td colspan="2" align="center">
 			<iframe frameborder="0" src="<c:url value='/adminjsps/admin/top.jsp'/>" name="top"></iframe>
 		</td>

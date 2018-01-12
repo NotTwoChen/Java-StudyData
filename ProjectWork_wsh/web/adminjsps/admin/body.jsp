@@ -17,7 +17,8 @@
 
   </head>
   
-  <body style="margin: 0px;">
-    <img src="<c:url value='/images/welcome.jpg'/>" width="100%" height="100%"/>
+  <body style="margin: 0;">
+  <h1 style="text-align: center;font-family: 楷体;font-size: 70px;" class="form-signin-heading">管理员你好!~</h1>
+  <h1 style="text-align: center;font-family: 楷体;font-size: 70px;" class="form-signin-heading">请开始你的表演!~</h1>
   </body>
 </html>
