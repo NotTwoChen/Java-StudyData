@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(filterName = "AdminFilter",urlPatterns = {"/cart","/order","/category"})
+@WebFilter(filterName = "AdminFilter",urlPatterns = {"/cart","/order","/jsps/cart/list.jsp"})
 public class AdminFilter implements Filter {
     public void destroy() {
     }

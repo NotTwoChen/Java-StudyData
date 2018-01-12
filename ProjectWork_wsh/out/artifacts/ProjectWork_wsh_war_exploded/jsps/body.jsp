@@ -18,6 +18,9 @@
       <link href="../../../NotTwoCloud/css/bootstrap.min.css" rel="stylesheet" type="text/css">
       <script src="../../../NotTwoCloud/js/jquery-3.2.1.min.js" type="text/javascript"></script>
       <script src="../../../NotTwoCloud/js/bootstrap.min.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          <c:if test="${sessionScope.user == null}">alert("请先登录!~");</c:if>
+      </script>
       <style type="text/css">
           body{
               margin-top: 110px;
@@ -31,6 +34,7 @@
   </head>
   
   <body>
+
     <p>
         In NotTwoCloud, you can find more information about the books you buy,
     </p>
