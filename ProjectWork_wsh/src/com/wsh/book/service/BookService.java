@@ -34,10 +34,9 @@ public class BookService {
         bd.updateBook(book);
     }
     // 根据参数page查询相应书籍信息
-    public List<Book> queryByPage(int page){
+    public List<Book> queryByPage(List<Book> bookList,int page){
         int start = 12*(page-1);
         int end = 12*page;
-        List<Book> bookList = queryAll();
         if (start > bookList.size()){
             start = bookList.size();
         }

@@ -39,7 +39,7 @@
 	  </div>
 	  <c:forEach items="${requestScope.categoryList}" var="category" begin="0" end="${requestScope.categoryList.size()}" step="1">
 		  <div class="list-group">
-			  <a class="list-group-item" href="<c:url value='/book?method=findByCid&cid=${category.cid}'/>">${category.cname}</a>
+			  <a class="list-group-item" href="<c:url value='/book?method=findByCid&cid=${category.cid}&page=1'/>">${category.cname}</a>
 		  </div>
 	  </c:forEach>
   </c:if>

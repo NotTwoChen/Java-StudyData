@@ -75,6 +75,7 @@
                   </a>
               </li>
           </c:if>
+          <c:if test="${requestScope.pages > 1}">
           <c:set value="" var="begin"/>
           <c:set value="" var="end"/>
           <c:if test="${requestScope.page < 6 && requestScope.pages < 11}">
@@ -106,6 +107,7 @@
           </c:if>
           <c:if test="${requestScope.page < requestScope.pages - 4}">
               <li><a href="<c:url value="/book?method=findAll&page=${requestScope.pages}"/> "><span>&raquo;&raquo;</span></a></li>
+          </c:if>
           </c:if>
       </ul>
   </nav>

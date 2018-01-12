@@ -15,7 +15,7 @@ public class BookServlet extends BaseServlet {
     // 查询所有分类书籍信息
     public String findAll(HttpServletRequest request, HttpServletResponse response){
         int page = Integer.parseInt(request.getParameter("page"));
-        List<Book> bookList = bs.queryByPage(page);
+        List<Book> bookList = bs.queryByPage(bs.queryAll(),page);
         int pages = bs.queryAll().size() / 12 + 1;
         request.setAttribute("page",page);
         request.setAttribute("pages",pages);
@@ -24,8 +24,10 @@ public class BookServlet extends BaseServlet {
     }
     // 根据参数cid查询对应分类书籍信息
     public String findByCid(HttpServletRequest request, HttpServletResponse response){
+        int page = Integer.parseInt(request.getParameter("page"));
         String cid = request.getParameter("cid");
-        List<Book> bookList = bs.queryByCid(cid);
+        List<Book> bookList = bs.queryByPage(bs.queryByCid(cid), page);
+//        List<Book> bookList = bs.queryByCid(cid);
         request.setAttribute("bookList",bookList);
         return "f:/jsps/book/list.jsp";
     }
