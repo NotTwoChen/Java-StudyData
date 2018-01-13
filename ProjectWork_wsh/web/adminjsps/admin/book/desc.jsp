@@ -19,7 +19,7 @@
 <style type="text/css">
 	body {
 		font-size: 10pt;
-		background: rgb(254,238,189);
+		/*background: rgb(254,238,189);*/
 	}
 	div {
 		margin:20px;
@@ -30,6 +30,9 @@
 	}
 	li {
 		margin: 10px;
+	}
+	img{
+		height: 150px;
 	}
 </style>
   </head>

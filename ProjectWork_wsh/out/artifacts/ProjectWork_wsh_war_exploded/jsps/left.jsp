@@ -35,11 +35,11 @@
   <body>
   <c:if test="${sessionScope.user != null}">
 	  <div class="list-group">
-		  <a class="list-group-item" href="<c:url value='/book?method=findAll&page=1'/>">全部分类</a>
+		  <a class="list-group-item" href="<c:url value='/jsps/book/list.jsp?pageCode=1&cid=0'/>">全部分类</a>
 	  </div>
 	  <c:forEach items="${requestScope.categoryList}" var="category" begin="0" end="${requestScope.categoryList.size()}" step="1">
 		  <div class="list-group">
-			  <a class="list-group-item" href="<c:url value='/book?method=findByCid&cid=${category.cid}&page=1'/>">${category.cname}</a>
+			  <a class="list-group-item" href="<c:url value="/jsps/book/list.jsp?pageCode=1&cid=${category.cid}"/>">${category.cname}</a>
 		  </div>
 	  </c:forEach>
   </c:if>

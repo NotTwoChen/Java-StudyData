@@ -12,9 +12,7 @@
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+      <script src="../../../NotTwoCloud/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <style type="text/css">
 	body {
 		font-size: 10pt;
@@ -57,72 +55,77 @@
     }
 </style>
   </head>
-  
   <body>
   <nav>
       <ul>
-          <c:if test="${requestScope.page > 6}">
-              <li>
-                  <a href="<c:url value="/book?method=findAll&page=1"/>">
-                      <span>&laquo;&laquo;</span>
-                  </a>
-              </li>
-          </c:if>
-          <c:if test="${requestScope.page > 1}">
-              <li>
-                  <a href="<c:url value="/book?method=findAll&page=${requestScope.page-1}"/>" >
-                      <span>&laquo;</span>
-                  </a>
-              </li>
-          </c:if>
-          <c:if test="${requestScope.pages > 1}">
-          <c:set value="" var="begin"/>
-          <c:set value="" var="end"/>
-          <c:if test="${requestScope.page < 6 && requestScope.pages < 11}">
-              <c:set value="1" var="begin"/>
-              <c:set value="${requestScope.pages}" var="end"/>
-          </c:if>
-          <c:if test="${requestScope.page < 6 && requestScope.pages > 10}">
-              <c:set value="1" var="begin"/>
-              <c:set value="10" var="end"/>
-          </c:if>
-          <c:if test="${requestScope.page > 5 && requestScope.page + 4 < requestScope.pages}">
-              <c:set value="${requestScope.page-5}" var="begin"/>
-              <c:set value="${requestScope.page+4}" var="end"/>
-          </c:if>
-          <c:if test="${requestScope.page + 4 >= requestScope.pages && requestScope.pages > 5}">
-              <c:set value="${requestScope.pages-9}" var="begin"/>
-              <c:set value="${requestScope.pages}" var="end"/>
-          </c:if>
-          <c:forEach var="page" begin="${begin}" end="${end}">
-              <c:if test="${page == requestScope.page}">
-                  <li><span style="background-color: grey">${page}</span></li>
-              </c:if>
-              <c:if test="${page != requestScope.page}">
-                  <li><a href="<c:url value="/book?method=findAll&page=${page}"/>"><span>${page}</span></a></li>
-              </c:if>
-          </c:forEach>
-          <c:if test="${requestScope.page != requestScope.pages}">
-              <li><a href="<c:url value="/book?method=findAll&page=${requestScope.page+1}"/>"><span>&raquo;</span></a></li>
-          </c:if>
-          <c:if test="${requestScope.page < requestScope.pages - 4}">
-              <li><a href="<c:url value="/book?method=findAll&page=${requestScope.pages}"/> "><span>&raquo;&raquo;</span></a></li>
-          </c:if>
-          </c:if>
+
+          <form action="/NotTwoCloud/jsps/book/list.jsp">
+              <input type="hidden" name="cid" value="${param.cid}">
+              <input type="text" name="pageCode">
+              <input type="submit" value="跳转">
+          </form>
       </ul>
   </nav>
-
-  <c:forEach items="${requestScope.bookList}" var="book">
-      <div class="icon">
-          <a href="<c:url value='/book?method=load&bid=${book.bid}'/>"><img src="<c:url value='${book.image}'/>" border="0"/></a>
-          <br/>
-          <a href="<c:url value='/book?method=load&bid=${book.bid}'/>">${book.bname}</a>
-      </div>
-  </c:forEach>
-
-
-  
   </body>
+  <script type="text/javascript">
+      $.get(
+          "/NotTwoCloud/book?method=query&pageCode=${param.pageCode}&cid=${param.cid}",
+          function (data, status) {
+              if (status === "success" && data){
+                  var bookList = data['list'];
+                  for (let obj of bookList) {
+                      console.log(obj);
+
+                  }
+                  $.each(bookList,function (index, obj) {
+                      $('body').append(
+                          $('<div>').append(
+                              $('<a>').append(
+                                  $('<img>').attr({"src":"../../"+obj['image'],"border":"1"})
+                              ).attr("href","/NotTwoCloud/book?method=load&bid="+obj['bid'])
+                          ).append(
+                              $('<br>')
+                          ).append(
+                              $('<a>').text(obj['bname']).attr("href","/NotTwoCloud/book?method=load&bid="+obj['bid'])
+                          ).attr("class","icon")
+                      )
+                  });
+                  var p = data['pageCode'];
+                  var sp = data['startPage'];
+                  var ep = data['endPage'];
+                  var tp = data['totalPage'];
+                  var page = new Array(5);
+                  if (p < 3 && tp <= 5){page.splice(0,page.length)
+                      for (var i = sp; i <= tp ; i++){page.push(i);}}
+                  if (p < 3 && tp > 5){page = [sp,sp+1,sp+2,ep-1,ep];}
+                  if (p >= 3 && p + 2 < tp){page = [sp,sp+1,sp+2,ep-1,ep];}
+                  if (p + 2 >= tp && tp > 3){page.splice(0,page.length)
+                      for (var i = sp; i <= tp ; i++){page.push(i);}}
+                  if (p > 3) {addPage("首页",1);}
+                  if (p > 1){addPage("上一页",${param.pageCode-1});}
+                  var pageCode = ${param.pageCode}
+                  $.each(page,function (index,obj) {
+                      if (pageCode === obj){
+                          $('ul').append($('<li>').append($('<span>').text(obj).css("backgroundColor","grey")))
+                      }else {
+                          $('ul').append($('<li>').append($('<a>').append($('<span>').text(obj)).attr("href","/NotTwoCloud/jsps/book/list.jsp?pageCode="+obj+"&cid=${param.cid}")))
+                      }
+                  });
+                  if (p !== tp){addPage("下一页",${param.pageCode+1})}
+                  if (p < tp-2){addPage("末页",tp)}
+              }
+          }
+      );
+      function addPage(a,b) {
+          $('ul').append(
+              $('<li>').append(
+                  $('<a>').append(
+                      $('<span>').text(a).css("width","68px")
+                  ).attr("href","/NotTwoCloud/jsps/book/list.jsp?pageCode="+b+"&cid=${param.cid}")
+              )
+          )
+      };
+  </script>
  
 </html>
 

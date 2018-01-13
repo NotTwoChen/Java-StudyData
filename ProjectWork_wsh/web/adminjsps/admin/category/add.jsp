@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 <style type="text/css">
-	body {background: rgb(254,238,189);}
+	/*body {background: rgb(254,238,189);}*/
 </style>
   </head>
   

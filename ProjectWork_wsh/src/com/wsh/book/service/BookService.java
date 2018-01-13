@@ -2,6 +2,7 @@ package com.wsh.book.service;
 
 import com.wsh.book.dao.BookDao;
 import com.wsh.book.domain.Book;
+import com.wsh.book.domain.PageBean;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -48,5 +49,22 @@ public class BookService {
             bookSubList.add(bookList.get(i));
         }
         return bookSubList;
+    }
+    //
+    public PageBean<Book> queryByPage(String cid,int pageCode, int pageSize){
+        List<Book> bookList;
+        if (cid.equals("0")){
+            bookList = bd.queryAll();
+        }else {
+            bookList = bd.queryByCid(cid);
+        }
+        PageBean<Book> pageBean = new PageBean<>(pageCode, pageSize, bookList.size());
+        int start = pageBean.getStart();
+        if (cid.equals("0")){
+            pageBean.setList(bd.queryAll(start,pageSize));
+        }else {
+            pageBean.setList(bd.queryByCid(cid,start,pageSize));
+        }
+        return pageBean;
     }
 }

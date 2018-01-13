@@ -46,4 +46,8 @@ public class OrderService {
     public void changeState(String oid,int state){
         od.updateState(oid,state);
     }
+    //
+    public void uodateAddress(String oid,String address){
+        od.updateAddress(oid,address);
+    }
 }

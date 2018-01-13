@@ -41,7 +41,7 @@ function load() {
 
 </head>
 
-<body onload="load()" style="margin: 0px; background: rgb(254,238,189);">
+<body onload="load()" style="margin: 0">
 <div id="menu"></div>
 
 </body>

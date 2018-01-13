@@ -86,4 +86,36 @@ public class BookDao {
             e.printStackTrace();
         }
     }
+    //
+    public List<Book> queryByParams(String sql){
+        List<Book> bookLis = new ArrayList<>();
+        try {
+            bookLis = pqr.query(sql,new BeanListHandler<Book>(Book.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bookLis;
+    }
+    //
+    public List<Book> queryAll(int start,int pageSize){
+        String sql = "SELECT * FROM book WHERE del=0 limit " + start + "," + pageSize;
+        List<Book> bookList = new ArrayList<>();
+        try {
+            bookList = pqr.query(sql, new BeanListHandler<Book>(Book.class));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bookList;
+    }
+
+    public List<Book> queryByCid(String cid,int start,int pageSize){
+        String sql = "SELECT * FROM book WHERE cid=? AND del=0 limit " + start + "," + pageSize;
+        List<Book> bookList = new ArrayList<>();
+        try {
+            bookList = pqr.query(sql, new BeanListHandler<Book>(Book.class), cid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bookList;
+    }
 }

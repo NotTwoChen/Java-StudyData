@@ -15,8 +15,8 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 <style type="text/css">
-	body {background: rgb(254,238,189);}
-	table {font-family: 宋体; font-size: 11pt; border-color: rgb(78,78,78);  width: 60%;}
+	/*body {background: rgb(254,238,189);}*/
+	table {font-family: 宋体; font-size: 11pt; border-color: rgb(78,78,78);  width: 100%;text-align: center}
 	#th {background: rgb(78,78,78);}
 </style>
   </head>

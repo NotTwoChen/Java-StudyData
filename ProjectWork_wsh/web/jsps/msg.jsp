@@ -12,18 +12,37 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+      <link href="../../../NotTwoCloud/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+      <script src="../../../NotTwoCloud/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+      <script src="../../../NotTwoCloud/js/bootstrap.min.js" type="text/javascript"></script>
+      <style type="text/css">
+          a{
+              font-size: 20px;
+              margin: 20px 0 0 40%;
+          }
+          ul{
 
+          }
+      </style>
   </head>
-  
+
   <body>
-<h1>${requestScope.message}</h1>
-<ul>
-  <li><a href="<c:url value='/index.jsp'/>">跳转到不二云书城</a></li>
-  <li><a href="<c:url value='/jsps/user/login.jsp'/>">跳转到登录页面</a></li>
-  <li><a href="<c:url value='/jsps/user/register.jsp'/>">跳转到注册页面</a></li>
-</ul>
+  <c:if test="${requestScope.message != null}">
+        <h1>${requestScope.message}</h1>
+  </c:if>
+  <c:if test="${requestScope.message == null}">
+      <h1 style="margin: 0 35%">恭喜您!您的账号已经成功激活!~</h1>
+  </c:if>
+  <h1>
+  <a href="<c:url value='/index.jsp'/>">跳转到不二云书城</a>
+  </h1>
+  <h1>
+  <a href="<c:url value='/jsps/user/login.jsp'/>">跳转到登录页面</a>
+  </h1>
+  <h1>
+  <a href="<c:url value='/jsps/user/register.jsp'/>">跳转到注册页面</a>
+  </h1>
+
+
   </body>
 </html>

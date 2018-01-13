@@ -98,4 +98,12 @@ public class OrderServlet extends BaseServlet{
         }
         return "f:/jsps/order/msg.jsp";
     }
+    //
+    public String pay(HttpServletRequest request, HttpServletResponse response){
+        String oid = request.getParameter("oid");
+        String address = request.getParameter("address");
+        os.changeState(oid,2);
+        os.uodateAddress(oid,address);
+        return "f:/jsps/main.jsp";
+    }
 }

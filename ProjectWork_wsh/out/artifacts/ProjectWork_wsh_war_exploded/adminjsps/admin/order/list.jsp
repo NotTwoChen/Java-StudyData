@@ -32,7 +32,7 @@
 </style>
   </head>
   
-  <body style="background: rgb(254,238,189);">
+  <body>
 <h1>我的订单</h1>
 
 <table border="1" width="100%" cellspacing="0" background="black">
@@ -41,7 +41,7 @@
 			<td colspan="6">
 				订单：${order.oid}　
 				成交时间：${order.ordertime}　
-				金额：<font color="red"><b>${order.total}</b></font>
+				金额：<font color="red"><b>${order.total}</b></font><br/>
 				<c:if test="${order.state == 1}">
 					用户未付款
 				</c:if>

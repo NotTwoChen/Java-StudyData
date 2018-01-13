@@ -151,4 +151,13 @@ public class OrderDao {
             e.printStackTrace();
         }
     }
+    //
+    public void updateAddress(String oid, String address){
+        String sql = "UPDATE orders set address=? where oid=?";
+        try {
+            pqr.update(sql,address,oid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

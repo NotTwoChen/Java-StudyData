@@ -39,7 +39,7 @@
       <a href="<c:url value="/jsps/user/login.jsp"/>">已有账号!</a>
 	  <form class="form-signin" action="<c:url value="/user"/>" method="post">
 		  <h2 class="form-signin-heading">不二云注册</h2>
-		  <h3 class="form-signin-heading">${requestScope.message}</h3>
+		  <h6 class="form-signin-heading" style="color: red">${requestScope.message}</h6>
 		  <input type="hidden" name="method" value="register">
 		  <input id="inputEmail" class="form-control" placeholder="Username" name="username" value="${requestScope.form.username}" type="text">
 		  <input id="inputPassword" class="form-control" placeholder="Password" name="password" type="password">

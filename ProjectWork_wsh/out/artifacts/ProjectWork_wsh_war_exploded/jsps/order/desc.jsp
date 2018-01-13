@@ -75,7 +75,7 @@
 
 </table>
 <br/>
-<form method="post" action="javascript:alert('别点了，再点就去银行页面了！');" id="form" target="_parent">
+<form method="post" action="<c:url value="/order?method=pay&oid=${sessionScope.order.oid}"/>" id="form" target="_parent">
 	收货地址：<input type="text" name="address" size="50" value="武汉市江夏区金融港A11栋5楼不二云集团有限公司前台"/><br/>
 
 	选择银行：<br/>
@@ -90,7 +90,7 @@
 	<input type="radio" name="pd_FrpId" value="BOCO-NET-B2C"/>交通银行
 	<img src="<c:url value="/bank_img/bcc.bmp"/>" align="middle"/><br/>
 </form>
-<a id="pay" href="javascript:document.getElementById('form').submit();"></a>
+<a id="pay" href="javascript:document.getElementById('form').submit();" onclick="return confirm('确认付款?!~')"></a>
 
   </body>
 </html>
