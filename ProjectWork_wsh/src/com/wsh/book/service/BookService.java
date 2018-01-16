@@ -53,12 +53,13 @@ public class BookService {
     //
     public PageBean<Book> queryByPage(String cid,int pageCode, int pageSize){
         List<Book> bookList;
+        PageBean<Book> pageBean;
         if (cid.equals("0")){
             bookList = bd.queryAll();
         }else {
             bookList = bd.queryByCid(cid);
         }
-        PageBean<Book> pageBean = new PageBean<>(pageCode, pageSize, bookList.size());
+        pageBean = new PageBean<>(pageCode, pageSize, bookList.size());
         int start = pageBean.getStart();
         if (cid.equals("0")){
             pageBean.setList(bd.queryAll(start,pageSize));

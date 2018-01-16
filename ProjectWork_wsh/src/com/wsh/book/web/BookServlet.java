@@ -51,7 +51,7 @@ public class BookServlet extends BaseServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;character=utf-8");
         String page = request.getParameter("pageCode");
-        if (page == null){
+        if (page == null || page.equals("")){
             page = "1";
         }
         int pageCode = Integer.parseInt(page);

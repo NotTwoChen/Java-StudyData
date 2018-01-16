@@ -12,6 +12,7 @@
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+
       <script src="../../../NotTwoCloud/js/jquery-3.2.1.min.js" type="text/javascript"></script>
 <style type="text/css">
 	body {
@@ -35,6 +36,16 @@
     li{
         float: left;
         list-style: none;
+        padding: 2px;
+    }
+    li>form{
+        margin-top: 4px;
+    }
+    li>form>input{
+        width: 45px;
+    }
+    i{
+        margin-right: 5px;
     }
     a{
         text-decoration-line: none;
@@ -56,16 +67,7 @@
 </style>
   </head>
   <body>
-  <nav>
-      <ul>
-
-          <form action="/NotTwoCloud/jsps/book/list.jsp">
-              <input type="hidden" name="cid" value="${param.cid}">
-              <input type="text" name="pageCode">
-              <input type="submit" value="跳转">
-          </form>
-      </ul>
-  </nav>
+  <nav><ul></ul></nav>
   </body>
   <script type="text/javascript">
       $.get(
@@ -73,10 +75,6 @@
           function (data, status) {
               if (status === "success" && data){
                   var bookList = data['list'];
-                  for (let obj of bookList) {
-                      console.log(obj);
-
-                  }
                   $.each(bookList,function (index, obj) {
                       $('body').append(
                           $('<div>').append(
@@ -113,6 +111,19 @@
                   });
                   if (p !== tp){addPage("下一页",${param.pageCode+1})}
                   if (p < tp-2){addPage("末页",tp)}
+                  $('ul').append(
+                      $('<li>').append(
+                          $('<form>').append(
+                              $('<input>').attr({"type":"hidden","name":"cid","value":${param.cid}})
+                          ).append(
+                              $('<input>').attr({"type":"text","name":"pageCode"})
+                          ).append(
+                              $('<i>').text("/"+data['totalPage'])
+                          ).append(
+                              $('<input>').attr({"type":"submit","value":"跳转"})
+                          ).attr({"action":"/NotTwoCloud/jsps/book/list.jsp"})
+                      )
+                  )
               }
           }
       );

@@ -9,7 +9,6 @@ public class PageBean<T> {
 
     private int totalPage;//总页数
     private int start;//limit参数1,即数据查询下标起点
-    private int end;//limit参数2,即数据查询下标个数
     private int startPage;//分页显示的页头
     private int endPage;//分页显示的页尾
     private List<T> list;//单页数据集合
@@ -24,7 +23,6 @@ public class PageBean<T> {
             this.totalPage = totalData / pageSize + 1;
         }
         this.start = (pageCode-1)*pageSize;
-        this.end = pageCode*pageSize;//TODO
         this.startPage = 1;
         this.endPage = 5;
         if (totalPage < 5){
@@ -81,14 +79,6 @@ public class PageBean<T> {
 
     public void setStart(int start) {
         this.start = start;
-    }
-
-    public int getEnd() {
-        return end;
-    }
-
-    public void setEnd(int end) {
-        this.end = end;
     }
 
     public int getStartPage() {
