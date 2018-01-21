@@ -63,7 +63,15 @@
       <Position>3</Position>
       <DataType>varchar(50)|0</DataType>
     </column>
-    <key id="26" parent="16" name="PRIMARY">
+    <column id="26" parent="16" name="telephone">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="27" parent="16" name="email">
+      <Position>5</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <key id="28" parent="16" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>uid</ColNames>
       <Primary>1</Primary>

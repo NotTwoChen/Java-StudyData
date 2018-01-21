@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="static" extends="struts-default">
+        <!--
+            把声明拦截器的标签放在最上方
+        -->
+        <interceptors>
+            <interceptor name="my" class="interceptor.MyInterceptor">
+
+            </interceptor>
+        </interceptors>
+        <global-results>
+            <result name="success">index.jsp</result>
+            <result name="input">error.jsp</result>
+        </global-results>
+
+        <action name="static" class="action.StaticParamAction">
+            <!--
+                直接定义在配置文件中的参数称为静态参数
+                只要action类中,有对应的set方法
+                struts2就能帮我们将参数直接设置进去
+            -->
+            <param name="username">账号</param>
+            <param name="password">密码</param>
+            <result name="success">index.jsp</result>
+        </action>
+        <action name="active" class="action.ActiveParamAction">
+            <result name="success">index.jsp</result>
+        </action>
+        <action name="ognl" class="action.OgnlAction" method="stu">
+            <result name="success">index.jsp</result>
+        </action>
+        <action name="model" class="action.ModelAction" method="model">
+            <result name="success">index.jsp</result>
+        </action>
+        <action name="val" class="action.ValidateAction" method="val">
+            <result name="success">index.jsp</result>
+            <result name="input">error.jsp</result>
+        </action>
+        <action name="single" class="action.SingleValAction" method="single">
+            <result name="success">index.jsp</result>
+            <result name="input">error.jsp</result>
+        </action>
+        <action name="decVal" class="action.DecValAction" method="dec">
+        </action>
+        <action name="my" class="action.MyAction" method="my">
+            <interceptor-ref name="my"/>
+            <result name="my">index.jsp</result>
+        </action>
+    </package>
+</struts>

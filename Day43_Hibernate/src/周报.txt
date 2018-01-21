@@ -1,0 +1,231 @@
+Struts2:
+    Servlet的优缺点:
+        Servlet的缺点:
+            写一个Servlet需要在web.xml文件中配置8行,如果一个系统中servlet很多,则会导致web.xml文件中的内容很多
+            在项目中多人编辑一个web.xml文件会出现版本冲突的问题
+            在一个Servlet中的方法入口只有一个,如果再Servlet中写很多方法,这些方法应该传递参数,根据每次请求的参数不一致来判断执行哪个方法
+            Servlet中的方法都有两个参数request,response,这两个参数具有严重的容器依赖性,所以在servlet中写的代码是不能单独测试的
+            写一个servlet为注册servlet时,需要在doPost中写入权限的操作,获取表单中的数据,文件的上传功能,表单上的元素进行验证,保存用户信息
+            如果在表单中的元素很多,在servlet中想要获取表单中的数据,那么在servlet中的方法必须要有大量的request.getParameter代码
+            在一个servlet的属性中声明一个数据,会存在线程安全的问题
+        Servlet的优点:
+            因为是最底层的MVC,所以效率比较高
+    Struts中的action:
+        action是多实例的,没请求一次将会创建一个对象
+        是不存在线程安全的问题
+    Struts.xml
+        package:
+            name属性:
+                name的作用是用来区分不同模块下的不同包,package代表一个模块,name为模块的名称,而且是唯一值
+            extends属性:
+                extends="struts-default"实际上是把package中name为"struts-default"的包中的所有的功能都涵盖在内
+                如果想要使用某一个包的action,可以使用继承
+                对应的值是某一个包的名字
+            namespace属性:
+                如果namespace为"/":
+                    那么在url中项目名称后面要紧接着跟action中的name的名称
+                如果namespace为"/xxx":
+                    那么在访问action时需要在前方添加该namespace值
+                    如果不添加该namespace值,则url请求找不到
+                    如果在该namespace值后的访问路径添加/xx/tt/xxx.action,同样可以请求到url
+                在url中加了几层命名空间,则在转向jsp页面时,jsp的路径也会加几个命名空间的名字的路径
+                如果才有了该属性并给予了一定的值,即命名空间有什么名称,在webRoot下就应该建立什么样的文件夹
+        action:
+            name属性:
+                name属性的作用是定义处理请求url的路径名
+            class属性:
+                即为当请求追寻name属性的值即访问路径找到该action标签时所访问的工程类
+            method属性:
+                即为所访问类中的自定义方法,如果不添加该属性,则action会默认访问action类中的execute方法
+        result:
+            <result name ="xxx" > /xxx/zzz/ccc/vvv.jsp</result>
+            <result name = "xxx" type = "redirectAction">xxx_vvv</result>
+            一般用的就两种,result中间的是jsp页面这样的是转发的方式,或者是xxx_vvv这种表示重定向,重新请求一个方法
+        include:
+            include保证了可以有很多个xml文件
+    Struts.xml和struts-default.xml:
+        这两个配置文件都是在服务器启动的时候加载的
+        这两个配置文件都放在了classPath的根目录:
+            struts.xml文件放在了src的根目录
+            struts-default.xml文件是在struts2核心包的根目录下
+        struts.xml文件是供程序员使用的
+        struts.default.xml文件是运行struts2底层的xml文件
+        先加载struts-default.xml文件,后加载struts.xml文件
+        因为dtd都一样,如果出现相同的元素,后者覆盖前者
+    关于action的写法:
+        1.  最简单的POJO,即为javaBean(没有继承关系):
+             public class HelloAction{
+                              	public String execute(){
+                              		return "success";
+                              	}
+                              }
+        2.  让一个action类实现接口Action:
+            public class HelloAction implements Action{
+            	/**
+            	*	如果实现了Action接口,应该把方法写在execute中
+            	*/
+            	public String execute(){
+            		return "success";
+            	}
+            }
+        3.  让一个action类继承ActionSupport:
+            ActionSupport中含有一些功能:
+                1.  国际化
+                2.  表单验证
+                如果让一个action类继承了ActionSupport就能直接使用ActionSupport中的国际化/表单验证等功能,亦是action写法中最为推荐的写法
+        如果再action的配置中这样配置:
+            <action name = "HelloAction">
+            	<result>xxx.jsp</result>
+            </action>
+            那么在struts-default.xml文件中有一句话将起作用:
+            	<default-class-ref class = "com.opensymphony.xwork2.ActionSupport"/>
+            这个时候将执行ActionSupport中的execute方法
+    Struts2的工作原理:
+        一个请求在struts2框架中的处理大概分为以下几个步骤:
+            1.  客户端初始化一个指向Servlet容器(例如Tomcat)的请求
+            2.  这个请求经过一系列的过滤器(Filter)(这些过滤器中有一个叫做ActionContextCleanUp的可选过滤器,这个过滤器对于Struts2和其他框架的集成很有帮助
+            3.  接着FilterDispatcher被调用,FilterDispatcher询问ActionMapper来决定这个请求是否需要调用某个Action
+                FilterDispatcher是空气的核心,就是MVC中C控制层的核心,FilterDispatcher进行初始化并启用核心doFilter
+            4.  如果ActionMapper决定需要调用某个Action,FilterDispatcher把请求的处理交给ActionProxy
+            5.  ActionProxy通过ConfigurationManager询问框架的配置文件,找到需要调用的Action类,这里,我们一般是从struts.xml配置中读取
+            6.  ActionProxy创建一个ActionInvocation的实例
+            7.  ActionInvocation实例使用命名模式来调用,在调用Action的过程前后,涉及到相关拦截器(Intercepter)的调用
+            8.  一旦Action执行完毕,ActionInvocation负责根据struts.xml中的配置找到对应的返回结果,返回结果通常是(但不总是,也可能是另外的一个Action链)一个需要被表示的JSP或者FreeMarker的模版,在表示的过程中可以使用Struts2框架中继承的标签,在这个过程中需要涉及到ActionMapper
+    在Action中访问ServletAPI:
+        1.  可以直接通过ServletActionContext类完成直接访问HttpServletRequest,HttpServletResponse,ServletContext对象
+            Action组件和这些ServletAPI耦合在一起,不利于软件维护
+        2.  提供ActionContext类:
+            Struts2将ServletAPI(HttpServletRequest,HttpSession,ServletContext)分别封装在Map中,完成了Action组件和ServletAPI的解耦
+            所以如果ActionContext能实现我们的功能就不要去使用ServletActionContext,让我们的action尽量不要去直接访问Servlet的相关对象,更符合面向对象的编程
+            不要再构造函数当中使用ActionContext,因为此时ActionContext里面的值也许还没有设置,同理,ServletActionContext也一样不要再构造函数当中使用
+        3.  实现RequestAware,SessionAware,ApplicationAware接口(推荐使用)
+            装配request,session,application对象的时机早,在检测Action组件的实现接口就完成了装配
+    OGNL的用法:
+        #号的用法:
+            在JSP中使用OGNL显示contextMap,访问OGNL上下文和Action上下文,#相当ActionContext.getContext()
+            构造Map,如#{'foo1':'bar1','foo2':'bar2'}
+            集合的投影(只输出部分属性)(过滤)
+        %号的用法:
+            "%"符号的用途是在标签的属性值被理解为字符串类型时,告诉执行环境%{}里的是OGNL表达式
+        $号的用法:
+            在Struts2配置文件中,引用OGNL表达式
+            用于在国际化资源文件中,引用OGNL表达式
+    在JSP中使用OGNL显示contextMap或者是根中的数据
+        获取contextMap中的数据,OGNL表达式要用#开头,#相当于ActionContext.getContext()
+        <s:property value="#p5"/>
+            获取request中的数据#request.p5
+                也可以写成#request['p5']
+        获取根(List)中的对象的属性,直接写属性的名称.[会从栈顶的对象一直往下找get方法,找到了就不要找]
+        <s:property value="month"/>
+        <%--获取第二个对象的month--%>
+        <s:property value="[2].month"/>
+    在JSP中取数据,可以使用OGNL表达式,也可以使用EL表达式
+        <s:property value="#request.p1"/>
+        ${p1}
+        <%--写了EL${}全域查找
+                1.  先找pageContextScope
+                2.  找request,如果找不到
+                3.  从栈顶开始找对象的属性(getXXX()),找不到
+                4.  将XXX作为key到context map中找,找不到
+                5.  session... --%>
+    JSP页面OGNL构造List,Map
+        <!-- 构造一个List对象 -->
+            <s:property value="{'a','b','c'}"/>
+        <!-- 构造一个Map对象 -->
+            <s:property value="#{'1':'男性','0':'女性'}"/>
+    OGNL表达式当做字符串输出'',字符串当做OGNL表达式%{}
+        <!-- 把OGNL表达式当做普通字符串对待-->
+            <s:property value="'sex'"/>
+        <!-- 把字符串当做OGNL表达式,使用百分号引起来-->
+            <s:textfield name="username" label="%{姓名}"/>
+Hibernate:
+    Hibernate简介:
+        简介:
+            Hibernate是由GAVIng King与2001年创建的开发源代码的对象关系框架,它强大且高效的构建具有关系对象持久性和查询服务的Java应用程序
+            Hibernate将Java类映射到数据库表中,从Java数据类型中映射到SQL数据类型中,并把开发人员从95%的公共数据持续性编程工作中解放出来
+            Hibernate是传统Java对象和数据库服务之间的桥梁,用来处理基于O/R映射机制和模式的那些对象
+        Hibernate优势:
+            Hibernate使用XML文件来处理映射Java类别到数据库表格中,并且不用编写任何代码
+            为在数据库中直接存储和检索java对象提供简单的APIs
+            如果再数据库中或任何其他表格中出现变化,那么仅需要改变XML文件属性
+            抽象不熟悉的SQL类型,并为我们提供工作中所熟悉的Java对象
+            Hibernate不需要应用程序服务器来操作
+            操控数据库中对象复杂的关联
+            最小化与访问数据的智能提取策略
+            提供简单的数据访问
+    Hibernate ORM:
+        JDBC:
+            JDBC代表Java Database Connectivity,它是提供了一组Java API来访问关系数据库的Java程序,
+            这些Java APIs可以使Java应用程序执行SQL语句,能够与任何符合SQL规范的数据库进行交互
+            JDBC提供了一个灵活的框架来编写操作数据库的独立的应用程序,该程序能够运行在不同的平台上且不需
+            修改,能够与不同的DBMS进行交互
+            JDBC的优点:
+                干净整洁的SQL处理
+                大数据下有良好的性能
+                对于小应用非常好
+                易学的简易语法
+            JDBC的缺点:
+                大项目中使用很复杂
+                很大的编程成本
+                没有封装
+                难以实现MVC的概念
+                查询需要制定DBMS
+        ORM(对象关系映射)
+            当我们工作在一个面向对象的系统中时,存在一个对象模型和关系数据不匹配的问题,RDBMSs用表格的形式存储数据,
+            然后像Java或C#这样的面向对象的语言它表示一个对象关联图
+            ORM在关系型数据库中加载和存储对象时可以解决的不匹配问题:
+                粒度不匹配:
+                    有时你将会有一个对象模型,该模型类的数量比数据库中关联的表的数量更多
+                继承不匹配:
+                    RDBMSs不会定义任何在面向对象编程语言中本来就有的继承
+                身份不匹配:
+                    RDBMS明确定义一个'sameness'的概念:主键,然而,Java同时定义了对象判等(a==b)和对象值判等(a.equals(b))
+                关联不匹配:
+                    面向对象的编程语言使用对象引用来表示关联,而一个RDBMS使用外键来表示对象关联
+                导航不匹配:
+                    在Java中和在RDBMS中访问对象的方式完全不相同
+            ORM表示Object-Relational Mapping,是一个方便在关系数据库和类似于Java,C#等面向对象的编程语言中转换数据的技术,
+            一个ORM系统相比于普通的JDBC有很多优点:
+                使用业务代码访问对象而不是数据库中的表
+                从面向对逻辑中隐藏SQL查询的细节
+                基于JDBC的under the hood
+                没有必要去处理数据库实现
+                实体是基于业务的概念而不是数据库的结构
+                事务管理和键的自动生成
+                应用程序的快速开发
+            一个ORM解决方案由这几个实体组成:
+                一个API来在持久类的对象上实现基本的CRUD操作
+                一个语言或API来指定引用类和属性的查询
+                一个可配置的服务用来指定映射元数据
+                一个技术和事务对象来执行dirty checking, lazy association fetching和其他优化功能
+            Java ORM框架:
+                在Java中有几个持久化的框架和ORM选项,一个持久化的框架是ORM存储和索引对象到关系型数据库的服务
+    Hibernate持久化类:
+        持久化类:
+            Hibernate的完整概念是提取Java类属性中的值,并且将它们保存到数据库表单中,映射文件能够保住Hibernate确定如何从该类中提取值,并将它们映射在表格和相关域中
+            Hibernate中,其对象或实例将会被存储在数据库表单中的Java类被称为持久化类,若该类遵循一些简单的规则或者被大家所熟知的Plain Old Java Object(POJO)编程模型,Hibernate将会处于其最佳运行状态
+            持久化类的主要规则,这些规则中,没有一条是硬性要求:
+                所有将被持久化的Java类都需要一个默认的构造函数
+                为了使对象能够在Hibernate和数据库中容易识别,所有类都必须包含一个ID,此属性映射到数据库表的主键列
+                所有将被持久化的属性都应该声明为private,并具有由JavaBean风格定义的get/set方法
+                Hibernate的一个重要特征为代理,它取决于该持久化类是处于非Final的,还是初一一个所有方法都声明为public的接口
+                所有的类是不可扩展或按EJB要求实现的一些特殊的类和接口
+            POJO的名称用于强调一个给定的对象是普通的Java对象,而不是特殊的对象,尤其不是一个Enterprise JavaBean
+    Hibernate缓存:
+        缓存:
+            缓存是关于应用程序性能的优化,降低了应用程序对物理数据源访问的频次,从而提高应用程序的运行性能,缓存对Hibernate来说也是重要的
+        一级缓存:
+            第一级缓存是Session缓存并且是一种强制性的缓存,所有的要求都必须通过它,session对象在它自己的权利之下,在将它提交给数据库之前保存一个对象
+            如果对一个对象发出多个更新,Hibernate会尝试尽可能长地延迟更新来减少发出的SQL更新语句的数目,如果关闭Session,所有缓存的对象丢失,或是存留,或是在数据库中被更新
+        二级缓存:
+            第二级缓存是一种可选择的缓存,并且第一级缓存在任何想要在第二级缓存中找到一个对象前将总是被询问,第二级缓存可以在每一个类和每一个集合的基础上被安装,并且它主要负责跨会话缓存对象
+            任何第三方缓存可以和Hibernate一起使用,org.hibernate.cache.CacheProvide接口被提供,它必须实现来给Hibernate提供一个缓存实现的解决方法
+        查询层次缓存
+            Hibernate也实现了一个和第二级缓存密切继承的查询结果集缓存
+            这是一个可选择的特点并且需要两个额外的物理缓存区域,它们保存着缓存的查询结果和表单上一次更新时的时间戳,这仅对以同一个参数频繁运行的查询来说是有用的
+        第二级缓存:
+            Hibernate使用默认的一级缓存并且你不用使用一级缓存
+            不是所有的类从缓存中获益,所以能关闭二级缓存是重要的
+            Hibernate的二级缓存通过两步设置,第一,必须决定好使用哪个并发策略,之后,使用缓存提供程序来配置缓存到期时间和物理缓存属性
+        并发策略:
+            一个并发策略的是一个中介,它负责保存缓存中的数据项和从缓存中检索他们,如果你将使用一个二级缓存,你必须决定,对于每一个持久类和集合,使用哪一个并发策略

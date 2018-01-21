@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="HibernateUtil:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/HibernateUtil_jar</output-path>
+    <root id="root">
+      <element id="archive" name="HibernateUtil.jar">
+        <element id="module-output" name="HibernateUtil" />
+      </element>
+      <element id="library" level="project" name="libs" />
+    </root>
+  </artifact>
+</component>

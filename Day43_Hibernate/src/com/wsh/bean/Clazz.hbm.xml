@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.wsh.bean.Clazz" table="class" schema="hibernate02">
+        <id name="cid">
+            <column name="cid" sql-type="int(11)"/>
+            <generator class="increment"/>
+        </id>
+        <property name="cname">
+            <column name="cname" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <set name="students" cascade="save-update" inverse="true">
+            <!--
+                inverse:
+                    逆转
+            -->
+            <!--
+                cascade:级联操作
+                值: save-update:
+                        在保存或更新班级时也同时保存或更新学生
+                        一般不会设置为all
+                        总不能班级没来了,学生也没了吧
+            -->
+            <!--
+                key标签:
+                    属性column:
+                        表示,根据什么值来确定集合的元素
+                        这里填多的那一方的外键
+            -->
+            <key column="ccc"/>
+            <!--
+                set标签:指定Clazz中类型为set集合的属性
+                one-to-many标签:
+                        表示这个集合是一对多关系的
+                        一个集合对应多个元素
+                        那么这个对值的是谁,由Class属性指定
+            -->
+            <one-to-many class="com.wsh.bean.Student"></one-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

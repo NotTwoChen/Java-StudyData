@@ -1,19 +1,18 @@
 package user.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import org.apache.commons.beanutils.BeanUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import user.bean.User;
 import user.service.UserService;
 import user.service.exception.LoginException;
-import user.service.exception.PasswordErrorException;
 import user.service.exception.UserExistsException;
-import user.service.exception.UserNoException;
+import util.VerificationCode;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
+import java.io.IOException;
 
 public class UserAction extends ActionSupport implements ServletRequestAware,ServletResponseAware {
     private static UserService us = new UserService();
@@ -32,7 +31,11 @@ public class UserAction extends ActionSupport implements ServletRequestAware,Ser
     public String register(){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        User user = new User(username, password);
+        String confirmPassword = request.getParameter("ConfirmPassword");
+        String telephone = request.getParameter("telephone");
+        String email = request.getParameter("email");
+        String code = request.getParameter("code");
+        User user = new User(username, password,telephone,email);
         String message = null;
         try {
             us.register(user);
@@ -41,6 +44,7 @@ public class UserAction extends ActionSupport implements ServletRequestAware,Ser
         }finally {
             if (message != null){
                 request.setAttribute("message",message);
+                request.setAttribute("form",user);
                 return ERROR;
             }
         }
@@ -58,9 +62,14 @@ public class UserAction extends ActionSupport implements ServletRequestAware,Ser
         } finally {
             if (message != null){
                 request.setAttribute("message",message);
+                request.setAttribute("form",user);
                 return ERROR;
             }
         }
         return SUCCESS;
     }
+    public String codeImg(){
+        return SUCCESS;
+    }
+
 }

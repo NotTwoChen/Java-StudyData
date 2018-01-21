@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="Struts 2" type="struts2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/antlr-2.7.7.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/classmate-1.3.0.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/dom4j-1.6.1.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/ehcache-2.10.1.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/geronimo-jta_1.1_spec-1.1.1.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/hibernate-commons-annotations-5.0.1.Final.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/hibernate-core-5.1.5.Final.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/hibernate-ehcache-5.1.5.Final.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/hibernate-jpa-2.1-api-1.0.0.Final.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/jandex-2.0.3.Final.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/javassist-3.20.0-GA.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/jboss-logging-3.3.0.Final.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/Hibernate/slf4j-api-1.7.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

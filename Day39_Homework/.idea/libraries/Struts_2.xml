@@ -20,9 +20,10 @@
       <root url="jar://$USER_HOME$/Desktop/libs/ognl-3.1.12.jar!/" />
       <root url="jar://$USER_HOME$/Desktop/libs/standard.jar!/" />
       <root url="jar://$USER_HOME$/Desktop/libs/struts2-core-2.5.10.1.jar!/" />
-      <root url="jar://$USER_HOME$/Desktop/mchange-commons-java-0.2.3.4.jar!/" />
       <root url="jar://$USER_HOME$/Desktop/libs/activation.jar!/" />
       <root url="jar://$USER_HOME$/Desktop/libs/c3p0-0.9.2.1.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/libs/mchange-commons-java-0.2.3.4.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/libs/VerifyCode.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

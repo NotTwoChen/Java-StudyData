@@ -34,7 +34,7 @@
 <div class="container">
     <form class="form-signin" action="<c:url value="login.action"/>" method="post">
         <h2 class="form-signin-heading">登录</h2>
-        <h3 class="form-signin-heading" style="color: red">${requestScope.message}</h3>
+        <h6 class="form-signin-heading" style="color: red">${requestScope.message}</h6>
         <input type="hidden" name="method" value="login">
         <input id="inputEmail" class="form-control" placeholder="Username" name="username" value="${requestScope.form.username}" type="text">
         <input id="inputPassword" class="form-control" placeholder="Password" name="password" type="password">

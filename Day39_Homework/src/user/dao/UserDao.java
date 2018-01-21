@@ -1,13 +1,10 @@
 package user.dao;
 
 import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
 import user.bean.User;
 import util.NewQueryRunner;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserDao {
     private static NewQueryRunner nqr = new NewQueryRunner();
@@ -23,7 +20,7 @@ public class UserDao {
         return user;
     }
     public void insert(User user){
-        sql = "insert into user values(null,?,?)";
+        sql = "insert into user values(null,?,?,?,?)";
         try {
             nqr.update(sql,user.getUsername(),user.getPassword());
         } catch (SQLException e) {

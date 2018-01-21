@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="book">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="bookstore"/>
+    <schema id="4" parent="1" name="day16"/>
+    <schema id="5" parent="1" name="day18"/>
+    <schema id="6" parent="1" name="day18_nightwork"/>
+    <schema id="7" parent="1" name="day19"/>
+    <schema id="8" parent="1" name="day20"/>
+    <schema id="9" parent="1" name="hero"/>
+    <schema id="10" parent="1" name="hibernate01"/>
+    <schema id="11" parent="1" name="hw_sql"/>
+    <schema id="12" parent="1" name="information_schema"/>
+    <schema id="13" parent="1" name="mysql"/>
+    <schema id="14" parent="1" name="user"/>
+    <schema id="15" parent="1" name="userdata"/>
+    <schema id="16" parent="1" name="hibernate02">
+      <Visible>1</Visible>
+    </schema>
+    <table id="17" parent="2" name="book"/>
+    <table id="18" parent="16" name="class"/>
+    <table id="19" parent="16" name="husband"/>
+    <table id="20" parent="16" name="role"/>
+    <table id="21" parent="16" name="role_users"/>
+    <table id="22" parent="16" name="student"/>
+    <table id="23" parent="16" name="user"/>
+    <table id="24" parent="16" name="user_roles"/>
+    <table id="25" parent="16" name="wife"/>
+    <column id="26" parent="17" name="bid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="27" parent="17" name="bookName">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="28" parent="17" name="author">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="29" parent="17" name="price">
+      <Position>4</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="30" parent="17" name="category">
+      <Position>5</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <key id="31" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>bid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="32" parent="18" name="cid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="33" parent="18" name="cname">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <key id="34" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>cid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="35" parent="19" name="hid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="36" parent="19" name="hname">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <key id="37" parent="19" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>hid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="38" parent="19" name="FKptv28p88d46h8hkes3t9g45jy">
+      <ColNames>hid</ColNames>
+      <RefSchemaName>hibernate02</RefSchemaName>
+      <RefTableName>wife</RefTableName>
+      <RefColNames>wid</RefColNames>
+    </foreign-key>
+    <column id="39" parent="20" name="rid">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="20" name="rname">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="41" parent="20" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>rid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="42" parent="21" name="uid">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="21" name="elt">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="44" parent="21" name="FKhwbpddpcfyt6nb8dvv6enpbws">
+      <ColNames>elt</ColNames>
+    </index>
+    <key id="45" parent="21" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>uid
+elt</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="46" parent="21" name="FKedn8gamx5689twb331gxes9pi">
+      <ColNames>uid</ColNames>
+      <RefSchemaName>hibernate02</RefSchemaName>
+      <RefTableName>role</RefTableName>
+      <RefColNames>rid</RefColNames>
+    </foreign-key>
+    <foreign-key id="47" parent="21" name="FKhwbpddpcfyt6nb8dvv6enpbws">
+      <ColNames>elt</ColNames>
+      <RefSchemaName>hibernate02</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>uid</RefColNames>
+    </foreign-key>
+    <column id="48" parent="22" name="sid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="49" parent="22" name="sname">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="50" parent="22" name="ccc">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <column id="51" parent="22" name="clazz">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="52" parent="22" name="FKaqanc1474ol7ireguvddibp6k">
+      <ColNames>ccc</ColNames>
+    </index>
+    <index id="53" parent="22" name="FK8nm5opb89arb2p92cv3v90oft">
+      <ColNames>clazz</ColNames>
+    </index>
+    <key id="54" parent="22" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>sid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="55" parent="22" name="FKaqanc1474ol7ireguvddibp6k">
+      <ColNames>ccc</ColNames>
+      <RefSchemaName>hibernate02</RefSchemaName>
+      <RefTableName>class</RefTableName>
+      <RefColNames>cid</RefColNames>
+    </foreign-key>
+    <foreign-key id="56" parent="22" name="student_class_cid_fk">
+      <ColNames>ccc</ColNames>
+      <RefSchemaName>hibernate02</RefSchemaName>
+      <RefTableName>class</RefTableName>
+      <RefColNames>cid</RefColNames>
+    </foreign-key>
+    <foreign-key id="57" parent="22" name="FK8nm5opb89arb2p92cv3v90oft">
+      <ColNames>clazz</ColNames>
+      <RefSchemaName>hibernate02</RefSchemaName>
+      <RefTableName>class</RefTableName>
+      <RefColNames>cid</RefColNames>
+    </foreign-key>
+    <column id="58" parent="23" name="uid">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="59" parent="23" name="uname">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="60" parent="23" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>uid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="61" parent="24" name="rid">
+      <Position>1</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="62" parent="24" name="elt">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="63" parent="24" name="FK6qv10ciwhwq6itx1epqx5bb96">
+      <ColNames>elt</ColNames>
+    </index>
+    <key id="64" parent="24" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>rid
+elt</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="65" parent="24" name="FKo4i445mpjs0o9bobvn65ejujm">
+      <ColNames>rid</ColNames>
+      <RefSchemaName>hibernate02</RefSchemaName>
+      <RefTableName>user</RefTableName>
+      <RefColNames>uid</RefColNames>
+    </foreign-key>
+    <foreign-key id="66" parent="24" name="FK6qv10ciwhwq6itx1epqx5bb96">
+      <ColNames>elt</ColNames>
+      <RefSchemaName>hibernate02</RefSchemaName>
+      <RefTableName>role</RefTableName>
+      <RefColNames>rid</RefColNames>
+    </foreign-key>
+    <column id="67" parent="25" name="wid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="68" parent="25" name="wname">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <key id="69" parent="25" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>wid</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

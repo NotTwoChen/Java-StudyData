@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.wsh.work.bean.Staff" table="staff" schema="work">
+        <id name="sid">
+            <column name="sid" sql-type="int(11)"/>
+            <generator class="increment"/>
+        </id>
+        <property name="name">
+            <column name="name" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="age">
+            <column name="age" sql-type="int(11)" not-null="true"/>
+        </property>
+        <property name="branch">
+            <column name="branch" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="hiredate">
+            <column name="hiredate" sql-type="date" not-null="true"/>
+        </property>
+        <property name="address">
+            <column name="address" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="telephone">
+            <column name="telephone" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

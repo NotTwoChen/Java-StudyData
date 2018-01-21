@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <package name="staff" extends="struts-default">
+        <interceptors>
+            <interceptor name="interceptor" class="com.wsh.work.action.Interceptor">
+                <param name="excludeMethods">login</param>
+            </interceptor>
+            <interceptor-stack name="interceptor">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="interceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="interceptor"/>
+        <default-class-ref class="com.wsh.work.action.StaffAction"/>
+        <global-results>
+            <result name="error">login.jsp</result>
+        </global-results>
+        <action name="login" class="com.wsh.work.action.UserAction" method="login">
+            <result name="success">home.jsp</result>
+            <result name="error">login.jsp</result>
+        </action>
+        <action name="staffs" class="com.wsh.work.action.StaffAction" method="queryAll">
+            <result name="success">staffs.jsp</result>
+        </action>
+        <action name="staff" class="com.wsh.work.action.StaffAction" method="query">
+            <result name="success">staff.jsp</result>
+        </action>
+        <action name="update" class="com.wsh.work.action.StaffAction" method="update">
+            <result name="success" type="redirect">staffs.action</result>
+        </action>
+        <action name="insert" class="com.wsh.work.action.StaffAction" method="insert">
+            <result name="success" type="redirect">staffs.action</result>
+        </action>
+    </package>
+</struts>
