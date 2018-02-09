@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--
+        将c3p0的配置文件,导入到spring容器中
+    -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="classpath:c3p0.properties"/>
+    </bean>
+    <!--
+        创建一个ComboPooledDataSource类的对象
+        为该对象指定四个属性
+        属性值,从上面导入的配置文件中获取
+    -->
+    <bean id="datasource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    <!--
+        让spring帮我们创建sessionFactory对象
+        指定该对象的dataSource属性(c3p0中配置的信息)
+        指定configLocation(Hibernate的配置文件)
+    -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="datasource"/>
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+    </bean>
+
+    <bean id="user" class="com.wsh.study.domain.User">
+    </bean>
+    <bean id="userDao" class="com.wsh.study.dao.UserDaoImpl">
+        <property name="user" ref="user"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" isolation="DEFAULT" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="update*" read-only="false"/>
+            <tx:method name="*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+   <aop:config>
+    <aop:pointcut id="txPointcut" expression="execution(* com.wsh.study.dao.UserDaoImpl.*(..))"/>
+    <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+</aop:config>
+
+</beans>

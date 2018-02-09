@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <!--开发模式-->
+    <constant name="struts.devMode" value="true"/>
+    <!--指定struts2标签的主题-->
+    <constant name="struts.ui.theme" value="simple"/>
+    <!--共性action-->
+    <package name="common" namespace="/" extends="struts-default">
+        <interceptors>
+            <interceptor name="loginInterceptor" class="com.wsh.crm.staff.web.interceptor.LoginInterceptor"/>
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="loginInterceptor">
+                    <param name="excludeMethods">login</param>
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="loginStack"/>
+        <global-results>
+            <result name="login">/WEB-INF/pages/login.jsp</result>
+        </global-results>
+        <action name="uiAction_*_*">
+            <result>/WEB-INF/pages/{1}/{2}.jsp</result>
+        </action>
+    </package>
+    <include file="struts/struts-staff.xml"/>
+    <include file="struts/struts-post.xml"/>
+    <include file="struts/struts-department.xml"/>
+    <include file="struts/struts-courseType.xml"/>
+    <include file="struts/struts-classes.xml"/>
+
+</struts>

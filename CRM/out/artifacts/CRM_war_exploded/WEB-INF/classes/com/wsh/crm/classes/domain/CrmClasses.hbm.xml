@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.wsh.crm.classes.domain.CrmClasses" table="crm_classes" schema="crm" lazy="false">
+        <id name="classId">
+            <column name="classId" sql-type="varchar(50)" length="50"/>
+            <generator class="uuid"/>
+        </id>
+        <property name="name">
+            <column name="name" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="beginTime">
+            <column name="beginTime" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="endTime">
+            <column name="endTime" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="status">
+            <column name="status" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="totalCount">
+            <column name="totalCount" sql-type="int(11)"/>
+        </property>
+        <property name="upgradeCount">
+            <column name="upgradeCount" sql-type="int(11)"/>
+        </property>
+        <property name="changeCount">
+            <column name="changeCount" sql-type="int(11)"/>
+        </property>
+        <property name="runoffCount">
+            <column name="runoffCount" sql-type="int(11)"/>
+        </property>
+        <property name="remark">
+            <column name="remark" sql-type="varchar(500)" length="500" not-null="true"/>
+        </property>
+        <property name="uploadTime">
+            <column name="uploadTime" sql-type="datetime"/>
+        </property>
+        <property name="uploadPath">
+            <column name="uploadPath" sql-type="varchar(200)" length="200"/>
+        </property>
+        <property name="uploadFilename">
+            <column name="uploadFilename" sql-type="varchar(100)" length="100"/>
+        </property>
+        <many-to-one name="crmCourseType" column="courseTypeId" class="com.wsh.crm.course.domain.CrmCourseType" cascade="all" lazy="false"/>
+    </class>
+</hibernate-mapping>

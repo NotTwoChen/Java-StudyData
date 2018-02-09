@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wsh.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.wsh.domain.User" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gender" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="birthday" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <resultMap id="user" type="com.wsh.domain.User">
+    <id property="id" column="id"/>
+    <result property="username" column="username"/>
+    <result property="gender" column="gender"/>
+    <result property="birthday" column="birthday"/>
+    <result property="address" column="address"/>
+    <collection property="ordersList" ofType="com.wsh.domain.Orders">
+      <id property="id" column="oid"/>
+      <result property="number" column="number"/>
+      <result property="userId" column="user_id"/>
+      <result property="createtime" column="createtime"/>
+      <result property="note" column="note"/>
+      <collection property="orderDetailList" ofType="com.wsh.domain.OrderDetail">
+        <id property="id" column="odid"/>
+        <result property="ordersId" column="orders_Id"/>
+        <result property="itemsId" column="items_Id"/>
+        <result property="itemsNum" column="items_Num"/>
+        <association property="items" javaType="com.wsh.domain.Items">
+          <id property="id" column="iid"/>
+          <result property="name" column="name"/>
+        </association>
+      </collection>
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, gender, birthday, address
+  </sql>
+  <sql id="user_sql">
+        User.id,User.username,User.gender,User.birthday,User.address
+  </sql>
+  <sql id="orders_sql">
+        Orders.id oid,Orders.number,Orders.user_id,Orders.createtime,Orders.note
+  </sql>
+  <sql id="orderDetail_sql">
+        OrderDetail.id odid,OrderDetail.orders_id,OrderDetail.items_id,OrderDetail.items_num
+  </sql>
+  <sql id="items_sql">
+        Items.id iid,Items.name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectUsers" resultMap="user">
+    SELECT
+    <include refid="user_sql"/>,
+    <include refid="orders_sql"/>,
+    <include refid="orderDetail_sql"/>,
+    <include refid="items_sql"/>
+    from User,Orders,OrderDetail,Items
+    where User.id = Orders.user_id
+    AND Orders.id = OrderDetail.orders_id
+    AND OrderDetail.items_id = Items.id
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wsh.domain.User">
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user (id, username, gender, 
+      birthday, address)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{address,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wsh.domain.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsh.domain.User" >
+    update user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wsh.domain.User" >
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      address = #{address,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

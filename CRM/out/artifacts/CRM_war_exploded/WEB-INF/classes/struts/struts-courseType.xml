@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="courseType" extends="common">
+        <action name="courseType_*" class="com.wsh.crm.course.web.action.CourseTypeAction" method="{1}">
+            <result name="success" type="chain">uiAction_coursetype_listCourse</result>
+            <result name="success2" type="chain">uiAction_classesm_addOrEditClass</result>
+            <result name="find" type="chain">uiAction_coursetype_addOrEditCourse</result>
+            <result name="edit" type="redirectAction">courseType_findAll</result>
+            <result name="asp" type="chain">uiAction_coursetype_listCourse</result>
+            <allowed-methods>findAll,findByCourseTypeId,edit,findByASP,findAll2</allowed-methods>
+        </action>
+    </package>
+</struts>

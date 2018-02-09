@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <package name="department" extends="common">
+        <action name="department_*" class="com.wsh.crm.department.web.action.DepartmentAction" method="{1}">
+            <result name="success" type="chain">uiAction_staff_editStaff</result>
+            <result name="success2" type="chain">post_findAll</result>
+            <result name="success3" type="chain">uiAction_staff_addStaff</result>
+            <result name="success4" type="chain">uiAction_post_addOrEditPost</result>
+            <result name="allDepartment" type="chain">uiAction_department_listDepartment</result>
+            <result name="find" type="chain">uiAction_department_addOrEditDepartment</result>
+            <result name="edit" type="redirectAction">department_findAllDepartment</result>
+            <allowed-methods>findAll,findAll2,findAll3,findAll4,findAllDepartment,findByDepId,edit</allowed-methods>
+        </action>
+    </package>
+</struts>

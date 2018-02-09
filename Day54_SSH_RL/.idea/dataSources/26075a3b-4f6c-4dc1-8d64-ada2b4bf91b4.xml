@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="book">
+      <Current>1</Current>
+    </schema>
+    <schema id="3" parent="1" name="bookstore"/>
+    <schema id="4" parent="1" name="crm"/>
+    <schema id="5" parent="1" name="day16"/>
+    <schema id="6" parent="1" name="day18"/>
+    <schema id="7" parent="1" name="day18_nightwork"/>
+    <schema id="8" parent="1" name="day19"/>
+    <schema id="9" parent="1" name="day20"/>
+    <schema id="10" parent="1" name="hero"/>
+    <schema id="11" parent="1" name="hibernate01"/>
+    <schema id="12" parent="1" name="hibernate02"/>
+    <schema id="13" parent="1" name="hw_sql"/>
+    <schema id="14" parent="1" name="information_schema"/>
+    <schema id="15" parent="1" name="mybatis"/>
+    <schema id="16" parent="1" name="mysql"/>
+    <schema id="17" parent="1" name="sph"/>
+    <schema id="18" parent="1" name="ssh"/>
+    <schema id="19" parent="1" name="user"/>
+    <schema id="20" parent="1" name="userdata"/>
+    <schema id="21" parent="1" name="work"/>
+    <schema id="22" parent="1" name="ssh_maven">
+      <Visible>1</Visible>
+    </schema>
+    <table id="23" parent="22" name="user"/>
+    <column id="24" parent="23" name="uid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="25" parent="23" name="username">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <column id="26" parent="23" name="password">
+      <Position>3</Position>
+      <DataType>varchar(50)|0</DataType>
+    </column>
+    <key id="27" parent="23" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>uid</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

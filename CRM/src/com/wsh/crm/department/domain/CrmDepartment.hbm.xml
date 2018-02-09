@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.wsh.crm.department.domain.CrmDepartment" table="crm_department" schema="crm" lazy="false">
+        <id name="depId">
+            <column name="depId" sql-type="varchar(255)"/>
+            <generator class="uuid"/>
+        </id>
+        <property name="depName">
+            <column name="depName" sql-type="varchar(50)" length="50" not-null="true"/>
+        </property>
+        <set name="posts" lazy="false">
+            <key column="depId"/>
+            <one-to-many class="com.wsh.crm.post.domain.CrmPost"/>
+        </set>
+    </class>
+</hibernate-mapping>

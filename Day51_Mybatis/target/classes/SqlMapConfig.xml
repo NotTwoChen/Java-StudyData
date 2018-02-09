@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration><!--配置mybatis的环境信息-->
+    <typeAliases>
+        <typeAlias type="com.wsh.domain.User" alias="user"/>
+        <typeAlias type="com.wsh.domain.UserQueryVO" alias="userQueryVO"/>
+        <typeAlias type="com.wsh.domain.Orders" alias="orders"/>
+        <typeAlias type="com.wsh.domain.OrderDetail" alias="orderDetail"/>
+        <typeAlias type="com.wsh.domain.Items" alias="items"/>
+        <package name="com.wsh.domain"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <!-- 配置JDBC事务控制，由mybatis进管-->
+            <transactionManager type="JDBC"/>
+            <!-- 配置数据源，采 dbcp连接池 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="User.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/UserDynamicMapper.xml"/>
+        <mapper resource="mapper/OrdersMapper.xml"/>
+        <!--<package name="com.wsh.mapper"/>-->
+    </mappers>
+</configuration>

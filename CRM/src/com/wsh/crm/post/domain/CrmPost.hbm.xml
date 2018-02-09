@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.wsh.crm.post.domain.CrmPost" table="crm_post" schema="crm" lazy="false">
+        <id name="postId">
+            <column name="postId" sql-type="varchar(255)"/>
+            <generator class="uuid"/>
+        </id>
+        <property name="postName">
+            <column name="postName" sql-type="varchar(100)" length="100" not-null="true"/>
+        </property>
+        <set name="crmStaffs" lazy="false">
+            <key column="postId"/>
+            <one-to-many class="com.wsh.crm.staff.domain.CrmStaff"/>
+        </set>
+        <many-to-one name="crmDepartment" column="depId" class="com.wsh.crm.department.domain.CrmDepartment" lazy="false" cascade="all"/>
+    </class>
+</hibernate-mapping>

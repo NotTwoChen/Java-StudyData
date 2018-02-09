@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="car" class="com.wsh.di.Car">
+        <constructor-arg name="name" value="玛莎拉蒂"/>
+    </bean>
+    <bean id="per" class="com.wsh.di.Person">
+        <constructor-arg name="name" value="我是有参构造方法传入参数name"/>
+        <constructor-arg name="car" ref="car"/>
+        <constructor-arg>
+            <list>
+                <value>我是有参构造方法传入参数list</value>
+                <ref bean="car"/>
+            </list>
+        </constructor-arg>
+        <constructor-arg>
+            <set>
+                <value>我是有参构造方法传入参数set</value>
+                <ref bean="car"/>
+            </set>
+        </constructor-arg>
+        <constructor-arg>
+            <map>
+                <entry key="map1" value="我是有参构造方法传入参数map"/>
+                <entry key="map2" value-ref="car"/>
+            </map>
+        </constructor-arg>
+        <constructor-arg>
+            <props>
+                <prop key="p1">我是有参构造方法传入参数properties</prop>
+                <prop key="p2">pp2</prop>
+            </props>
+        </constructor-arg>
+        <constructor-arg>
+            <array>
+                <value>我是有参构造方法传入参数obj</value>
+                <ref bean="car"/>
+            </array>
+        </constructor-arg>
+    </bean>
+    <bean id="per2" class="com.wsh.di.Person">
+        <property name="name" value="我是无参构造方法set属性name"/>
+        <property name="car" ref="car"/>
+        <property name="list">
+            <list>
+                <value>我是无参构造方法set属性list</value>
+                <ref bean="car"/>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>我是无参构造方法set属性set</value>
+                <ref bean="car"/>
+            </set>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="m1" value="我是无参构造方法set属性map"/>
+                <entry key="m2" value-ref="car"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="p1">我是无参构造方法set属性properties</prop>
+                <prop key="p2">pp2</prop>
+            </props>
+        </property>
+        <property name="objects">
+            <array>
+                <value>我是无参构造方法set属性object[]</value>
+                <ref bean="car"/>
+            </array>
+        </property>
+    </bean>
+</beans>

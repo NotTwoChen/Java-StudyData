@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="post" extends="common">
+        <action name="post_*" class="com.wsh.crm.post.web.action.PostAction" method="{1}">
+            <result name="success2" type="chain">uiAction_staff_listStaff</result>
+            <result name="allPost" type="chain">uiAction_post_listPost</result>
+            <result name="edit" type="chain">department_findAll4</result>
+            <result name="update" type="redirectAction">post_findAll3</result>
+            <allowed-methods>findByDepId,findAll,findAllPost,editPost,update</allowed-methods>
+        </action>
+    </package>
+</struts>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven/>
+
+    <context:component-scan base-package="com.wsh"/>
+
+    <mvc:default-servlet-handler/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:db.properties"/>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${db.driver}"/>
+        <property name="jdbcUrl" value="${db.url}"/>
+        <property name="user" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+        <property name="initialPoolSize" value="${db.initialPoolSize}"/>
+        <property name="maxIdleTime" value="${db.maxIdleTime}"/>
+        <property name="maxPoolSize" value="${db.maxPoolSize}"/>
+        <property name="minPoolSize" value="${db.minPoolSize}"/>
+        <property name="acquireIncrement" value="${db.acquireIncrement}"/>
+        <property name="acquireRetryDelay" value="${db.acquireRetryDelay}"/>
+        <property name="acquireRetryAttempts" value="${db.acquireRetryAttempts}"/>
+        <property name="breakAfterAcquireFailure" value="${db.breakAfterAcquireFailure}"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>-->
+        <property name="mapperLocations" value="classpath*:com/wsh/*/dao/*.xml"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.wsh.*.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="txManager"/>
+</beans>

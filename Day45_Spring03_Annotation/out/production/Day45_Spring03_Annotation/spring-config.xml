@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--
+        若想使用注解
+        则必须要在配置文件中添加下面这句话
+        context->是一个命名空间
+        写了以后,会在<beans>标签中添加一个属性
+        xmlns:context=...
+        还会在xsi:schemaLocation后面的字符串中添加一些内容
+    -->
+    <!--
+        下面的这个标签:扫描
+        表示要扫描哪些包,获取该包中被注解标识的bean
+    -->
+    <context:component-scan base-package="com.wsh.annotation"/>
+    <bean id="people" class="com.wsh.annotation.People">
+        <property name="name" value="没希望"/>
+    </bean>
+    <!--
+        指定student这个bean的父bean是people
+        people这个bean,已经被赋值了name
+        所以在此获得student时,就可以输出name了
+    -->
+    <bean id="student" class="com.wsh.annotation.Student" parent="people"/>
+</beans>

@@ -1,0 +1,55 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <!--指定Spring配置文件件-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext-mybatis.xml</param-value>
+  </context-param>
+
+
+  <context-param>
+    <param-name>log4jRefreshInterval</param-name>
+    <param-value>60000</param-value>
+  </context-param>
+
+  <!--字符编码配置-->
+  <filter>
+    <filter-name>characterEncoding</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter
+    </filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>characterEncoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <listener>
+    <listener-class>
+      org.springframework.web.context.ContextLoaderListener
+    </listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet
+    </servlet-class>
+
+    <!--指定SpringMVC配置文件-->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:applicationContext-mybatis.xml</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+</web-app>

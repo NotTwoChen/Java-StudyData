@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="Spring" type="spring">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/spring/spring-tx-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/spring/commons-logging-1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/spring/spring-beans-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/spring/aspectjrt.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/spring/spring-web-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/spring/spring-core-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/spring/spring-jdbc-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/spring/spring-expression-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/spring/spring-aop-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/spring/spring-context-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/spring/spring-orm-4.3.8.RELEASE.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/spring/aspectjweaver.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

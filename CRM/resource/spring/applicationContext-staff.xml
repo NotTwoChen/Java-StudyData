@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="crmStaff" class="com.wsh.crm.staff.domain.CrmStaff">
+        <property name="crmPost" ref="crmPost"/>
+    </bean>
+
+    <bean id="staffDao" class="com.wsh.crm.staff.dao.impl.StaffDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="staffService" class="com.wsh.crm.staff.service.impl.StaffServiceImpl">
+        <property name="staffDao" ref="staffDao"/>
+    </bean>
+
+    <bean id="staffAction" class="com.wsh.crm.staff.web.action.StaffAction" scope="prototype">
+        <property name="staffService" ref="staffService"/>
+        <property name="crmStaff" ref="crmStaff"/>
+    </bean>
+</beans>

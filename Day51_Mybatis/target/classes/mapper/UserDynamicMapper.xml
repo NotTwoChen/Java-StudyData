@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wsh.mapper.UserDynamicMapper">
+
+    <select id="findUsersByQueryVO" parameterType="userQueryVO" resultType="user">
+        SELECT * FROM USER
+        <where>
+            <if test="userExt != null">
+                <if test="userExt.gender != null and userExt.gender != ''">
+                    AND gender = #{userExt.gender}
+                </if>
+                <if test="userExt.username != null and userExt.username != ''">
+                    AND username LIKE '%${userExt.username}%'
+                </if>
+            </if>
+        </where>
+    </select>
+    <select id="findUsersCount" parameterType="userQueryVO" resultType="int">
+        SELECT COUNT(1) FROM USER
+        <where>
+            <if test="userExt != null">
+                <if test="userExt.gender != null and userExt.gender != ''">
+                    AND gender = #{userExt.gender}
+                </if>
+                <if test="userExt.username != null and userExt.username != ''">
+                    AND username LIKE '%${userExt.username}%'
+                </if>
+            </if>
+        </where>
+    </select>
+
+    <sql id="select_user_where">
+        <if test="userExt != null">
+            <if test="userExt.gender != null and userExt.gender != ''">
+                AND gender = #{userExt.gender}
+            </if>
+            <if test="userExt.username != null and userExt.username != ''">
+                AND username LIKE '%${userExt.username}%'
+            </if>
+        </if>
+        <if test="idList != null and idList.size > 0">
+            <foreach collection="idList" item="id" open="AND id IN (" close=")" separator=",">
+                #{id}
+            </foreach>
+        </if>
+    </sql>
+    <select id="findUserList" parameterType="userQueryVO" resultType="user">
+        SELECT * FROM USER
+        <where>
+            <include refid="select_user_where"/>
+        </where>
+    </select>
+
+    <select id="findUsersCount2" parameterType="userQueryVO" resultType="int">
+        SELECT COUNT(1) FROM USER
+        <where>
+            <include refid="select_user_where"/>
+        </where>
+    </select>
+
+    <select id="findUsersByIdList" parameterType="java.util.List" resultType="user">
+        SELECT * FROM USER
+        <where>
+            <if test="list != null and list.size > 0 ">
+                <foreach collection="list" item="id" open="AND id IN (" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

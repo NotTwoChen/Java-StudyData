@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Desktop/libs/c3p0-0.9.2.1.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/libs/mchange-commons-java-0.2.3.4.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/libs/mysql-connector-java-5.1.18-bin.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/libs/jstl-1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/libs/standard.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/libs/json-lib-2.4-jdk15.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/libs/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/libs/commons-beanutils-1.8.3.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/libs/commons-logging-1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

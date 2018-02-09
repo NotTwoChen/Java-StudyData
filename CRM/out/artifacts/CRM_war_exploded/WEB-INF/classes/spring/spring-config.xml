@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:component-scan base-package="com.wsh.crm.*"/>
+    <!--公共配置-->
+    <!--1.1加载properties文件-->
+    <context:property-placeholder location="classpath:jdbcInfo.properties"/>
+
+    <!--1.2配置数据源-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driverClass}"/>
+        <property name="jdbcUrl" value="${jdbc.jdbcUrl}"/>
+        <property name="user" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--2.构建sessionFactory相关信息-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <!--<prop key="hibernate.show_sql">true</prop>-->
+                <!--<prop key="hibernate.format_sql">true</prop>-->
+            </props>
+        </property>
+        <property name="mappingLocations" value="classpath*:com/wsh/crm/*/domain/*.hbm.xml"/>
+    </bean>
+    <!--3.1指定事务管理器,帮助我们管理事务-->
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--3.2事务详情:增删改,读,写,查,只读等设置问题-->
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="add*"/>
+            <tx:method name="insert*"/>
+            <tx:method name="delete*"/>
+            <tx:method name="update*"/>
+            <tx:method name="login*" read-only="true"/>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="query*" read-only="true"/>
+            <tx:method name="*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+    <!--配置aop,绑定通知与切入点-->
+    <aop:config>
+        <!--service包及其子包下-->
+        <aop:advisor advice-ref="txAdvice"  id="operateTransaction" pointcut="execution(* com.wsh.crm.*.service..*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice"  id="operateTransaction" pointcut="execution(* com.wsh.crm.*.dao..*.*(..))"/>
+    </aop:config>
+
+    <import resource="classpath*:spring/applicationContext-*.xml"/>
+</beans>

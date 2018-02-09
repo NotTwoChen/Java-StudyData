@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" isolation="DEFAULT" propagation="REQUIRED" read-only="false"/>
+            <tx:method name="update*"/>
+            <tx:method name="*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:pointcut id="txPointcut" expression="execution(* com.wsh.ssh.dao.*Impl.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+    </aop:config>
+    <bean id="userDao" class="com.wsh.ssh.dao.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="userService" class="com.wsh.ssh.service.UserService">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+    <bean id="userAction" class="com.wsh.ssh.web.controller.UserAction" scope="prototype">
+        <property name="userService" ref="userService"/>
+    </bean>
+</beans>

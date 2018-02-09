@@ -1,0 +1,165 @@
+ 1.SSH：HibernateTemplate使用
+
+              save、update、delete、saveOrUpdate、find、execute(CallBack)
+
+       2.SSH：spring配置
+
+              2.1加载properties文件(<context:property-placeholder>)
+
+              2.2配置 c3p0数据源(ComboPooledDataSource)
+
+              2.3加载SessionFactory(LocalSessionFactoryBean)
+
+              2.4事务管理(HibernateTransactionManager、<tx:advice>、<aop:config>)
+
+              2.5加载其他资源( <importresource=""> 或 web.xml applicationContext-*.xml)
+
+              2.6bean配置和依赖注入(<bean><property>)
+
+              2.7OpenSessionInViewFilter使用获得hibernate关联数据
+
+       3.SSH：struts配置
+
+              3.1配置拦截器
+
+                     注册拦截(<interceptor>)
+
+                     自定义拦截器栈(<interceptor-stack>)
+
+                     声明默认拦截器栈(<default-interceptor-ref>)
+
+              3.2全局结果集(<global-results>)
+
+              3.3加载其他xml配置文件(<include>)
+
+              3.4配置struts json ，使用ajax
+
+                     <packageextends="json-default">
+
+                     <resulttype="json">
+
+              3.5结果集使用：dispatcher、redirectAction、json、stream
+
+              3.6xml表单校验(...Action-actionName-validation.xml)
+
+              3.7文件上传(File xxx 、String xxxFileName、String xxxContentType)
+
+              3.8文件下载(type="stream"、InputStream xxx、中文乱码)
+
+              3.9标签使用(获得值栈数据、遍历数据等)
+
+              1.多的一方的表中维护一的一方的主键
+
+              例如:
+
+              员工表、部门表，一个部门下面有多个员工，是一对多的关系。所以员工表中的部门编号就是外键。部门表（一的一方）是主表，员工表（多的一方）是副表或从表。
+
+              2.在从表中引用外键的写法:
+
+              例如:
+
+              一个职务下有多名员工，所以员工表中需要维护外键：
+
+              constrant foreing key('postId') references 'post_table'('postId');
+
+              中文翻译:限制（或者约束）外键('职务Id') 参考 职务表('职务Id');
+
+              3.Action类中查询所有后将结果放在值栈中有三种方式:
+
+              1).ActionContext.getContext().put(key,value):得到操作域对象数据的map集合
+
+              jsp页面获取方式:"#key"
+
+              2).root(值栈)，一般数据为javabean对象或者map
+
+              ActionContext.getContext.getValueStackpush();
+
+              jsp页面获取方式:属性名或者key
+
+              3).root(值栈)，一般数据为list集合
+
+              ActionContext.getContext.getValueStack.set(key,value);
+
+              jsp页面获取的方式:"key",set()方法的底层是new Map(),然后push(map),实际上还是走了2）的过程。
+
+              4.jsp页面显示入职日期需要注意，只需要显示年月日
+
+              实体类中的日期是Date类型的:
+
+              private Date onDutyDate
+
+              对应的实体类的映射文件应该这么写:
+
+              <!-- 入职日期：只要年月日即可 -->
+
+                  <property name="onDutyDate">
+                      <column name="onDutyDate" sql-type="datatime"></column>
+                  </property>
+
+              对应的jsp表单应该转换一下这么写:
+
+                  <td align="center"><s:date name = "onDutyDate" format = "yyyy-MM-dd"/></td>
+
+                时间的数据类型是datetime类型，年月日时分秒的形式。所以我们需要进行手动的转换，这个要注意。
+
+                5.service层需要使用MD5把从页面获取到的密码进行加密然后调用dao的find的方法去数据库中找：
+
+                6.拦截器的常用的三套使用方法
+
+                    <!-- 2.2 拦截器配置 常用的三套方案
+                    * 先声明
+                    方法1：每一个action单独使用,需要多次引用，否则默认将被覆盖
+                        <action name="">
+                            <interceptor-ref name="defaultStack"></interceptor-ref>
+                            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+                        </action>
+                    方法2：将多个拦截器打包生成自定义栈，action使用栈
+                        * 自定义拦截器栈
+                        <interceptor-stack name="loginStack">
+                            <interceptor-ref name="defaultStack"></interceptor-ref>
+                            <interceptor-ref name="loginInterceptor"></interceptor-ref>
+                        </interceptor-stack>
+                        * action引用
+                        <action name="">
+                            <interceptor-ref name="loginStack"></interceptor-ref>
+                        </action>
+                    方法3：将自定义栈，把默认栈覆盖
+                        <default-interceptor-ref name="loginStack"></default-interceptor-ref>
+                    -->
+
+                    项目开发过程中遇到的问题总结:
+
+                    1).
+
+                    .connectionException.
+
+                    引起的原因:mysql数据库没有打开
+
+
+                    2).
+
+                    org.hibernate.exception.SQLGrammarException: could not load an entity: [com.itheima.crm.post.domain.CrmPost#2c9091c14c78e58b014c78e6f2340005]
+                    引起的原因：
+
+                            <!-- 多对一:(多个职务属于一个部门,一个部门下拥有多个职务) -->
+                            <many-to-one name="department" class="com.itheima.crm.department.domain.CrmDepartment"
+                            column="depId"></many-to-one>
+                            depId 写成了 departmentId!把多的一方维护一的一方的主键写错了！
+
+
+                    3).
+
+                    expected type: java.util.HashSet, actual value: org.hibernate.collection.PersistentSet
+                    原因:实体类使用set接口的实现类来接收
+                    private HashSet<CrmStaff> staffSet = new HashSet<CrmStaff>();
+                    应该
+                    private Set<CrmStaff> staffSet = new HashSet<CrmStaff>();
+
+
+                    4).
+
+                    Caused by: java.lang.IllegalArgumentException: 'sessionFactory' or 'hibernateTemplate' is required
+
+
+
+                    引起的原因:service实现类继承了HibernateDaoSupport！但是又没有跟dao类一样在spring配置文件中维护SessionFactory对象！所以报这个错！

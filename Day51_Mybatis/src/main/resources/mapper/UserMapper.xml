@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsh.mapper.UserMapper">
+    
+    <resultMap id="userResultMap" type="user">
+        <id column="id_" property="id"/>
+        <result column="username_" property="username"/>
+        <result column="gender_" property="gender"/>
+        <result column="birthday_" property="birthday"/>
+        <result column="address_" property="address"/>
+    </resultMap>
+
+    <select id="findUserByIdResultMap" parameterType="int" resultMap="userResultMap">
+        SELECT id id_,username username_,gender gender_,birthday birthday_,address address_ FROM USER WHERE id = #{id}
+    </select>
+
+    <insert id="insertUser" parameterType="user" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO USER VALUES (#{id},#{username},#{gender},#{birthday},#{address})
+    </insert>
+
+    <select id="findUsersByName" parameterType="java.lang.String" resultType="user">
+        SELECT * FROM USER WHERE username like '%${value}%'
+    </select>
+
+    <select id="findUserById" parameterType="int" resultType="user">
+        SELECT * FROM USER WHERE id = #{id}
+    </select>
+
+    <!--<delete id="deleteUser" parameterType="int">-->
+        <!--DELETE FROM USER WHERE id = #{id}-->
+    <!--</delete>-->
+
+    <!--<update id="updateUser" parameterType="com.wsh.domain.User">-->
+        <!--UPDATE USER SET username=#{username},gender=#{gender},birthday=#{birthday},address=#{address} WHERE id = #{id}-->
+    <!--</update>-->
+</mapper>

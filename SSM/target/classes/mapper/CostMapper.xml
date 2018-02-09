@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wsh.cost.dao.CostMapper" >
+  <resultMap id="BaseResultMap" type="com.wsh.cost.domain.Cost" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="base_duration" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="base_cost" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="unit_cost" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="status" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="descr" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="creatime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="startime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="cost_type" jdbcType="CHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, base_duration, base_cost, unit_cost, status, descr, creatime, startime, 
+    cost_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cost
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cost
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wsh.cost.domain.Cost" >
+    insert into cost (id, name, base_duration, 
+      base_cost, unit_cost, status, 
+      descr, creatime, startime, 
+      cost_type)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{baseDuration,jdbcType=INTEGER}, 
+      #{baseCost,jdbcType=INTEGER}, #{unitCost,jdbcType=INTEGER}, #{status,jdbcType=CHAR}, 
+      #{descr,jdbcType=VARCHAR}, #{creatime,jdbcType=TIMESTAMP}, #{startime,jdbcType=TIMESTAMP}, 
+      #{costType,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wsh.cost.domain.Cost" >
+    insert into cost
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="baseDuration != null" >
+        base_duration,
+      </if>
+      <if test="baseCost != null" >
+        base_cost,
+      </if>
+      <if test="unitCost != null" >
+        unit_cost,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="creatime != null" >
+        creatime,
+      </if>
+      <if test="startime != null" >
+        startime,
+      </if>
+      <if test="costType != null" >
+        cost_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="baseDuration != null" >
+        #{baseDuration,jdbcType=INTEGER},
+      </if>
+      <if test="baseCost != null" >
+        #{baseCost,jdbcType=INTEGER},
+      </if>
+      <if test="unitCost != null" >
+        #{unitCost,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="creatime != null" >
+        #{creatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startime != null" >
+        #{startime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="costType != null" >
+        #{costType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsh.cost.domain.Cost" >
+    update cost
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="baseDuration != null" >
+        base_duration = #{baseDuration,jdbcType=INTEGER},
+      </if>
+      <if test="baseCost != null" >
+        base_cost = #{baseCost,jdbcType=INTEGER},
+      </if>
+      <if test="unitCost != null" >
+        unit_cost = #{unitCost,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="creatime != null" >
+        creatime = #{creatime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startime != null" >
+        startime = #{startime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="costType != null" >
+        cost_type = #{costType,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wsh.cost.domain.Cost" >
+    update cost
+    set name = #{name,jdbcType=VARCHAR},
+      base_duration = #{baseDuration,jdbcType=INTEGER},
+      base_cost = #{baseCost,jdbcType=INTEGER},
+      unit_cost = #{unitCost,jdbcType=INTEGER},
+      status = #{status,jdbcType=CHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      creatime = #{creatime,jdbcType=TIMESTAMP},
+      startime = #{startime,jdbcType=TIMESTAMP},
+      cost_type = #{costType,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

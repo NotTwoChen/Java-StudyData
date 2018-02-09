@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/main/resources/User.xml" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/OrdersMapper.xml" dialect="Sybase" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" dialect="TSQL" />
+  </component>
+  <component name="SqlResolveMappings">
+    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/OrdersMapper.xml" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;data-source&quot;,   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@name&quot;:&quot;e8b22002-31f0-4f7d-bc0d-c6129e9655cd&quot;,     &quot;@quoted&quot;:&quot;1&quot;    }   }  } }}" />
+    <file url="PROJECT" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;data-source&quot;,   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@name&quot;:&quot;e8b22002-31f0-4f7d-bc0d-c6129e9655cd&quot;,     &quot;@quoted&quot;:&quot;1&quot;    }   }  } }}" />
+  </component>
+</project>

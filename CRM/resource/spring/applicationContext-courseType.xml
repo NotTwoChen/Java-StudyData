@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean name="crmCourseType" class="com.wsh.crm.course.domain.CrmCourseType"/>
+
+    <bean name="courseTypeDao" class="com.wsh.crm.course.dao.impl.CourseTypeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean name="courseTypeService" class="com.wsh.crm.course.service.impl.CourseTypeServiceImpl">
+        <property name="courseTypeDao" ref="courseTypeDao"/>
+    </bean>
+
+    <bean name="courseTypeAction" class="com.wsh.crm.course.web.action.CourseTypeAction" scope="prototype">
+        <property name="courseTypeService" ref="courseTypeService"/>
+        <property name="crmCourseType" ref="crmCourseType"/>
+    </bean>
+</beans>

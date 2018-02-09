@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="generator.properties"/>
+    <classPathEntry location="${jdbc.driverLocation}"/>
+    <context id="default" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="${jdbc.driver}" connectionURL="${jdbc.url}" userId="${jdbc.username}" password="${jdbc.password}"/>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="com.wsh.domain" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="constructorBased" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="immutable" value="false"/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="com.wsh.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wsh.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <table tableName="account" domainObjectName="Account" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="admin_info" domainObjectName="Admin_Info" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="admin_role" domainObjectName="Admin_Role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="cost" domainObjectName="Cost" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="module_info" domainObjectName="Module_Info" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="role_info" domainObjectName="Role_Info" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="role_module" domainObjectName="Role_Module" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="service" domainObjectName="Service" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <table tableName="service_update_bak" domainObjectName="Service_Update_Bak" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+    </context>
+</generatorConfiguration>

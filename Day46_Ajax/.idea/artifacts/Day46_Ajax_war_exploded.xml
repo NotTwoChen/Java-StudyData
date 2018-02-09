@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Day46_Ajax:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Day46_Ajax_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Day46_Ajax/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Day46_Ajax" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="activation" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

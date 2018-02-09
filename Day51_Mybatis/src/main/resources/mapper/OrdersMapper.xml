@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wsh.mapper.OrdersMapper">
+
+
+    <sql id="select_user">
+        user.id,
+        user.username,
+        user.gender,
+        user.birthday,
+        user.address
+    </sql>
+    <sql id="select_orders">
+        Orders.id,
+        Orders.user_id,
+        Orders.number,
+        Orders.createtime,
+        Orders.note
+    </sql>
+    <sql id="select_orderDetail">
+        OrderDetail.id orderdetail_id,
+        OrderDetail.items_id,
+        OrderDetail.orders_id,
+        OrderDetail.items_num
+    </sql>
+    <sql id="select_items">
+        Items.id,
+        Items.name
+    </sql>
+    <select id="findOrdersUser" resultType="com.wsh.domain.OrdersExt">
+        SELECT 
+        <include refid="select_orders"/>,
+        <include refid="select_user"/>
+        FROM Orders,user
+        WHERE Orders.user_id = user.id
+    </select>
+    <resultMap id="OrdersUserRstMap" type="com.wsh.domain.Orders">
+        <id column="id" property="id"/>
+        <result column="user_id" property="user_id"/>
+        <result column="number" property="number"/>
+        <result column="createtime" property="createtime"/>
+        <result column="note" property="note"/>
+        <association property="user" javaType="com.wsh.domain.User">
+            <id column="id" property="id"/>
+            <result column="username" property="username"/>
+            <result column="gender" property="gender"/>
+            <result column="birthday" property="birthday"/>
+            <result column="address" property="address"/>
+        </association>
+    </resultMap>
+    <select id="findOrdersUserRstMap" resultMap="OrdersUserRstMap">
+        SELECT
+        <include refid="select_orders"/>,
+        <include refid="select_user"/>
+        FROM Orders,user
+        WHERE Orders.user_id = user.id
+    </select>
+    
+    <resultMap id="OrdersAndOrderDetailRstMap" type="orders" extends="OrdersUserRstMap">
+        <collection property="detailList" ofType="orderDetail">
+            <id column="id" property="id"/>
+            <result column="items_id" property="items_id"/>
+            <result column="items_num" property="items_num"/>
+            <result column="orders_id" property="orders_id"/>
+        </collection>
+    </resultMap>
+
+    <select id="findOrdersAndOrderDetailRstMap" resultMap="OrdersAndOrderDetailRstMap">
+        SELECT 
+        <include refid="select_orders"/>,
+        <include refid="select_user"/>,
+        OrderDetail.id detail_id,
+        OrderDetail.orders_id,
+        OrderDetail.items_id,
+        OrderDetail.items_num
+        FROM Orders,User,OrderDetail
+        WHERE Orders.user_id = User.id
+        AND Orders.id = OrderDetail.orders_id
+    </select>
+    
+
+
+    <resultMap id="UserAndItemsRstMap" type="user">
+        <id column="user_id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="gender" property="gender"/>
+        <result column="birthday" property="birthday"/>
+        <result column="address" property="address"/>
+        <collection property="ordersList" ofType="orders">
+            <id column="orders_id" property="id"/>
+            <result column="number" property="number"/>
+            <result column="user_id" property="user_id"/>
+            <result column="createtime" property="createtime"/>
+            <result column="note" property="note"/>
+            <collection property="detailList" ofType="orderDetail">
+                <id column="orderdetail_id" property="id"/>
+                <result column="items_id" property="items_id"/>
+                <result column="items_num" property="items_num"/>
+                <result column="orders_id" property="orders_id"/>
+                <association property="items" javaType="items">
+                    <id column="items_id" property="id"/>
+                    <result column="name" property="name"/>
+                </association>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="findUserAndItemsRstMap" resultMap="UserAndItemsRstMap">
+        SELECT
+        <include refid="select_user"/>,
+        <include refid="select_orders"/>,
+        <include refid="select_orderDetail"/>,
+        <include refid="select_items"/>
+        FROM User,Orders,OrderDetail,Items
+        WHERE User.id = Orders.user_id
+        AND Orders.id = OrderDetail.orders_id
+        AND OrderDetail.items_id = Items.id
+
+    </select>
+
+
+
+</mapper>

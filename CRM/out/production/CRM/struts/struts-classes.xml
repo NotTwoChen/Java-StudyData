@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.multipart.maxSize" value="10701096"/>
+    <package name="classes" extends="common">
+        <action name="classes_*" class="com.wsh.crm.classes.web.action.ClassesAction" method="{1}">
+            <interceptor-ref name="defaultStack">
+                <param name="fileUpload.allowedExtensions">.doc,.txt</param>
+                <param name="fileUpload.allowedTypes">text/plain,application/msword</param>
+            </interceptor-ref>
+            <result name="success" type="chain">uiAction_classesm_listClass</result>
+            <result name="fbi" type="chain">courseType_findAll2</result>
+            <result name="addOrEdit" type="redirectAction">classes_findAll</result>
+            <result name="show" type="chain">uiAction_classesm_showClass</result>
+            <result name="fbi2" type="chain">uiAction_classesm_uploadClass</result>
+            <result name="input" type="redirectAction">classes_findAll</result>
+            <result name="down" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileStream</param>
+                <param name="contentDisposition">attachment;filename=${downloadFileName}</param>
+            </result>
+            <allowed-methods>findAll,addOrEdit,findByClassId,show,findByClassId2,upload,download</allowed-methods>
+        </action>
+    </package>
+</struts>
