@@ -17,5 +17,6 @@
     </typeAliases>
     <mappers>
         <package name="com.wsh.cost.dao"/>
+        <package name="com.wsh.account.dao"/>
     </mappers>
 </configuration>

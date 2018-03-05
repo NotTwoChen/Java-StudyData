@@ -11,7 +11,7 @@ public class Cost {
 
     private Integer baseCost;
 
-    private Integer unitCost;
+    private Double unitCost;
 
     private String status;
 
@@ -23,7 +23,23 @@ public class Cost {
 
     private String costType;
 
-    public Cost(Integer id, String name, Integer baseDuration, Integer baseCost, Integer unitCost, String status, String descr, Date creatime, Date startime, String costType) {
+    @Override
+    public String toString() {
+        return "Cost{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", baseDuration=" + baseDuration +
+                ", baseCost=" + baseCost +
+                ", unitCost=" + unitCost +
+                ", status='" + status + '\'' +
+                ", descr='" + descr + '\'' +
+                ", creatime=" + creatime +
+                ", startime=" + startime +
+                ", costType='" + costType + '\'' +
+                '}';
+    }
+
+    public Cost(Integer id, String name, Integer baseDuration, Integer baseCost, Double unitCost, String status, String descr, Date creatime, Date startime, String costType) {
         this.id = id;
         this.name = name;
         this.baseDuration = baseDuration;
@@ -72,11 +88,11 @@ public class Cost {
         this.baseCost = baseCost;
     }
 
-    public Integer getUnitCost() {
+    public Double getUnitCost() {
         return unitCost;
     }
 
-    public void setUnitCost(Integer unitCost) {
+    public void setUnitCost(Double unitCost) {
         this.unitCost = unitCost;
     }
 

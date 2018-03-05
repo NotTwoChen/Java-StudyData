@@ -18,10 +18,18 @@
     <script language="javascript" type="text/javascript">
         //排序按钮的点击事件
         function sort(btnObj) {
-            if (btnObj.className == "sort_desc")
+            var value = btnObj.value;
+            if (value === "基费"){value = "base_cost"}else {value = "base_duration"}
+            var className = btnObj.className;
+            if (className === "sort_desc"){
                 btnObj.className = "sort_asc";
-            else
+                className = "asc";
+            } else {
                 btnObj.className = "sort_desc";
+                className = "desc";
+            }
+            window.location.href = "${pageContext.request.contextPath}/cost/cost_list?sort="+className+"&value="+value;
+
         }
 
         //启用
@@ -30,34 +38,23 @@
             document.getElementById("operate_result_info").style.display = "block";
         }
         //删除
-        function deleteFee() {
+        function deleteFee(id) {
             var r = window.confirm("确定要删除此资费吗？");
-            document.getElementById("operate_result_info").style.display = "block";
+            if (r){
+                document.getElementById("operate_result_info").style.display = "block";
+                window.location.href = "${pageContext.request.contextPath}/cost/deleteCost?id="+id;
+            }
         }
     </script>
 </head>
 <body>
 <!--Logo区域开始-->
-<div id="header">
-    <img src="../images/logo.png" alt="logo" class="left"/>
-    <a href="#">[退出]</a>
-</div>
+<jsp:include page="../include/header.jsp"/>
 <!--Logo区域结束-->
 <!--导航区域开始-->
-<div id="navi">
-    <ul id="menu">
-        <li><a href="../index.html" class="index_off"></a></li>
-        <li><a href="../role/role_list.html" class="role_off"></a></li>
-        <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
-        <li><a href="../fee/fee_list.html" class="fee_on"></a></li>
-        <li><a href="../account/account_list.html" class="account_off"></a></li>
-        <li><a href="../service/service_list.html" class="service_off"></a></li>
-        <li><a href="../bill/bill_list.html" class="bill_off"></a></li>
-        <li><a href="../report/report_list.html" class="report_off"></a></li>
-        <li><a href="../user/user_info.html" class="information_off"></a></li>
-        <li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
-    </ul>
-</div>
+<jsp:include page="../include/navi.jsp">
+    <jsp:param name="class" value="cost"/>
+</jsp:include>
 <!--导航区域结束-->
 <!--主要区域开始-->
 <div id="main">
@@ -66,10 +63,10 @@
         <div class="search_add">
             <div>
                 <!--<input type="button" value="月租" class="sort_asc" onclick="sort(this);" />-->
-                <input type="button" value="基费" class="sort_asc" onclick="sort(this);" />
-                <input type="button" value="时长" class="sort_asc" onclick="sort(this);" />
+                <input type="button" value="基费" class="sort_<c:choose><c:when test="${pageBean.value == 'base_cost'}">${pageBean.sort}</c:when><c:otherwise>asc</c:otherwise></c:choose>" onclick="sort(this);" />
+                <input type="button" value="时长" class="sort_<c:choose><c:when test="${pageBean.value == 'base_duration'}">${pageBean.sort}</c:when><c:otherwise>asc</c:otherwise></c:choose>" onclick="sort(this);" />
             </div>
-            <input type="button" value="增加" class="btn_add" onclick="location.href='../fee/fee_add.html';" />
+            <input type="button" value="增加" class="btn_add" onclick="location.href='${pageContext.request.contextPath}/cost/toAddCost';" />
         </div>
         <!--启用操作的操作提示-->
         <div id="operate_result_info" class="operate_success">
@@ -90,22 +87,25 @@
                     <th class="width50">状态</th>
                     <th class="width200"></th>
                 </tr>
-                <c:forEach items="${costList}" var="cost">
+                <c:forEach items="${pageBean.list}" var="cost">
                     <tr>
                         <td>${cost.id}</td>
-                        <td><a href="../fee/fee_detail.html">${cost.name}</a></td>
-                        <td>${cost.baseDuration} 小时</td>
-                        <td>${cost.baseCost} 元</td>
+                        <td><a href="${pageContext.request.contextPath}/cost/cost_detail?id=${cost.id}">${cost.name}</a></td>
                         <td>
-                            <c:choose>
-                                <c:when test="${cost.unitCost == 0}">
-                                    <fmt:formatNumber value="${cost.baseCost/cost.baseDuration}" pattern="0.00"/>
-                                </c:when>
-                                <c:otherwise>
-                                    ${cost.unitCost}
-                                </c:otherwise>
-                            </c:choose>
-                            元/小时</td>
+                            <c:if test="${cost.baseDuration != null}">
+                                ${cost.baseDuration} 小时
+                            </c:if>
+                        </td>
+                        <td>
+                            <c:if test="${cost.baseCost != null}">
+                                ${cost.baseCost} 元
+                            </c:if>
+                        </td>
+                        <td>
+                            <c:if test="${cost.unitCost != null}">
+                                ${cost.unitCost} 元/小时
+                            </c:if>
+                        </td>
                         <td><fmt:formatDate value="${cost.creatime}" pattern="yyyy-MM-dd"/></td>
                         <td>
                             <c:choose>
@@ -119,7 +119,7 @@
                         </td>
                         <td>
                             <c:choose>
-                                <c:when test="${cost.status == 0}">
+                                <c:when test="${cost.status == '1'}">
                                     暂停
                                 </c:when>
                                 <c:otherwise>
@@ -129,38 +129,11 @@
                         </td>
                         <td>
                             <input type="button" value="启用" class="btn_start" onclick="startFee();" />
-                            <input type="button" value="修改" class="btn_modify" onclick="location.href='../fee/fee_modi.html';" />
-                            <input type="button" value="删除" class="btn_delete" onclick="deleteFee();" />
+                            <input type="button" value="修改" class="btn_modify" onclick="location.href='${pageContext.request.contextPath}/cost/toUpdateCost?id=${cost.id}';" />
+                            <input type="button" value="删除" class="btn_delete" onclick="deleteFee(${cost.id});" />
                         </td>
                     </tr>
                 </c:forEach>
-                <%--<tr>--%>
-                    <%--<td>1</td>--%>
-                    <%--<td><a href="fee_detail.html">包 20 小时</a></td>--%>
-                    <%--<td>20 小时</td>--%>
-                    <%--<td>24.50 元</td>--%>
-                    <%--<td>3.00 元/小时</td>--%>
-                    <%--<td>2013/01/01 00:00:00</td>--%>
-                    <%--<td></td>--%>
-                    <%--<td>暂停</td>--%>
-                    <%--<td>--%>
-                        <%--<input type="button" value="启用" class="btn_start" onclick="startFee();" />--%>
-                        <%--<input type="button" value="修改" class="btn_modify" onclick="location.href='fee_modi.html';" />--%>
-                        <%--<input type="button" value="删除" class="btn_delete" onclick="deleteFee();" />--%>
-                    <%--</td>--%>
-                <%--</tr>--%>
-                <%--<tr>--%>
-                    <%--<td>2</td>--%>
-                    <%--<td><a href="fee_detail.html">包 40 小时</a></td>--%>
-                    <%--<td>40 小时</td>--%>
-                    <%--<td>40.50 元</td>--%>
-                    <%--<td>3.00 元/小时</td>--%>
-                    <%--<td>2013/01/21 00:00:00</td>--%>
-                    <%--<td>2013/01/23 00:00:00</td>--%>
-                    <%--<td>开通</td>--%>
-                    <%--<td>--%>
-                    <%--</td>--%>
-                <%--</tr>--%>
             </table>
             <p>业务说明：<br />
                 1、创建资费时，状态为暂停，记载创建时间；<br />
@@ -170,21 +143,13 @@
             </p>
         </div>
         <!--分页-->
-        <div id="pages">
-            <a href="#">上一页</a>
-            <a href="#" class="current_page">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">下一页</a>
-        </div>
+        <jsp:include page="../include/pages.jsp">
+            <jsp:param name="controller" value="/cost/cost_list"/>
+            <jsp:param name="params" value="&sort=${pageBean.sort}&value=${pageBean.value}"/>
+        </jsp:include>
     </form>
 </div>
 <!--主要区域结束-->
-<div id="footer">
-    <p>[源自北美的技术，最优秀的师资，最真实的企业环境，最适用的实战项目]</p>
-    <p>版权所有(C)云科技有限公司</p>
-</div>
+<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>

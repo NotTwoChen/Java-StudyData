@@ -7,7 +7,7 @@
       <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="base_duration" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="base_cost" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="unit_cost" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="unit_cost" jdbcType="DOUBLE" javaType="java.lang.Double" />
       <arg column="status" jdbcType="CHAR" javaType="java.lang.String" />
       <arg column="descr" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="creatime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
@@ -29,6 +29,28 @@
     SELECT
     <include refid="Base_Column_List"/>
     FROM cost
+  </select>
+  <select id="selectAllByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM cost
+    ORDER BY
+    <if test="value == 'base_cost'">
+      base_cost
+    </if>
+    <if test="value == 'base_duration'">
+      base_duration
+    </if>
+    <if test="value == 'id'">
+      id
+    </if>
+    <if test="sort == 'asc'">
+      asc
+    </if>
+    <if test="sort == 'desc'">
+      desc
+    </if>
+    limit #{start},#{pageSize}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from cost

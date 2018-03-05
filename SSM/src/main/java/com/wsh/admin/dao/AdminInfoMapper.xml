@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wsh.admin.dao.AdminInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.wsh.admin.domain.AdminInfo" >
+    <constructor >
+      <idArg column="admin_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="admin_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="telephone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="enrolldate" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+    <collection property="roleInfos"
+                ofType="com.wsh.role.domain.RoleInfo"
+                javaType="java.util.ArrayList"
+                column="admin_id"
+                select="selectAllRoles"/>
+  </resultMap>
+  <resultMap id="RoleResultMap" type="com.wsh.role.domain.RoleInfo" >
+    <constructor >
+      <idArg column="role_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ModuleResultMap" type="com.wsh.role.domain.ModuleInfo" >
+    <constructor >
+      <idArg column="module_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    admin_id, admin_code, password, name, telephone, email, enrolldate
+  </sql>
+  <select id="selectAllRoles" parameterType="int" resultMap="RoleResultMap">
+    SELECT * FROM role_info
+    WHERE role_id IN (
+      SELECT role_id FROM admin_role
+      WHERE admin_id = #{id}
+    )
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin_info
+    where admin_id = #{adminId,jdbcType=INTEGER}
+    and admin_id in (
+      SELECT a.admin_id
+      FROM admin_info a
+      LEFT JOIN admin_role ar ON a.admin_id = ar.admin_id
+      LEFT JOIN role_info ri ON ar.role_id = ri.role_id
+      LEFT JOIN role_module rm ON ri.role_id = rm.role_id)
+  </select>
+  <select id="selectAll" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM admin_info
+    where admin_id in (
+    SELECT a.admin_id
+    FROM admin_info a
+    LEFT JOIN admin_role ar ON a.admin_id = ar.admin_id
+    LEFT JOIN role_info ri ON ar.role_id = ri.role_id
+    LEFT JOIN role_module rm ON ri.role_id = rm.role_id
+    <where>
+      <if test="moduleId != null and moduleId != ''">
+        AND rm.module_id = #{moduleId}
+      </if>
+      <if test="roleName != null and roleName != ''">
+        AND ri.name like concat('%',#{roleName},'%')
+      </if>
+    </where>
+    )
+  </select>
+  <select id="selectAllByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM admin_info
+    where admin_id in (
+    SELECT a.admin_id
+    FROM admin_info a
+    LEFT JOIN admin_role ar ON a.admin_id = ar.admin_id
+    LEFT JOIN role_info ri ON ar.role_id = ri.role_id
+    LEFT JOIN role_module rm ON ri.role_id = rm.role_id
+    <where>
+      <if test="moduleId != null and moduleId != ''">
+        AND rm.module_id = #{moduleId}
+      </if>
+      <if test="roleName != null and roleName != ''">
+        AND ri.name like concat('%',#{roleName},'%')
+      </if>
+    </where>
+    )
+    limit #{start},#{pageSize}
+  </select>
+  <select id="findByCode" parameterType="string" resultMap="BaseResultMap">
+    SELECT * FROM admin_info WHERE admin_code = #{adminCode}
+  </select>
+  <select id="findModulesByAdmin" parameterType="integer" resultMap="ModuleResultMap">
+    SELECT * FROM module_info WHERE module_id IN (
+      SELECT rm.module_id FROM admin_role ar
+      INNER JOIN role_info ri ON ri.role_id = ar.role_id
+      INNER JOIN role_module rm ON rm.role_id = ri.role_id
+      WHERE ar.admin_id=#{adminId}
+    )order by module_id
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin_info
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteAdminRole" parameterType="java.lang.Integer">
+    DELETE FROM admin_role
+    WHERE admin_id = #{adminId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wsh.admin.domain.AdminInfo" >
+    <selectKey keyProperty="adminId" resultType="java.lang.Integer" order="AFTER">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into admin_info (admin_id, admin_code, password, 
+      name, telephone, email, 
+      enrolldate)
+    values (#{adminId,jdbcType=INTEGER}, #{adminCode,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{enrolldate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wsh.admin.domain.AdminInfo" >
+    insert into admin_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminId != null" >
+        admin_id,
+      </if>
+      <if test="adminCode != null" >
+        admin_code,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="enrolldate != null" >
+        enrolldate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminCode != null" >
+        #{adminCode,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="enrolldate != null" >
+        #{enrolldate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertAdminRole" parameterType="map">
+    insert into admin_role (admin_id, role_id)
+    values (#{adminId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wsh.admin.domain.AdminInfo" >
+    update admin_info
+    <set >
+      <if test="adminCode != null" >
+        admin_code = #{adminCode,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="enrolldate != null" >
+        enrolldate = #{enrolldate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wsh.admin.domain.AdminInfo" >
+    update admin_info
+    set admin_code = #{adminCode,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      enrolldate = #{enrolldate,jdbcType=TIMESTAMP}
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+  <update id="updatePassword" parameterType="map">
+    UPDATE admin_info set password = #{password}
+    where admin_id in
+    <foreach collection="admin_ids" open="(" close=")" separator="," item="admin_id">
+      #{admin_id}
+    </foreach>
+  </update>
+</mapper>
