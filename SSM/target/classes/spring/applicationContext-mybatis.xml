@@ -68,12 +68,11 @@
     </tx:advice>
     <!-- 配置事物切面 需要aspectjweaver.jar-->
     <aop:config proxy-target-class="true">
-        <!--<aop:pointcut id="serviceOperation" expression="execution(* com.ssmtest.service.*.*(..))" />-->
         <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.wsh.*.service.*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut="within(com.wsh.*.controller..*)"/>
     </aop:config>
 
-    <!--<tx:annotation-driven transaction-manager="txManager"/>-->
+    <tx:annotation-driven transaction-manager="txManager"/>
 
     <mvc:interceptors>
         <mvc:interceptor>
