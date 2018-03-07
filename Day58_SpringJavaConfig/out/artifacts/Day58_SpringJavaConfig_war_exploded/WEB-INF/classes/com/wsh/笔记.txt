@@ -1,0 +1,62 @@
+Spring Aware
+    Spring的依赖注入,使得所有的Bean感觉不到Spring容器的存在,也就是说是可以随意更换
+    了IOC容器的,因为Bean之间的耦合度很低
+    但是有时我们需要在Bean中使用Spring容器给我们提供的资源(Request等等),这时我们的Bean
+    就必须要意识到Spring容器的存在,才能调用Spring所提供的资源,这就是Spring Aware
+    若使用了Spring Aware则Bean将会与Spring框架耦合
+
+    BeanNameAware           获得容器中Bean的名称
+    BeanFactoryAware        获得当前Bean factory,这样就可以调用容器的服务
+    ApplicationContextAware*当前的application Context这样可以调用容器的服务
+    MessageSourceAware      获得message source 这样可以获得文本信息
+    ApplicationEventPublisherAware应用事件发布器,可以发布事件
+    ResourceLoaderAware     获得资源加载器,可以获得外部资源文件
+
+多线程
+    Spring通过任务执行器(TaskExecutor)来实现多线程和并发编程
+    使用ThreadPoolTaskExecutor可实现一个基于县城次的TaskExecutor
+    一般情况下,面对的都是异步任务,要在配置类中使用@EnableAsync开启对异步任务的支持
+    并通过在实际执行的Bean的方法中,使用@Async注解来声明器是一个异步任务
+
+其他注解
+    @profile不同环境下使用不同的配置(开发环境,测试环境,生产环境(上线))
+    @EnableScheduling计划任务,实际上就相当于定时执行
+    @Condition根据满足某一个特定条件创建一个特定的Bean
+
+组合注解与元注解
+    从Spring2开始,为了响应JDK1.5推出的注解功能,Spring开始大量加入注解来代替XML配置
+    Spring注解主要用来配置和注入Bean,以及AOP相关配置(@Transaction)
+    但是代码越来越多,就会有好多相同的注解,被标注在不同的类或方法中,这就是重复性的代码
+
+    元注解就是可以注解到别的注解上的注解,被注解的注解称之为组合注解,组合注解具备元注解的功能
+    我们使用@Configuration标注配置类,实际上该配置类也有了@Component的含义,表名这个类也是一个Bean
+
+Spring测试
+    测试是开发工作中不可或缺的部分
+    单元测试只针对当前开发的类和方法进行测试,可以简单通过模拟依赖来实现,对运行环境没有依赖
+    但是单元测试只能验证当前类或方法是否正常工作,而我们想要知道系统的各个部分组合在一起是否
+    能正常工作,这就是集成测试存在的意义
+    集成测试为我们提供了一种无须部署或运行程序来完成验证系统各部分是否正常协同工作的能力
+
+Spring TestContext FrameWork
+    Spring通过TestContext FrameWork对集成测试提供顶级支持.
+    它不依赖于特定的测试框架,支持Junit也支持TestNG
+
+SpringMVC的拦截器配置
+    拦截器实现对每一个请求处理前后进行相关的业务处理
+    可以让普通的Bean实现HandlerInterceptor接口或者继承HandlerInterceptorAdapter类实现自定义拦截器
+
+SpringMVC的其他注解
+    @ControllerAdvice将控制器的全局配置放置在一个位置
+    注解了@Controller的类的方法可使用@ExceptionHandler/@InitBinder/@ModelAttribute注解到方法上
+    这对所有注解了@RequestMapping的控制器内的方法有效
+    @ExceptionHandler用来全局处理控制器里的异常
+    @InitBinder用来设置WebDataBinder,WebDataBinder用来自动前台请求参数到Model中
+    @ModelAttribute绑定键值对到Model中,可用来让全局的@RequestMapping都能获得在此处设置的键值对
+
+    路径匹配参数配置
+        在SpringMVC中,路径参数如果带.,那么.后面的值将被忽略
+        在配置类中重写configurePathMatch方法则可不忽略后面的内容
+
+
+SpringMVC 通过配置一个MultipartResolver来实现文件上传
