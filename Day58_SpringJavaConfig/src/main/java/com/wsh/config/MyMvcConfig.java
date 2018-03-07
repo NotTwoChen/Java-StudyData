@@ -1,17 +1,23 @@
 package com.wsh.config;
 
+import com.wsh.converter.MyMessageConverter;
 import com.wsh.interceptor.ShowInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import java.util.List;
+
 @Configuration
 @EnableWebMvc
+@EnableScheduling // 开启对异步执行的支持
 @ComponentScan("com.wsh")
 public class MyMvcConfig extends WebMvcConfigurerAdapter{
 
@@ -36,6 +42,17 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter{
         return multipartResolver;
     }
 
+    @Bean
+    public MyMessageConverter myMessageConverter(){
+        return new MyMessageConverter();
+    }
+
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(myMessageConverter());
+    }
+
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // addResourceHandler指的是对外暴露的访问路径
@@ -58,6 +75,10 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter{
         // 路径为/index的请求,显示名称为index的视图
         registry.addViewController("/index").setViewName("/index");
         registry.addViewController("/toUpload").setViewName("/upload");
+        registry.addViewController("/converter").setViewName("/converter");
+        registry.addViewController("/sse").setViewName("/sse");
+        registry.addViewController("/async").setViewName("/async");
+
     }
 
     @Override

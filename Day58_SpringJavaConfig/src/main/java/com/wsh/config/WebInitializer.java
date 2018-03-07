@@ -31,6 +31,9 @@ public class WebInitializer implements WebApplicationInitializer {
         // 最先加载
         servlet.setLoadOnStartup(1);
 
+        // 开启异步支持
+        servlet.setAsyncSupported(true);
+
 
     }
 }

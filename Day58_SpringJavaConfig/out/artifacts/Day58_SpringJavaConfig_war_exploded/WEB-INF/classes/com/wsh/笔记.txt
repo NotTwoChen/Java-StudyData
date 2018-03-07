@@ -60,3 +60,13 @@ SpringMVC的其他注解
 
 
 SpringMVC 通过配置一个MultipartResolver来实现文件上传
+
+
+自定义HttpMessageConverter
+    HttpMessageConverter是用来处理request和response里的数据的
+    Spring为我们内置了大量的HttpMessageConverter
+
+
+服务端推送技术
+    基本原理:当客户端向服务端发送请求时,服务端会抓住这个请求不放,等有数据更新时,再返回给客户端
+    当客户端接受消息后,再想服务端发送请求,周而复始

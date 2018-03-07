@@ -1,7 +1,9 @@
 package com.wsh.controller;
 
+import com.wsh.domain.DemoObj;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,5 +27,11 @@ public class HelloController {
     @ResponseBody
     public String pathParam(@PathVariable String str, HttpServletRequest request){
         return "url:" + request.getRequestURI() + "    参数值为:" + str;
+    }
+
+    @RequestMapping(value = "/convert",produces = "application/x-wsh")
+    @ResponseBody
+    public DemoObj convert(@RequestBody DemoObj demoObj){
+        return demoObj;
     }
 }
