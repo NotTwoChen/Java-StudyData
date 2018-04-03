@@ -1,0 +1,16 @@
+SpringBoot创建
+    基本配置
+        SpringBoot通常有一个名为*Application的入口类,类中有一个main方法,这个方法就是一个标准的Java应用的入口方法.
+        在main方法中使用SpringApplication.run(SpringbootbaseApplication.class,args),启动SpringBoot项目.
+
+    SpringBoot的配置文件
+        SpringBoot使用一个全局的配置文件application.properties或application.yml放置在src/main/resources目录或者
+        类路径的/config下
+        SpringBoot的全局配置文件的作用是对一些默认配置的配置值进行修改
+    starter pom
+        SpringBoot为我们提供了简化企业级开发绝大多数场景的starter pom,只要使用了应用场景所需要的starter pom,相关
+        的技术配置将会消除,就可以得到SpringBoot为我们提供的自动配置的Bean
+
+    类型安全的配置(基于properties)
+        使用@Value注入每个配置会很麻烦(配置通常有许多个),SpringBoot还提供了基于类型安全的配置方式.
+        通过@cofingurationProperties将properties属性和一个Bean及其属性关联,从而实现类型安全的配置
